@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import Link from "next/link"
 
+import { ContactModal } from "@/components/shared/contact-modal"
+
 const benefits = [
   { icon: FileText, text: "Comprehensive Reports" },
   { icon: Clock, text: "Fast Turnaround" },
@@ -42,12 +44,23 @@ export function AppraisalCTA() {
                 ))}
               </div>
 
-              <Link href="/portal/appraisals/new">
-                <Button size="lg" className="bg-white text-appraisal hover:bg-white/90 gap-2 px-8">
-                  Start Your Request
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
+              <ContactModal
+                color="#1b9d98"
+                email="appraisal@amaken.com.sa"
+                title="Request a Professional Appraisal"
+                subtitle="Get accurate, reliable valuations from our certified team."
+                services={[
+                  { value: "real-estate", label: "Real Estate Appraisal" },
+                  { value: "facilities", label: "Facilities Valuation" },
+                  { value: "machinery", label: "Machinery & Equipment" },
+                ]}
+                trigger={
+                  <Button size="lg" className="bg-white text-appraisal hover:bg-white/90 gap-2 px-8">
+                    Start Your Request
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                }
+              />
             </div>
           </div>
         </SectionReveal>

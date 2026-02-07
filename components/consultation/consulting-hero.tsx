@@ -5,6 +5,7 @@ import { ArrowRight, Lightbulb, Target, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
+import { ContactModal } from "@/components/shared/contact-modal"
 
 export function ConsultingHero() {
   const { t } = useI18n()
@@ -83,12 +84,25 @@ export function ConsultingHero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link href="/portal/consultations/new">
-                <Button size="lg" className="bg-consulting hover:bg-consulting/90 text-white gap-2 px-8">
-                  {t("consultingPage.hero.cta")}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
+              <ContactModal
+                color="#EFD447"
+                email="consulting@amaken.com.sa"
+                title={t("consultingPage.hero.title")}
+                subtitle={t("contact.subtitle")}
+                services={[
+                  { value: "feasibility", label: t("gate.services.consulting.feasibility") },
+                  { value: "market", label: t("gate.services.consulting.market") },
+                  { value: "hbu", label: t("gate.services.consulting.hbu") },
+                  { value: "restructuring", label: t("gate.services.consulting.restructuring") },
+                  { value: "financial", label: t("gate.services.consulting.financial") },
+                ]}
+                trigger={
+                  <Button size="lg" className="bg-consulting hover:bg-consulting/90 text-white gap-2 px-8">
+                    {t("consultingPage.hero.cta") || t("common.contactUs")}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                }
+              />
               <Link href="/consulting/feasibility">
                 <Button
                   size="lg"

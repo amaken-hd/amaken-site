@@ -6,6 +6,8 @@ import { SectionReveal } from "@/components/ui/section-reveal"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
 
+import { ContactModal } from "@/components/shared/contact-modal"
+
 export function ConsultingCTA() {
   const { t } = useI18n()
 
@@ -40,12 +42,25 @@ export function ConsultingCTA() {
                 ))}
               </div>
 
-              <Link href="/portal/consultations/new">
-                <Button size="lg" className="bg-white text-consulting hover:bg-white/90 gap-2 px-8">
-                  {t("consultingPage.cta.button")}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
+              <ContactModal
+                color="#EFD447"
+                email="consulting@amaken.com.sa"
+                title={t("consultingPage.cta.title")}
+                subtitle={t("consultingPage.cta.description")}
+                services={[
+                  { value: "feasibility", label: t("gate.services.consulting.feasibility") },
+                  { value: "market", label: t("gate.services.consulting.market") },
+                  { value: "hbu", label: t("gate.services.consulting.hbu") },
+                  { value: "restructuring", label: t("gate.services.consulting.restructuring") },
+                  { value: "financial", label: t("gate.services.consulting.financial") },
+                ]}
+                trigger={
+                  <Button size="lg" className="bg-white text-consulting hover:bg-white/90 gap-2 px-8">
+                    {t("consultingPage.cta.button")}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                }
+              />
             </div>
           </div>
         </SectionReveal>

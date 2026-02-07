@@ -6,7 +6,33 @@ export const defaultLocale: Locale = "en";
 const dictionariesObj = {
   en: {
     gate: {
-      title: "AMAKEN Companies"
+      title: "AMAKEN Companies",
+      choose: "Choose the right company for your needs",
+      ourServices: "Our Services",
+      services: {
+        appraisal: {
+          realEstate: "Real Estate Appraisal",
+          economic: "Economic Entity Valuation",
+          machinery: "Machinery & Equipment Valuation"
+        },
+        consulting: {
+          feasibility: "Feasibility Study",
+          market: "Market Study",
+          hbu: "Highest & Best Use Study",
+          restructuring: "Corporate Restructuring",
+          financial: "Financial Studies for Projects"
+        },
+        group: {
+          marketing: "Real Estate Marketing",
+          auctions: "Holding Auctions",
+          management: "Property Management"
+        }
+      },
+      companies: {
+        group: "AMAKEN INTERNATIONAL GROUP",
+        appraisal: "AMAKEN VALUATION COMPANY",
+        consulting: "AMAKEN MANAGEMENT CONSULTING COMPANY"
+      }
     },
     common: {
       brandName: "Amaken",
@@ -37,6 +63,9 @@ const dictionariesObj = {
       contact: "Contact",
       portal: "Client Portal",
       language: "العربية",
+      services: "Services",
+      contactus: "Contact Us",
+      projects: "Projects",
     },
     hero: {
       tagline: "Amaken Group",
@@ -362,6 +391,40 @@ const dictionariesObj = {
           events: "Upcoming Events",
           locations: "Multiple Locations",
         },
+      },
+    },
+
+    projectsPage: {
+      title: "Our Projects",
+      subtitle: "Discover our latest real estate developments",
+      viewProject: "View Project",
+      backToProjects: "Back to Projects",
+      details: {
+        location: "Location",
+        year: "Year",
+        units: "Units",
+        developer: "Developer",
+        status: "Status",
+      },
+      form: {
+        title: "Interested? Register Now",
+        subtitle: "Fill out the form below to receive more information about this project.",
+        name: "Name",
+        email: "Email",
+        phone: "Mobile Number",
+        submit: "Register",
+        success: "Thank you! We will contact you shortly.",
+      },
+      units: {
+        title: "Units",
+        sold: "Sold",
+        currency: "SAR",
+        area: "Area",
+        rooms: "Rooms",
+        bathrooms: "Bathrooms",
+        type: "Type",
+        viewDetails: "Register Interest",
+        priceHidden: "Sold",
       },
     },
 
@@ -774,12 +837,46 @@ const dictionariesObj = {
             process: {
               s1: "Estimate potential gross income",
               s2: "Deduct vacancy and collection losses",
-              s3: "Subtract operating expenses",
-              s4: "Apply capitalization rate or discount cash flows",
+              s3: "Subtract operating expenses to get NOI",
+              s4: "Apply capitalization rate to NOI",
             },
             example:
-              "An office building generating SAR 2M annually with a market cap rate of 8% would indicate a value of SAR 25M (2M ÷ 0.08 = 25M).",
+              "For an office building generating $1M in net operating income (NOI), applying a market-derived capitalization rate of 8% indicates a value of $12.5M ($1M / 0.08).",
           },
+        },
+      },
+
+      projectsPage: {
+        title: "Our Projects",
+        subtitle: "Discover our latest real estate developments",
+        viewProject: "View Project",
+        backToProjects: "Back to Projects",
+        details: {
+          location: "Location",
+          year: "Year",
+          units: "Units",
+          developer: "Developer",
+          status: "Status",
+        },
+        form: {
+          title: "Interested? Register Now",
+          subtitle: "Fill out the form below to receive more information about this project.",
+          name: "Name",
+          email: "Email",
+          phone: "Mobile Number",
+          submit: "Register Interest",
+          success: "Thank you! We will contact you shortly.",
+        },
+        units: {
+          title: "Units",
+          sold: "Sold",
+          currency: "SAR",
+          area: "Area",
+          rooms: "Rooms",
+          bathrooms: "Bathrooms",
+          type: "Type",
+          viewDetails: "View Details",
+          priceHidden: "Sold",
         },
       },
       faq: {
@@ -906,11 +1003,38 @@ const dictionariesObj = {
     clients: {
       title: "Our Clients",
     },
-  },
-  ar: {
+
+  }
+  , ar: {
 
     gate: {
-      title: "مجموعة شركات أماكن"
+      title: "مجموعة شركات أماكن الدولية",
+      choose: "اختر الشركة المناسبة لاحتياجاتك",
+      ourServices: "خدماتنا",
+      services: {
+        appraisal: {
+          realEstate: "التـــقــيـــيـــم الـــعـــقـــــاري",
+          economic: "تقييم المنشئات الاقتصادية",
+          machinery: "تقييـــم الالات والمــعـــدات"
+        },
+        consulting: {
+          feasibility: "دراســــــة الــــــجــــــــــــــــــدوى",
+          market: "دراســـــــة الــــســــــــــــــــــــوق",
+          hbu: "دراسة افضل وأعلى إستخــدام",
+          restructuring: "دراسات اعادة هيكلة الشركات",
+          financial: "الدراسات المالية للمشاريع الاقتصادية"
+        },
+        group: {
+          marketing: "التسويق الــعقاري",
+          auctions: "اقامة المـــــزادات",
+          management: "إدارة الأمــــــــلاك"
+        }
+      },
+      companies: {
+        group: "شركة مجموعة أماكن الدولية",
+        appraisal: "شركة أماكن للتقييم",
+        consulting: "شركة أماكن للاستشارات"
+      }
     },
     common: {
       brandName: "أماكن",
@@ -942,6 +1066,9 @@ const dictionariesObj = {
       contact: "اتصل بنا",
       portal: "بوابة العملاء",
       language: "English",
+      services: "الخدمات",
+      contactus: "اتصل بنا",
+      projects: "المشاريع",
     },
 
     hero: {
@@ -1147,6 +1274,39 @@ const dictionariesObj = {
       headquarters: "المقر الرئيسي",
       address: "العنوان",
       poBox: "صندوق بريد",
+    },
+    projectsPage: {
+      title: "مشاريعنا",
+      subtitle: "اكتشف أحدث مشاريعنا العقارية",
+      viewProject: "عرض المشروع",
+      backToProjects: "العودة للمشاريع",
+      details: {
+        location: "الموقع",
+        year: "سنة التنفيذ",
+        units: "عدد الوحدات",
+        developer: "المطور",
+        status: "الحالة",
+      },
+      form: {
+        title: "هل انت مهتم؟ سجل اهتمامك",
+        subtitle: "سجل اهتمامك بالمشروع",
+        name: "الاسم",
+        email: "البريد الإلكتروني",
+        phone: "رقم الجوال",
+        submit: "سجل",
+        success: "شكراً لك! سنتواصل معك قريباً.",
+      },
+      units: {
+        title: "الوحدات",
+        sold: "تم الشراء",
+        currency: "ريال",
+        area: "المساحة",
+        rooms: "الغرف",
+        bathrooms: "دورات المياه",
+        type: "النوع",
+        viewDetails: "سجل اهتمامك",
+        priceHidden: "مباعة",
+      },
     },
     consultingPage: {
       hero: {
@@ -1604,13 +1764,13 @@ const dictionariesObj = {
       },
       ctaHelper: {
         title: "تحتاج إلى خدمة تقييم أو استشارة تناسب مشروعك؟",
-        whatsapp: "احصل على تقييم عبر واتساب",
+        whatsapp: "اطلب تقييم عبر الواتساب",
         viewAll: "عرض جميع الخدمات",
       },
     },
     studyProcess: {
       badge: "قطاع الاستشارات",
-      title: "عملية الدراسة لدينا",
+      title: "الباقات",
       subtitle: "نقدم جداول زمنية مرنة لدراسات التقييم لتتناسب مع إلحاح عملك ومتطلبات المشروع.",
       normal: {
         title: "الخدمة العادية",
@@ -1730,7 +1890,9 @@ const dictionariesObj = {
       title: "عملاؤنا المتميزين",
     },
   },
-};
+}
+
+
 
 export const getDictionary = (locale: Locale) => dictionariesObj[locale as keyof typeof dictionariesObj] as any;
 

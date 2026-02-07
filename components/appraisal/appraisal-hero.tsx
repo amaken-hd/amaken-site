@@ -5,6 +5,7 @@ import { ArrowRight, Shield, Award, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
+import { ContactModal } from "@/components/shared/contact-modal"
 
 export function AppraisalHero() {
   const { t } = useI18n()
@@ -95,12 +96,23 @@ export function AppraisalHero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link href="/portal/appraisals/new">
-                <Button size="lg" className="bg-appraisal hover:bg-appraisal/90 text-white gap-2 px-8">
-                  {t("appraisalPage.hero.cta")}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
+              <ContactModal
+                color="#1b9d98"
+                email="appraisal@amaken.com.sa"
+                title={t("appraisalPage.hero.cta")}
+                subtitle={t("contact.subtitle")}
+                services={[
+                  { value: "real-estate", label: t("gate.services.appraisal.realEstate") },
+                  { value: "economic", label: t("gate.services.appraisal.economic") },
+                  { value: "machinery", label: t("gate.services.appraisal.machinery") },
+                ]}
+                trigger={
+                  <Button size="lg" className="bg-appraisal hover:bg-appraisal/90 text-white gap-2 px-8">
+                    {t("appraisalPage.hero.cta")}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                }
+              />
               <Link href="/appraisal/methods">
                 <Button
                   size="lg"

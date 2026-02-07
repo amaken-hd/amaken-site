@@ -12,20 +12,15 @@ import { CTASection } from "@/components/home/cta-section";
 
 import { Hero } from "@/components/home/hero";
 import { Gate } from "@/components/home/gate";
-import { HighlightedServices } from "@/components/home/HighlightedServices";
-import SupportChat from "@/components/ui/support-chat";
-import MotionPaths from "@/components/ui/motionpaths";
+import { InfoSection } from "@/components/home/info-section";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* <Header /> */}
       <main>
-
         <Gate />
-
       </main>
-
     </div>
   );
 }

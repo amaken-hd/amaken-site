@@ -1,26 +1,59 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
+import { useState, useEffect } from "react";
 
-export function Hero() {
+interface HeroProps {
+    images?: string[];
+    interval?: number;
+}
+
+export function Hero({ images = [], interval = 30000 }: HeroProps) {
     const { t } = useI18n();
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        if (images.length <= 1) return;
+
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % images.length);
+        }, interval);
+
+        return () => clearInterval(timer);
+    }, [images.length, interval]);
+
     return (
-        <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
+        <section id="home" className="relative h-[100vh] w-full overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#636363ff' }}>
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="h-full w-full object-cover opacity-50"
-                    poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
-                >
-                    {/* If user provides a video later, they can uncomment valid source */}
-                    {/* <source src="/hero-video.mp4" type="video/mp4" /> */}
-                </video>
+                {images.length > 0 ? (
+                    <AnimatePresence mode="popLayout">
+                        <motion.img
+                            key={currentImageIndex}
+                            src={images[currentImageIndex]}
+                            alt="Hero background"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    </AnimatePresence>
+                ) : (
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover opacity-50"
+                        poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+                    >
+                        {/* If user provides a video later, they can uncomment valid source */}
+                        {/* <source src="/hero-video.mp4" type="video/mp4" /> */}
+                    </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
             </div>
 

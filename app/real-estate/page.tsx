@@ -73,7 +73,7 @@ export default function RealEstatePage() {
 
     return (
         <main className="min-h-screen bg-background flex flex-col">
-            <Header />
+            <Header color="oklch(0.35 0.05 250)" />
             <br />
             <br />
 
@@ -134,7 +134,7 @@ export default function RealEstatePage() {
                 }
             </div>
 
-            <Footer />
+            <Footer color="oklch(0.35 0.05 250)" />
         </main >
     );
 }

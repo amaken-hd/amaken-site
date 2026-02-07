@@ -33,13 +33,15 @@ const navigation: NavItem[] = [
   { key: "contact", href: "/contact" },
 ];
 
-export function Header() {
+export function Header({ links, color, logo }: { links?: NavItem[]; color?: string; logo?: string }) {
   const { t, locale, setLocale, direction } = useI18n();
   const [isScrolled, setIsScrolled] = useState(false);
   // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { user, logout } = useAuth();
   const router = useRouter();
+
+  const navItems = links || navigation;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,50 +70,18 @@ export function Header() {
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          {/* <Link href="/" className="flex items-center gap-3">
-            <div className="relative">
-              <div
-                className={cn(
-                  "w-10 h-10 rounded-sm flex items-center justify-center transition-colors",
-                  isScrolled ? "bg-primary" : "bg-white",
-                )}
-              >
-                <span
-                  className={cn(
-                    "font-bold text-lg",
-                    isScrolled ? "text-primary-foreground" : "text-black",
-                  )}
-                >
-                  A
-                </span>
-              </div>
-            </div>
-            <div className="hidden sm:block">
-              <span
-                className={cn(
-                  "font-semibold text-lg tracking-tight transition-colors",
-                  isScrolled ? "text-foreground" : "text-white",
-                )}
-              >
-                {t("common.brandName")}
+          <Link href="/" className="flex items-center gap-3">
+            {logo ? (
+              <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
+            ) : (
+              <span className="text-2xl font-bold tracking-tighter text-white">
+                AMAKEN
               </span>
-              <span
-                className={cn(
-                  "text-xs block -mt-1 transition-colors",
-                  isScrolled ? "text-muted-foreground" : "text-white/70",
-                )}
-              >
-                {t("common.brandSubtitle")}
-              </span>
-            </div>
-          </Link> */}
-          <Link href="/" className="text-2xl font-bold tracking-tighter text-white">
-            AMAKEN
-            {/* <span className="">.</span> */}
+            )}
           </Link>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navigation.map((item) => (
+            {navItems.map((item) => (
               <div
                 key={item.key}
                 className="relative"
@@ -128,8 +98,10 @@ export function Header() {
                       ? "text-white/80 hover:text-foreground hover:bg-secondary"
                       : "text-white/80 hover:text-white hover:bg-white/10",
                   )}
+                  style={color && isScrolled ? { color: 'white' } : {}}
                 >
-                  {t(`nav.${item.key}`)}
+                  {t(`nav.${item.key}`) || item.key}
+                  {/* Fallback to key if translation missing, useful for dynamic links */}
                   {item.children && <ChevronDown className="w-3 h-3" />}
                 </Link>
               </div>

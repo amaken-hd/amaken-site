@@ -1,40 +1,46 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Clock, Zap, Calendar as CalendarIcon, CheckCircle2 } from "lucide-react"
+import { Clock, Zap, Calendar as CalendarIcon, CheckCircle2, } from "lucide-react"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { Badge } from "@/components/ui/badge"
 import { useI18n } from "@/lib/i18n/context"
+import Link from "next/link";
 
-const processTypes = [
+import { Button } from "@/components/ui/button";
+
+const PlansTypes = [
     {
         id: "normal",
         icon: CalendarIcon,
-        color: "border-blue-200 bg-blue-50/50",
-        iconColor: "text-blue-600",
+        color: "border-appraisal-200 bg-appraisal-50/50",
+        iconColor: "text-appraisal-600",
+        bg: "",
     },
     {
         id: "urgent",
         icon: Zap,
         color: "border-amber-200 bg-amber-50/50",
         iconColor: "text-amber-600",
+        bg: "bg-appraisal/15",
     },
     {
         id: "express",
         icon: Clock,
-        color: "border-rose-200 bg-rose-50/50",
-        iconColor: "text-rose-600",
+        color: "border-appraisal-200 bg-appraisal-50/50",
+        iconColor: "text-appraisal-600",
+        bg: "",
     },
 ]
 
-export function StudyProcess() {
+export function Plans() {
     const { t } = useI18n()
 
     return (
         <section className="py-24 bg-background border-t border-border">
             <div className="container mx-auto px-4 lg:px-8">
                 <SectionReveal className="text-center max-w-3xl mx-auto mb-16">
-                    <Badge variant="outline" className="mb-4">{t("studyProcess.badge")}</Badge>
+
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
                         {t("studyProcess.title")}
                     </h2>
@@ -44,13 +50,13 @@ export function StudyProcess() {
                 </SectionReveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {processTypes.map((type, index) => (
+                    {PlansTypes.map((type, index) => (
                         <SectionReveal key={type.id} delay={index * 0.1}>
                             <motion.div
                                 whileHover={{ y: -8 }}
-                                className={`p-8 rounded-2xl border-2 transition-all ${type.color} h-full flex flex-col`}
+                                className={`p-8 rounded-2xl border-2 transition-all   ${type.bg} h-full flex flex-col`}
                             >
-                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-white shadow-sm font-bold`}>
+                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${type.color} shadow-sm font-bold`}>
                                     <type.icon className={`w-8 h-8 ${type.iconColor}`} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-foreground mb-2">{t(`studyProcess.${type.id}.title`)}</h3>
@@ -69,6 +75,11 @@ export function StudyProcess() {
                                     ))}
                                 </ul>
                             </motion.div>
+                            <Link href="#" className="mt-8">
+                                <Button size="lg" className="w-full">
+                                    اختر
+                                </Button>
+                            </Link>
                         </SectionReveal>
                     ))}
                 </div>

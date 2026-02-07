@@ -19,7 +19,9 @@ export function HeroSection() {
             backgroundImage: "url(/placeholder.svg?height=1080&width=1920&query=modern Saudi Arabia cityscape skyline architecture)",
           }}
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/70 to-primary" />
+
       </div>
 
       {/* Animated Lines */}
