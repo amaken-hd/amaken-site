@@ -3,7 +3,11 @@
 import { motion } from "framer-motion"
 import { Phone } from "lucide-react"
 
-export function CallIcon() {
+interface CallIconProps {
+    color?: string;
+}
+
+export function CallIcon({ color = "#000000" }: CallIconProps) {
     const phoneNumber = "920003401"
 
 
@@ -16,8 +20,9 @@ export function CallIcon() {
             animate={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="fixed bottom-45 left-6 z-50 w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+            className="fixed bottom-42 right-6 z-50 w-14 h-14 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
             aria-label="Contact on WhatsApp"
+            style={{ backgroundColor: color }}
         >
             <Phone size={15} fill="currentColor" />
 

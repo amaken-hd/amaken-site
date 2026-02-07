@@ -76,10 +76,8 @@ export const viewport: Viewport = {
 
 import { I18nProvider } from "@/lib/i18n/context";
 import { AuthProvider } from "@/lib/auth-context";
+import ContactsWrapper from "@/components/layout/contacts-wrapper";
 import { Toaster } from "@/components/ui/sonner";
-import { WhatsAppContact } from "@/components/ui/whatsapp-contact";
-import SupportChat from "@/components/ui/support-chat";
-import { CallIcon } from "@/components/ui/call-icon";
 
 export default function RootLayout({
   children,
@@ -87,16 +85,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ar" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${cairo.variable} ${playfair.variable} ${amiri.variable} font-sans antialiased`}
       >
         <I18nProvider>
           <AuthProvider>
             {children}
-            <WhatsAppContact />
-            <SupportChat />
-            <CallIcon />
+            <ContactsWrapper />
             <Toaster />
           </AuthProvider>
         </I18nProvider>

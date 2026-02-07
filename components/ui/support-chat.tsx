@@ -3,9 +3,13 @@
 import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 
-export default function SupportChat() {
+interface SupportChatProps {
+    color?: string;
+}
+
+export default function SupportChat({ color = "#000000" }: SupportChatProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<any[]>([]);
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
@@ -48,25 +52,25 @@ export default function SupportChat() {
     };
 
     return (
-        <div className="fixed bottom-25 left-6 z-50" dir="rtl">
+        <div className="fixed bottom-24 right-6 z-50">
             {/* نافذة الشات */}
             {isOpen && (
                 <div className="mb-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
                     {/* رأس الشات */}
-                    <div className="bg-black  p-4 flex items-center justify-between">
+                    <div className="p-4 flex items-center justify-between" style={{ backgroundColor: color }}>
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                                <MessageCircle className="w-6 h-6 " />
+                                <MessageCircle className="w-6 h-6 " style={{ color: color }} />
                             </div>
 
                             <div>
                                 <h3 className="text-white font-semibold">خدمة العملاء</h3>
-                                <p className="text-blue-100 text-xs">متصل الآن</p>
+                                <p className="text-white/80 text-xs">متصل الآن</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="text-white hover:bg-black rounded-full p-1 transition-colors"
+                            className="text-white hover:bg-black/20 rounded-full p-1 transition-colors"
                         >
                             <X className="w-5 h-5" />
                         </button>
@@ -82,11 +86,12 @@ export default function SupportChat() {
                                 <div
                                     className={`max-w-[75%] rounded-2xl px-4 py-2 ${message.sender === 'user'
                                         ? 'bg-white text-gray-800 rounded-tr-sm'
-                                        : 'bg-black text-white rounded-tl-sm'
+                                        : 'text-white rounded-tl-sm'
                                         }`}
+                                    style={message.sender !== 'user' ? { backgroundColor: color } : {}}
                                 >
                                     <p className="text-sm">{message.text}</p>
-                                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-gray-500' : 'text-blue-100'
+                                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-gray-500' : 'text-white/80'
                                         }`}>
                                         {message.time}
                                     </p>
@@ -104,11 +109,16 @@ export default function SupportChat() {
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                 placeholder="اكتب رسالتك هنا..."
-                                className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-black-500 focus:ring-2 focus:ring-black-200 transition-all"
+                                className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 transition-all"
+                                style={{
+                                    borderColor: inputValue ? color : undefined,
+                                    boxShadow: 'none' // Removed default ring for custom styling if needed, but simple border color usually enough or need custom focus style
+                                }}
                             />
                             <button
                                 onClick={handleSend}
-                                className=" bg-black text-white rounded-full p-2 hover:bg-black-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="text-white rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                style={{ backgroundColor: color }}
                                 disabled={!inputValue.trim()}
                             >
                                 <Send className="w-5 h-5" />
@@ -121,7 +131,8 @@ export default function SupportChat() {
             {/* زر الأيقونة */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-black  text-white rounded-full p-4 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                style={{ backgroundColor: color }}
             >
                 {isOpen ? (
                     <X className="w-6 h-6" />

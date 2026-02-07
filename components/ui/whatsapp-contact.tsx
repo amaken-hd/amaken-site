@@ -3,7 +3,11 @@
 import { motion } from "framer-motion"
 import { MessageCircle } from "lucide-react"
 
-export function WhatsAppContact() {
+interface WhatsAppContactProps {
+    color?: string;
+}
+
+export function WhatsAppContact({ color = "#25D366" }: WhatsAppContactProps) {
     const phoneNumber = "920003401"
     const message = "مرحباً اريد الاستعلام عن خدماتكم."
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
@@ -21,25 +25,25 @@ export function WhatsAppContact() {
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
             className="
-        fixed bottom-6 left-6 z-50
-        w-16 h-16
-        bg-[#25D366]
+        fixed bottom-6 right-6 z-50
+        w-14 h-14
         rounded-full
         flex items-center justify-center
-        shadow-[0_8px_30px_rgba(37,211,102,0.6)]
-        hover:shadow-[0_12px_40px_rgba(37,211,102,0.8)]
+        shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+        hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)]
         transition-all
       "
+            style={{ backgroundColor: color }}
         >
             {/* WhatsApp Official Icon */}
             <svg
                 viewBox="0 0 175.216 175.552"
-                className="w-16 h-16 drop-shadow-lg"
+                className="w-10 h-10 drop-shadow-lg"
             >
                 <defs>
                     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#25D366', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#128C7E', stopOpacity: 1 }} />
+                        <stop offset="0%" style={{ stopColor: color, stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: color, stopOpacity: 0.8 }} />
                     </linearGradient>
                 </defs>
 

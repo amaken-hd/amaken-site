@@ -218,9 +218,15 @@ const dictionariesObj = {
       coverage: "Cities Covered",
     },
     cta: {
-      title: "Ready to Get Started?",
       description:
         "Contact our team today to discuss your appraisal, consulting, or real estate needs. We're here to help.",
+    },
+    groupCTA: {
+      title: "Register Your Interest",
+      subtitle: "To serve you better, please register your interest.",
+      description: "We are committed to accurately understanding your needs and providing services that effectively meet them. We offer unique experiences and reliable support. We guarantee your complete satisfaction throughout all stages of our interaction.",
+      ownerBtn: "Market a Residential Unit (Owner)",
+      interestedBtn: "Rent/Buy a Residential Unit",
     },
     auctions: {
       title: "Upcoming Auctions",
@@ -426,6 +432,38 @@ const dictionariesObj = {
         viewDetails: "Register Interest",
         priceHidden: "Sold",
       },
+      filter: {
+        all: "All",
+        residential: "Residential",
+        commercial: "Commercial",
+      },
+    },
+    groupServices: {
+      hero: {
+        badge: "Expertise & Value",
+        title: "Our Services",
+        description: "Amaken International Group offers a comprehensive suite of real estate services designed to maximize value and ensure excellence across the Saudi market.",
+      },
+      marketing: {
+        title: "Real Estate Marketing",
+        description: "We provide innovative marketing solutions to ensure your property reaches the target audience with high efficiency. Our strategies leverage digital exposure and professional positioning.",
+        features: ["Digital Marketing", "Professional Photography", "Strategic Positioning", "Targeted Campaigns"]
+      },
+      auctions: {
+        title: "Auctions",
+        description: "Professional management and organization of public and electronic auctions ensuring the highest returns. Our transparent process attracts serious investors and collectors.",
+        features: ["Online Auctions", "On-site Events", "Transparent Bidding", "Asset Liquidation"]
+      },
+      management: {
+        title: "Property Management",
+        description: "Comprehensive services for the management and development of real estate assets to maintain and enhance their market value through proactive maintenance and tenant relations.",
+        features: ["Tenant Management", "Facility Maintenance", "Financial Reporting", "Value Enhancement"]
+      },
+      tawjeed: {
+        title: "Tawjeed",
+        description: "A specialized platform for the documentation and governance of real estate operations to ensure transparency, security, and compliance with the latest regulations.",
+        features: ["Operation Governance", "Process Documentation", "Compliance Monitoring", "Secure Transactions"]
+      }
     },
 
     about: {
@@ -1237,6 +1275,13 @@ const dictionariesObj = {
       description:
         "تواصل مع فريقنا اليوم لمناقشة احتياجاتك في التقييم أو الاستشارات أو الخدمات العقارية.",
     },
+    groupCTA: {
+      title: "سجل اهتمامك",
+      subtitle: "لخدمتك بشكل أفضل نرجو تسجيل اهتمامك",
+      description: "نحن ملتزمون بفهم احتياجاتك بدقة وتقديم خدمات تلبيها بفعالية. نحن نقدم تجارب فريدة إلى توفير الدعم الموثوق. نضمن رضاك التام في جميع مراحل التعامل معنا.",
+      ownerBtn: "اذا كنت ترغب بتسويق وحدة/وحدات سكنية(مالك)",
+      interestedBtn: "اذا كنت مهتم باستئجار/شراء وحدة سكنية",
+    },
 
     auctions: {
       title: "المزادات القادمة",
@@ -1307,6 +1352,38 @@ const dictionariesObj = {
         viewDetails: "سجل اهتمامك",
         priceHidden: "مباعة",
       },
+      filter: {
+        all: "الكل",
+        residential: "سكني",
+        commercial: "تجاري",
+      },
+    },
+    groupServices: {
+      hero: {
+        badge: "الخبرة والقيمة",
+        title: "خدماتنا",
+        description: "تقدم مجموعة أماكن الدولية مجموعة شاملة من الخدمات العقارية المصممة لتعظيم القيمة وضمان التميز في جميع أنحاء السوق السعودي.",
+      },
+      marketing: {
+        title: "التسويق العقاري",
+        description: "نقدم حلول تسويقية مبتكرة لضمان وصول عقاراتك للشريحة المستهدفة بكفاءة عالية. تعتمد استراتيجياتنا على الحضور الرقمي والتموضع الاحترافي.",
+        features: ["التسويق الرقمي", "التصوير الاحترافي", "التموضع الاستراتيجي", "حملات مستهدفة"]
+      },
+      auctions: {
+        title: "المزادات",
+        description: "إدارة وتنظيم المزادات العلنية والإلكترونية باحترافية تضمن أعلى العوائد. تضمن عمليتنا الشفافة جذب المستثمرين الجادين.",
+        features: ["مزادات إلكترونية", "مزادات حضورية", "مزايدة شفافة", "تصفية الأصول"]
+      },
+      management: {
+        title: "إدارة الأملاك",
+        description: "خدمات شاملة لإدارة وتطوير الأصول العقارية للحفاظ على قيمتها السوقية وتعزيزها من خلال الصيانة الاستباقية وعلاقات المستأجرين.",
+        features: ["إدارة المستأجرين", "صيانة المرافق", "التقارير المالية", "تعظيم القيمة"]
+      },
+      tawjeed: {
+        title: "توجيد",
+        description: "منصة متخصصة في توثيق وحوكمة العمليات العقارية لضمان الشفافية والأمان والامتثال لأحدث اللوائح والأنظمة.",
+        features: ["حوكمة العمليات", "توثيق الإجراءات", "رصد الامتثال", "معاملات آمنة"]
+      }
     },
     consultingPage: {
       hero: {

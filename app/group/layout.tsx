@@ -21,7 +21,7 @@ export default function GroupLayout({
         <div className="min-h-screen">
             <Header links={groupNavigation} logo="/amaken-logo.png" />
             <main>{children}</main>
-            <Footer color="#A28B67" />
+            <Footer />
             {/* <Footer color="#000000" /> */}
             {/* 605544 */}
         </div>

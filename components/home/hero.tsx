@@ -54,7 +54,7 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
                         {/* <source src="/hero-video.mp4" type="video/mp4" /> */}
                     </video>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" /> */}
             </div>
 
             <div className="container relative z-10 px-4 md:px-8  text-start">
@@ -66,8 +66,11 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
                         <span className="text-white">{t("hero.tagline")}</span>
                         <br />
-                        {t("hero.subtitle")}
+
                     </h1>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">
+                        {t("hero.subtitle")}
+                    </h2>
                 </motion.div>
                 <br />
                 {/* <motion.p

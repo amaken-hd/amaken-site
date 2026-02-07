@@ -1,6 +1,8 @@
 "use client";
 
 import { ServicesSection } from "@/components/home/services-section";
+import { ServicesSection2 } from "@/components/group/services-section-2";
+import { ProjectsSection } from "@/components/group/projects-section";
 import { ClientsSection } from "@/components/home/clients-section";
 import { AuctionsPreview } from "@/components/home/auctions-preview";
 import { CTASection } from "@/components/home/cta-section";
@@ -13,12 +15,15 @@ export default function HomePage() {
         <>
             <Hero
                 images={["/group/landing1.jpg", "/group/landing2.jpg", "/group/landing3.png"]}
-                interval={700}
+                interval={5000}
             />
-            <ServicesSection />
-            <HighlightedServices />
-            <ClientsSection />
+            {/* <ServicesSection /> */}
+            <ServicesSection2 />
+            <ProjectsSection />
             <AuctionsPreview />
+            <ClientsSection />
+
+            {/* <HighlightedServices /> */}
             <CTASection />
         </>
     );
