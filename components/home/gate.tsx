@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Header } from '@/components/layout/header';
 import { useI18n } from "@/lib/i18n/context";
 import { useState, useEffect } from "react";
@@ -60,7 +60,7 @@ export function Gate() {
         }
     ];
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -71,7 +71,7 @@ export function Gate() {
         }
     };
 
-    const cardVariants = {
+    const cardVariants: Variants = {
         hidden: { opacity: 0, y: 50, scale: 0.9 },
         visible: {
             opacity: 1,
@@ -84,7 +84,7 @@ export function Gate() {
         }
     };
 
-    const titleVariants = {
+    const titleVariants: Variants = {
         hidden: { opacity: 0, y: -30 },
         visible: {
             opacity: 1,
@@ -112,7 +112,7 @@ export function Gate() {
 
     return (
         <>
-            <Header showLogin={false} links={[]} />
+            <Header links={[]} />
 
 
 

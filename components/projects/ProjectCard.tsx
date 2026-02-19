@@ -65,7 +65,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xs text-zinc-400 uppercase tracking-wider">{t.details.units}</span>
-                                <span className="font-semibold text-zinc-700 dark:text-zinc-300">{project.units.length}</span>
+                                <span className="font-semibold text-zinc-700 dark:text-zinc-300">{project.totalUnits || project.units?.length || 0}</span>
                             </div>
                         </div>
 

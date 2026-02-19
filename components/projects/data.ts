@@ -1,7 +1,7 @@
 
 import { ProjectData, UnitData } from "./types";
 
-const generateUnits = (): UnitData[] => {
+export const generateUnits = (): UnitData[] => {
     const units: UnitData[] = [];
     const types = [
         { en: "Townhouse", ar: "تاون هاوس" },
@@ -35,7 +35,7 @@ const generateUnits = (): UnitData[] => {
 export const projectsData: ProjectData[] = [
     {
         id: "p1",
-        slug: "green-fields",
+        slug: "650",
         name: {
             en: "Green Fields",
             ar: "الحقول الخضراء",

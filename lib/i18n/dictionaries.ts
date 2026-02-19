@@ -245,6 +245,26 @@ const dictionariesObj = {
         upcoming: "Upcoming",
         live: "Live",
       },
+      filters: {
+        all: "All",
+        upcoming: "Upcoming",
+        current: "Current",
+        ended: "Ended",
+      },
+      pageTitles: {
+        auctions: "Auctions",
+        auctionDetails: "Auction Details",
+        propertyDetails: "Property Details",
+      },
+      labels: {
+        viewAuction: "View Auction",
+        viewProperty: "View Property",
+        features: "Features",
+        description: "Description",
+        location: "Location",
+        date: "Date",
+        register: "Register Now",
+      },
       contact: {
         title: "Send Us a Message",
         subtitle:
@@ -1110,7 +1130,7 @@ const dictionariesObj = {
     },
 
     hero: {
-      tagline: "مجموعة أماكن",
+      tagline: "مجموعة أماكن الدولية",
       subtitle:
         "رؤية يتبعها نجاح",
 
@@ -1299,6 +1319,26 @@ const dictionariesObj = {
         all: "الكل",
         upcoming: "قادم",
         live: "مباشر",
+      },
+      filters: {
+        all: "الكل",
+        upcoming: "قادم",
+        current: "جاري",
+        ended: "منتهي",
+      },
+      pageTitles: {
+        auctions: "المزادات",
+        auctionDetails: "تفاصيل المزاد",
+        propertyDetails: "تفاصيل العقار",
+      },
+      labels: {
+        viewAuction: "عرض المزاد",
+        viewProperty: "عرض العقار",
+        features: "المميزات",
+        description: "الوصف",
+        location: "الموقع",
+        date: "التاريخ",
+        register: "سجل الآن",
       },
     },
 

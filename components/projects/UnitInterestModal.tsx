@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"; // Assuming standard shadcn path
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/lib/i18n/context";
 import { UnitData } from "./types";
-import { Move, Bed, Bath, CheckCircle } from "lucide-react";
+import { Move, Bed, Bath, CheckCircle, RotateCcw, RotateCw, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
 
 interface UnitInterestModalProps {
     unit: UnitData | null;
@@ -20,80 +21,136 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
     const t = (dictionary as any).projectsPage;
     const tUnits = t.units;
     const [submitted, setSubmitted] = useState(false);
+    const [rotation, setRotation] = useState(0);
+    const [zoom, setZoom] = useState(1);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitted(true);
-        // Submit logic
         setTimeout(() => {
             setSubmitted(false);
             onOpenChange(false);
-        }, 2000);
+        }, 3000);
+    };
+
+    const handleRotateLeft = () => setRotation(prev => prev - 90);
+    const handleRotateRight = () => setRotation(prev => prev + 90);
+    const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.5, 3));
+    const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.5, 1));
+    const handleReset = () => {
+        setRotation(0);
+        setZoom(1);
     };
 
     if (!unit) return null;
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-                <div className="grid grid-cols-1">
-                    {/* Unit Preview */}
-                    <div className="relative h-48 bg-zinc-100 dark:bg-zinc-800">
+            <DialogContent className="sm:max-w-[1200px] w-[95vw] h-[90vh] sm:h-auto overflow-hidden bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 p-0 flex flex-col md:flex-row">
+                {/* Left Side: Image Viewer */}
+                <div className="relative flex-1 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-4 overflow-hidden min-h-[300px] md:min-h-[500px]">
+                    <motion.div
+                        className="w-full h-full flex items-center justify-center"
+                        animate={{ rotate: rotation, scale: zoom }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
                         <img
                             src={unit.image || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop"}
                             alt={unit.name[locale]}
-                            className="w-full h-full object-cover"
+                            className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 className="text-white text-xl font-bold">{unit.name[locale]}</h3>
-                            <div className="flex gap-4 text-white/90 text-sm mt-1">
-                                <span className="flex items-center gap-1"><Move className="w-3 h-3" /> {unit.area} {tUnits.area}</span>
-                                <span className="flex items-center gap-1"><Bed className="w-3 h-3" /> {unit.rooms} {tUnits.rooms}</span>
-                                <span className="flex items-center gap-1"><Bath className="w-3 h-3" /> {unit.bathrooms} {tUnits.bathrooms}</span>
+                    </motion.div>
+
+                    {/* Image Controls */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-black/60 backdrop-blur-md p-3 rounded-full border border-white/20 z-20">
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full" onClick={handleRotateLeft}>
+                            <RotateCcw className="w-5 h-5" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full" onClick={handleRotateRight}>
+                            <RotateCw className="w-5 h-5" />
+                        </Button>
+                        <div className="w-px h-6 bg-white/20 mx-1" />
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full" onClick={handleZoomOut} disabled={zoom <= 1}>
+                            <ZoomOut className="w-5 h-5" />
+                        </Button>
+                        <span className="text-white text-sm font-bold min-w-[40px] text-center">
+                            {Math.round(zoom * 100)}%
+                        </span>
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full" onClick={handleZoomIn} disabled={zoom >= 3}>
+                            <ZoomIn className="w-5 h-5" />
+                        </Button>
+                        <div className="w-px h-6 bg-white/20 mx-1" />
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full" onClick={handleReset}>
+                            <Maximize2 className="w-5 h-5" />
+                        </Button>
+                    </div>
+
+                    <div className="absolute top-6 left-6 bg-group-primary text-white px-4 py-2 rounded-lg font-bold shadow-lg z-10" style={{ backgroundColor: '#A28B67' }}>
+                        {unit.isSold ? tUnits.sold : `${unit.price} ${tUnits.currency}`}
+                    </div>
+                </div>
+
+                {/* Right Side: Form and Info */}
+                <div className="w-full md:w-[450px] p-6 md:p-10 flex flex-col bg-white overflow-y-auto">
+                    <DialogHeader className="mb-8">
+                        <DialogTitle className="text-3xl font-bold">{t.form.title}</DialogTitle>
+                        <p className="text-zinc-500 mt-2">{t.form.subtitle}</p>
+                    </DialogHeader>
+
+                    {/* Unit Info Summary */}
+                    <div className="bg-zinc-50 rounded-2xl p-6 mb-8 border border-zinc-100 italic">
+                        <h4 className="text-xl font-bold mb-4">{unit.name[locale]}</h4>
+                        <div className="grid grid-cols-3 gap-4">
+                            <div className="flex flex-col items-center gap-1">
+                                <Move className="w-5 h-5 text-group-primary" style={{ color: '#A28B67' }} />
+                                <span className="text-xs font-bold text-zinc-400 uppercase">{tUnits.area}</span>
+                                <span className="font-bold">{unit.area}</span>
+                            </div>
+                            <div className="flex flex-col items-center gap-1">
+                                <Bed className="w-5 h-5 text-group-primary" style={{ color: '#A28B67' }} />
+                                <span className="text-xs font-bold text-zinc-400 uppercase">{tUnits.rooms}</span>
+                                <span className="font-bold">{unit.rooms}</span>
+                            </div>
+                            <div className="flex flex-col items-center gap-1">
+                                <Bath className="w-5 h-5 text-group-primary" style={{ color: '#A28B67' }} />
+                                <span className="text-xs font-bold text-zinc-400 uppercase">{tUnits.bathrooms}</span>
+                                <span className="font-bold">{unit.bathrooms}</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="p-6">
-                        <DialogHeader className="mb-4">
-                            <DialogTitle>{t.form.title}</DialogTitle>
-                        </DialogHeader>
-
-                        {submitted ? (
-                            <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-300">
-                                <div className="w-16 h-16 bg-group-primary/10 rounded-full flex items-center justify-center mb-4">
-                                    <CheckCircle className="w-8 h-8 text-group-primary" />
-                                </div>
-                                <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2 italic">{t.form.success}</h4>
-                                <p className="text-zinc-500 dark:text-zinc-400">Our team will be in touch shortly.</p>
+                    {submitted ? (
+                        <div className="flex-1 flex flex-col items-center justify-center py-12 text-center animate-in fade-in zoom-in duration-500">
+                            <div className="w-20 h-20 bg-[#A28B67]/10 rounded-full flex items-center justify-center mb-6">
+                                <CheckCircle className="w-10 h-10 text-[#A28B67]" />
                             </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="modal-name">{t.form.name}</Label>
-                                    <Input id="modal-name" required placeholder={t.form.name} className="bg-zinc-50 dark:bg-zinc-800 focus-visible:ring-group-primary" />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="modal-email">{t.form.email}</Label>
-                                        <Input id="modal-email" type="email" required placeholder={t.form.email} className="bg-zinc-50 dark:bg-zinc-800 focus-visible:ring-group-primary" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="modal-phone">{t.form.phone}</Label>
-                                        <Input id="modal-phone" type="tel" required placeholder={t.form.phone} className="bg-zinc-50 dark:bg-zinc-800 focus-visible:ring-group-primary" />
-                                    </div>
-                                </div>
+                            <h4 className="text-2xl font-bold text-zinc-900 mb-2">{t.form.success}</h4>
+                            <p className="text-zinc-500 italic">Our team will be in touch shortly.</p>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="space-y-2">
+                                <Label htmlFor="modal-name">{t.form.name}</Label>
+                                <Input id="modal-name" required placeholder={t.form.name} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="modal-email">{t.form.email}</Label>
+                                <Input id="modal-email" type="email" required placeholder={t.form.email} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="modal-phone">{t.form.phone}</Label>
+                                <Input id="modal-phone" type="tel" required placeholder={t.form.phone} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                            </div>
 
-                                <Button
-                                    type="submit"
-                                    style={{ backgroundColor: '#A28B67' }}
-                                    className="w-full text-white mt-4 h-12 text-lg font-bold shadow-lg shadow-[#A28B67]/20 hover:opacity-90 transition-all active:scale-[0.98]"
-                                >
-                                    {t.form.submit}
-                                </Button>
-                            </form>
-                        )}
-                    </div>
+                            <Button
+                                type="submit"
+                                style={{ backgroundColor: '#A28B67' }}
+                                className="w-full text-white mt-4 h-14 text-lg font-bold shadow-lg shadow-[#A28B67]/20 hover:opacity-90 transition-all active:scale-[0.98] rounded-xl"
+                            >
+                                {t.form.submit}
+                            </Button>
+                        </form>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>

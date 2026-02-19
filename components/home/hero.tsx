@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 interface HeroProps {
     images?: string[];
@@ -89,12 +90,16 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                    <Button size="lg" className="bg-primary text-white hover:bg-white hover:text-black text-lg px-8">
-                        {t("hero.buttons.exploreServices")}
-                    </Button>
-                    <Button size="lg" variant="outline" className="bg-white text-primary   hover:bg-primary hover:text-white text-lg px-8">
-                        {t("hero.buttons.contactUs")}
-                    </Button>
+                    <Link href="/group/services">
+                        <Button size="lg" className="bg-[#A28B67] text-white hover:opacity-90 transition-all text-lg px-8 py-7 rounded-none">
+                            {t("hero.buttons.exploreServices")}
+                        </Button>
+                    </Link>
+                    <Link href="/group/contact">
+                        <Button size="lg" variant="outline" className="bg-white text-[#A28B67] border-[#A28B67] hover:bg-[#A28B67] hover:text-white text-lg px-8 py-7 rounded-none transition-all">
+                            {t("hero.buttons.contactUs")}
+                        </Button>
+                    </Link>
                 </motion.div>
             </div>
 

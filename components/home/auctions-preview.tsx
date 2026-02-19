@@ -47,7 +47,7 @@ export function AuctionsPreview() {
   const { t } = useI18n()
 
   return (
-    <section className="py-24 lg:py-32 bg-secondary/50">
+    <section className="py-24 lg:py-32 bg-[#faf7f2]">
       <div className="container mx-auto px-4 lg:px-8">
         <SectionReveal className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>

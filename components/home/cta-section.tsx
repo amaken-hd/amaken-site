@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { useI18n } from "@/lib/i18n/context"
 import Link from "next/link"
+import { useState } from "react"
+import { InterestModal } from "@/components/group/InterestModal"
 
 export function CTASection() {
   const { t } = useI18n()
   const groupColor = "#A28B67"
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <section className="py-24 lg:py-32 bg-[#faf7f2]">
@@ -35,30 +38,41 @@ export function CTASection() {
                 {t("groupCTA.description")}
               </p>
 
-              <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-4xl mx-auto">
-                <Link href="/contact" className="flex-1">
+              <div className="flex flex-col md:flex-row items-stretch justify-center gap-4 max-w-5xl mx-auto">
+                <Link href="/group/services" className="flex-1">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full text-[#A28B67] border-[#A28B67] hover:bg-[#A28B67] hover:text-white transition-all font-bold text-lg py-8 rounded-lg"
+                  >
+                    {t("nav.services")}
+                  </Button>
+                </Link>
+                <Link href="/group/contact" className="flex-1">
                   <Button
                     size="lg"
                     className="w-full text-white hover:opacity-90 transition-all font-bold text-lg py-8 rounded-lg"
                     style={{ backgroundColor: groupColor }}
                   >
-                    {t("groupCTA.ownerBtn")}
+                    {t("common.contactUs")}
                   </Button>
                 </Link>
-                <Link href="/contact" className="flex-1">
+                <div className="flex-1">
                   <Button
+                    onClick={() => setModalOpen(true)}
                     size="lg"
-                    className="w-full text-white hover:opacity-90 transition-all font-bold text-lg py-8 rounded-lg"
-                    style={{ backgroundColor: groupColor }}
+                    className="w-full bg-[#333] text-white hover:bg-black transition-all font-bold text-lg py-8 rounded-lg"
                   >
-                    {t("groupCTA.interestedBtn")}
+                    {t("groupCTA.title")}
                   </Button>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
         </SectionReveal>
       </div>
+
+      <InterestModal open={modalOpen} onOpenChange={setModalOpen} />
     </section>
   )
 }
