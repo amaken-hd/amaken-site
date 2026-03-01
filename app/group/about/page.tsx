@@ -8,7 +8,7 @@ export default function GroupAboutPage() {
         <>
 
             <AboutHero />
-            <AboutTimeline />
+            {/* <AboutTimeline /> */}
             <AboutFounder />
             <AboutValues />
         </>
