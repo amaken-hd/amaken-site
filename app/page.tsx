@@ -13,14 +13,16 @@ import { CTASection } from "@/components/home/cta-section";
 import { Hero } from "@/components/home/hero";
 import { Gate } from "@/components/home/gate";
 import { InfoSection } from "@/components/home/info-section";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return (
-    <div className="min-h-screen">
-      {/* <Header /> */}
-      <main>
-        <Gate />
-      </main>
-    </div>
-  );
+    // return (
+    //     <div className="min-h-screen">
+    //         {/* <Header /> */}
+    //         <main>
+    //             <Gate />
+    //         </main>
+    //     </div>
+    // );
+    redirect("/group");
 }
