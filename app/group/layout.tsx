@@ -9,7 +9,7 @@ const groupNavigation = [
     { key: "projects", href: "/group/projects" },
     { key: "auctions", href: "/group/auctions" },
     { key: "about", href: "/group/about" },
-    { key: "contactus", href: "/group/contactus" },
+    { key: "contactus", href: "/group/contact" },
 ];
 
 export default function GroupLayout({

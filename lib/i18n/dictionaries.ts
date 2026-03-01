@@ -486,20 +486,20 @@ const dictionariesObj = {
       }
     },
 
-    about: {
-      "about-hero": {
+    aboutPage: {
+      hero: {
         badge: "Established 2010",
         title: "Our Story",
         description:
           "From a vision to a leading group serving the Kingdom's development. Amaken International Group has been at the forefront of professional appraisal, consulting, and real estate services since 2010.",
       },
-      "about-founder": {
+      founder: {
         quote:
           "Our vision was simple: to establish a trusted institution that serves the Kingdom's development with the highest standards of professionalism and integrity.",
         name: "Khalid bin Abdulkarim Al-Jasser",
         role: "Founder & Chairman",
       },
-      "about-values": {
+      values: {
         badge: "Who We Are",
         title: "Our Core Values",
         description:
@@ -527,6 +527,40 @@ const dictionariesObj = {
         commitment: {
           title: "Commitment",
           desc: "We are committed to delivering results on time and with the highest quality.",
+        },
+      },
+      timeline: {
+        badge: "Our Journey",
+        title: "Milestones Since 2010",
+        milestones: {
+          2010: {
+            title: "Establishment",
+            desc: "Amaken International Group was founded in Riyadh with a vision to provide professional services.",
+          },
+          2012: {
+            title: "Taqeem Accreditation",
+            desc: "Obtained official accreditation from the Saudi Authority for Accredited Valuers (Taqeem).",
+          },
+          2014: {
+            title: "Regional Expansion",
+            desc: "Opened branches in Jeddah and Dammam, extending our services across the Kingdom.",
+          },
+          2016: {
+            title: "Consulting Division",
+            desc: "Launched Amaken Consulting to provide strategic advisory and feasibility studies.",
+          },
+          2018: {
+            title: "Real Estate Services",
+            desc: "Expanded into property management, marketing, and auction services.",
+          },
+          2020: {
+            title: "Digital Transformation",
+            desc: "Launched digital platforms for online auctions and client portal services.",
+          },
+          2024: {
+            title: "Complete Coverage",
+            desc: "Achieved presence in all 13 regions of the Kingdom with over 50 certified professionals.",
+          },
         },
       },
     },
@@ -1525,20 +1559,20 @@ const dictionariesObj = {
       address: "مخرج 14 – الربوة، الرياض، المملكة العربية السعودية",
       rights: "جميع الحقوق محفوظة.",
     },
-    about: {
-      "about-hero": {
+    aboutPage: {
+      hero: {
         badge: "تأسست عام 2010",
         title: "قصتنا",
         description:
           "من رؤية إلى مجموعة رائدة تخدم تنمية المملكة. كانت مجموعة أماكن الدولية في طليعة خدمات التقييم والاستشارات والخدمات العقارية المهنية منذ عام 2010.",
       },
-      "about-founder": {
+      founder: {
         quote:
           "كانت رؤيتنا بسيطة: إنشاء مؤسسة موثوقة تخدم تنمية المملكة بأعلى معايير المهنية والنزاهة.",
         name: "خالد بن عبد الكريم الجاسر",
         role: "المؤسس ورئيس مجلس الإدارة",
       },
-      "about-values": {
+      values: {
         badge: "من نحن",
         title: "قيمنا الجوهرية",
         description:
@@ -1568,7 +1602,7 @@ const dictionariesObj = {
           desc: "نحن ملتزمون بتقديم النتائج في الوقت المحدد وبأعلى جودة.",
         },
       },
-      "about-timeline": {
+      timeline: {
         badge: "رحلتنا",
         title: "إنجازات منذ 2010",
         milestones: {
