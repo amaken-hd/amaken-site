@@ -50,8 +50,8 @@ export default function GroupContactPage() {
                                                 <Phone className="w-5 h-5" />
                                             </div>
                                             <div className="flex flex-col gap-2 pt-1" dir="ltr">
-                                                <span className={`font-semibold tracking-wide ${isRTL ? "text-right" : "text-left"}`}>+966 50 764 5999</span>
-                                                <span className={`font-semibold tracking-wide ${isRTL ? "text-right" : "text-left"}`}>+966 50 782 5999</span>
+                                                <span className={`font-semibold tracking-wide ${isRTL ? "text-right" : "text-left"}`}>92003401</span>
+                                                {/* <span className={`font-semibold tracking-wide ${isRTL ? "text-right" : "text-left"}`}>92003401</span> */}
                                             </div>
                                         </div>
 
