@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bed, Bath, Move, Check, X } from "lucide-react";
+import { Bed, Move, Check, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { UnitData } from "./types";
@@ -64,7 +64,7 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
 
                     </div>
 
-                    <div className=" flex flex-col grid grid-cols-3 gap-4 mb-6    ">
+                    <div className=" flex flex-col grid grid-cols-2 gap-4 mb-6    ">
                         <div className="flex flex-col items-center text-center">
                             <Move className="w-4 h-4 text-zinc-400 mb-1" />
                             <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{unit.area}</span>
@@ -74,11 +74,6 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
                             <Bed className="w-4 h-4 text-zinc-400 mb-1" />
                             <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{unit.rooms}</span>
                             <span className="text-[10px] text-zinc-400 uppercase">{t.rooms}</span>
-                        </div>
-                        <div className="flex flex-col items-center text-center">
-                            <Bath className="w-4 h-4 text-zinc-400 mb-1" />
-                            <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{unit.bathrooms}</span>
-                            <span className="text-[10px] text-zinc-400 uppercase">{t.bathrooms}</span>
                         </div>
                     </div>
                 </div>

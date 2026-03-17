@@ -4,7 +4,7 @@ import { use, useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import { ProjectHero } from "@/components/projects/ProjectHero";
 import { UnitList } from "@/components/projects/UnitList";
-import { projectsData } from "@/components/projects/data";
+import { getProjectsFromERP, getProjectImagesFromERP, getProjectUnitsFromERP } from "@/app/group/projects/actions";
 import { ProjectData } from "@/components/projects/types";
 import { InfoSection } from "@/components/home/info-section";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
@@ -22,12 +22,32 @@ export default function ProjectPage({
 
     useEffect(() => {
         if (!slug) return;
-        // Simulate data fetching
-        const found = projectsData.find((p) => p.slug === slug);
-        if (found) {
-            setProject(found);
-        }
-        setLoading(false);
+
+        const fetchProject = async () => {
+            try {
+                const erpProjects = await getProjectsFromERP();
+                // Find the project that matches the dynamically generated slug
+                const found = erpProjects.find((p) => p.slug === slug);
+                if (found) {
+                    const images = await getProjectImagesFromERP(found.id);
+                    if (images.length > 0) {
+                        found.images = images;
+                    }
+                    const units = await getProjectUnitsFromERP(found.id);
+                    found.units = units;
+                    setProject(found);
+                } else {
+                    setProject(null);
+                }
+            } catch (error) {
+                console.error("Error fetching project for slug:", slug, error);
+                setProject(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProject();
     }, [slug]);
 
     if (loading) {

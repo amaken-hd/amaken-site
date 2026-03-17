@@ -5,7 +5,6 @@ export interface UnitData {
     type: { en: string; ar: string }; // "Townhouse", "Villa"
     area: number;
     rooms: number;
-    bathrooms: number;
     price?: number;
     isSold: boolean;
     image: string; // Floor plan

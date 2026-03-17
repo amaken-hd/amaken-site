@@ -46,12 +46,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                             <MapPin className="w-4 h-4 text-brand-gold/300" />
                             <span>{project.location[locale]}</span>
                         </div>
-                        <h3 className="text-2xl font-bold">{project.name[locale]}</h3>
                     </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
+                    <h2 className="text-3xl font-bold">{project.name[locale]}</h2>
+
                     <p className="text-zinc-600 dark:text-zinc-400 line-clamp-3 mb-6">
                         {project.description[locale]}
                     </p>

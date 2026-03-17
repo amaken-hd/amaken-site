@@ -40,10 +40,12 @@ export async function getProjectsFromERP(): Promise<ProjectData[]> {
         "no_of_units",
         "no_of_buildings",
         "status",
-        "creation"
+        "implementation_year"
     ]);
 
-    const filters = JSON.stringify([]);
+    const filters = JSON.stringify([
+        ["is_published", "=", 1]
+    ]);
 
     try {
         const url = `${ERP_API_URL}/api/resource/Sales Project?order_by=creation desc&fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
@@ -125,6 +127,138 @@ export async function getProjectsFromERP(): Promise<ProjectData[]> {
 
     } catch (error) {
         console.error("Error fetching projects:", error);
+        return [];
+    }
+}
+
+export async function getProjectImagesFromERP(projectId: string): Promise<string[]> {
+    if (!ERP_API_URL || !API_KEY || !API_SECRET) {
+        return [];
+    }
+
+    const fields = JSON.stringify(["file_url"]);
+    const filters = JSON.stringify([
+        ["attached_to_doctype", "=", "Sales Project"],
+        ["attached_to_name", "=", projectId]
+    ]);
+
+    try {
+        const url = `${ERP_API_URL}/api/resource/File?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
+
+        const response = await fetch(
+            url,
+            {
+                headers: {
+                    Authorization: `token ${API_KEY}:${API_SECRET}`,
+                    "Content-Type": "application/json",
+                },
+                next: { revalidate: 60 },
+            }
+        );
+
+        if (!response.ok) {
+            console.error("Failed to fetch project images from ERPNext");
+            return [];
+        }
+
+        const data = await response.json();
+        const files: { file_url: string }[] = data.data;
+
+        if (!files || files.length === 0) return [];
+
+        return files.map(f => {
+            if (f.file_url.startsWith("http")) return f.file_url;
+            return `${ERP_API_URL}${f.file_url}`;
+        });
+    } catch (error) {
+        console.error("Error fetching project images:", error);
+        return [];
+    }
+}
+
+interface ERPUnit {
+    name: string;
+    property_type: string;
+    instrument_size: number;
+    number_of_bedrooms: number;
+    price: number;
+    panner: string;
+    status: string;
+}
+
+export async function getProjectUnitsFromERP(projectId: string): Promise<UnitData[]> {
+    if (!ERP_API_URL || !API_KEY || !API_SECRET) {
+        return [];
+    }
+
+    const fields = JSON.stringify([
+        "name",
+        "property_type",
+        "instrument_size",
+        "number_of_bedrooms",
+        "price",
+        "panner",
+        "status"
+    ]);
+
+    // Assuming the 'Real Estate Sales' doctype links to the project via a 'custom_project' field
+    const filters = JSON.stringify([
+        ["custom_project", "=", projectId]
+    ]);
+
+    try {
+        const url = `${ERP_API_URL}/api/resource/Real Estate Sales?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
+
+        const response = await fetch(
+            url,
+            {
+                headers: {
+                    Authorization: `token ${API_KEY}:${API_SECRET}`,
+                    "Content-Type": "application/json",
+                },
+                next: { revalidate: 60 },
+            }
+        );
+
+        if (!response.ok) {
+            console.error("Failed to fetch project units from ERPNext");
+            return [];
+        }
+
+        const data = await response.json();
+        const erpUnits: ERPUnit[] = data.data;
+
+        if (!erpUnits || erpUnits.length === 0) return [];
+
+        return erpUnits.map(u => {
+            let imageUrl = ""/// "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop";
+            if (u.panner) {
+                if (u.panner.startsWith("http")) {
+                    imageUrl = u.panner;
+                } else {
+                    imageUrl = `${ERP_API_URL}${u.panner}`;
+                }
+            }
+
+            return {
+                id: u.name,
+                name: {
+                    en: u.name,
+                    ar: u.name
+                },
+                type: {
+                    en: u.property_type || "Unit",
+                    ar: u.property_type || "وحدة"
+                },
+                area: u.instrument_size || 0,
+                rooms: u.number_of_bedrooms || 0,
+                price: u.price,
+                isSold: u.status === 'تم البيع',
+                image: imageUrl
+            };
+        });
+    } catch (error) {
+        console.error("Error fetching project units:", error);
         return [];
     }
 }

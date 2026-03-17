@@ -23,7 +23,6 @@ export const generateUnits = (): UnitData[] => {
             type: types[typeIndex],
             area: area,
             rooms: rooms,
-            bathrooms: rooms + 1,
             price: isSold ? undefined : 1500000 + (i * 50000),
             isSold: isSold,
             image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop", // Placeholder
