@@ -31,33 +31,85 @@ export function InfoSection({ className, project }: InfoSectionProps) {
     const description = project?.description[locale] || (locale === "ar"
         ? "من أول بحث لك وحتى العرض النهائي، نحن هنا لنجعل العملية بسيطة وسلسة للغاية. فريقنا يضع خبرته بين يديك لتحقيق أهدافك بأفضل صورة ممكنة."
         : "From your first search to the final offer, we're here to make the process simple and seamless. Our team puts its expertise at your fingertips.");
-    const mainImage = project?.images[0] || "/morning.jpg";
+    const images = project?.images && project.images.length > 0 ? project.images : ["/morning.jpg"];
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     return (
         <section className={cn("py-20 bg-white dark:bg-zinc-950 transition-colors duration-300", className)}>
             <div className="container mx-auto px-4 max-w-6xl">
-                <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20">
+                <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16">
 
-                    {/* Left Side: Image */}
-                    <div className="relative w-full lg:w-1/2 order-2 lg:order-1">
+                    {/* Left Side: Image Gallery */}
+                    <div className="relative w-full lg:w-1/2 order-2 lg:order-1 flex flex-col gap-4">
                         <motion.div
                             initial={{ opacity: 0, x: locale === "ar" ? 50 : -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="relative h-full min-h-[500px] lg:min-h-full w-full"
+                            className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[500px]"
                         >
                             {/* Main Image */}
-                            <div className="w-full h-full overflow-hidden rounded-[3rem] shadow-2xl ring-1 ring-black/5 dark:ring-white/10">
+                            <div className="w-full h-full overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-black/5 dark:ring-white/10 relative group bg-zinc-100 dark:bg-zinc-900">
                                 <Image
-                                    src={mainImage}
-                                    alt={title}
+                                    src={images[currentImageIndex]}
+                                    alt={`${title} - Image ${currentImageIndex + 1}`}
                                     fill
-                                    className="object-cover transform hover:scale-105 transition-transform duration-700"
+                                    className="object-cover transition-all duration-700"
                                     priority
                                 />
+
+                                {/* Overlay Dots */}
+                                {images.length > 1 && (
+                                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10 flex-wrap px-4">
+                                        {images.map((_, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setCurrentImageIndex(idx)}
+                                                className={cn(
+                                                    "h-2.5 rounded-full transition-all duration-300 shadow-sm",
+                                                    currentImageIndex === idx
+                                                        ? "w-6 bg-[#003B5C] dark:bg-white"
+                                                        : "w-2.5 bg-white/70 hover:bg-white"
+                                                )}
+                                                aria-label={`Go to slide ${idx + 1}`}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
+
+                        {/* Thumbnails Grid */}
+                        {images.length > 1 && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="grid grid-cols-5 gap-2 lg:gap-3"
+                            >
+                                {images.map((img, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setCurrentImageIndex(idx)}
+                                        className={cn(
+                                            "relative aspect-square overflow-hidden rounded-xl ring-1 ring-black/5 flex-shrink-0 transition-all duration-300 bg-zinc-100 dark:bg-zinc-900",
+                                            currentImageIndex === idx
+                                                ? "ring-2 ring-offset-2 ring-[#003B5C] dark:ring-white opacity-100"
+                                                : "opacity-50 hover:opacity-100 grayscale-[30%] hover:grayscale-0"
+                                        )}
+                                        aria-label={`Thumbnail ${idx + 1}`}
+                                    >
+                                        <Image
+                                            src={img}
+                                            alt={`Thumbnail ${idx + 1}`}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </button>
+                                ))}
+                            </motion.div>
+                        )}
                     </div>
 
                     {/* Right Side: Text Content & Form */}
