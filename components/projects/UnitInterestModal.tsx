@@ -111,11 +111,11 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                                 <span className="text-xs font-bold text-zinc-400 uppercase">{tUnits.rooms}</span>
                                 <span className="font-bold">{unit.rooms}</span>
                             </div>
-                            <div className="flex flex-col items-center gap-1">
+                            {/* <div className="flex flex-col items-center gap-1">
                                 <Bath className="w-5 h-5 text-group-primary" style={{ color: '#A28B67' }} />
                                 <span className="text-xs font-bold text-zinc-400 uppercase">{tUnits.bathrooms}</span>
                                 <span className="font-bold">{unit.bathrooms}</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
