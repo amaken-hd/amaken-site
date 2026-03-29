@@ -7,6 +7,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev: false })
 const handle = app.getRequestHandler()
 
+
 app.prepare().then(() => {
     createServer((req, res) => {
         const parsedUrl = parse(req.url, true)
