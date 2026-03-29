@@ -27,3 +27,13 @@ jobs:
             nvm use 22
             node -v
             npm install 
+            
+            # add .env variables
+            cat > .env << EOF
+            NEXT_PUBLIC_ERPNEXT_URL=${{ secrets.NEXT_PUBLIC_ERPNEXT_URL }}
+            ERP_API_KEY=${{ secrets.ERP_API_KEY }}
+            ERP_API_SECRET=${{ secrets.ERP_API_SECRET }}
+            EOF
+            
+            NEXT_DISABLE_TURBOPACK=1 npm run build
+            pkill -f "node.*server.js" || true
