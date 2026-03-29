@@ -1,0 +1,24 @@
+name: CD pipline
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+
+    setps:
+      - name: deploy to VPS
+        uses: appleboy/ssh-actions@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cd /home/goamaken/public_html/amaken-site/
+            git pull
+            npm install
