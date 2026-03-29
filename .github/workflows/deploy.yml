@@ -1,4 +1,4 @@
-name: CD Pipeline
+name: CI/ CD Pipeline
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  test-build-and-deploy:
+  test-build-then-deploy:
     runs-on: ubuntu-latest
 
     steps:
