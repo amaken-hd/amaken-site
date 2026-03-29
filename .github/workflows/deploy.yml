@@ -9,9 +9,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-
-    setps:
+    
+    steps:
       - name: deploy to VPS
         uses: appleboy/ssh-actions@v1.0.0
         with:
