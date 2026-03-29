@@ -24,4 +24,6 @@ jobs:
             git pull origin main
             export NVM_DIR="/opt/nvm"
             source /opt/nvm/nvm.sh
+            nvm use 22
+            node -v
             npm install 
