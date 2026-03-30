@@ -48,4 +48,5 @@ jobs:
             EOF
             
             npm run build
+            ps aux | grep "node.*server.js" | grep -v grep
             pkill -f "node.*server.js" || true
