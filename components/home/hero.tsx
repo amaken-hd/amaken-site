@@ -91,8 +91,7 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
                     <Link href="/group/services">
-                        {/* bg-[#A28B67]  */}
-                        <Button size="lg" className="text-white hover:opacity-90 transition-all text-lg px-8 py-7  ">
+                        <Button size="lg" className="bg-[#A28B67] text-white hover:opacity-90 transition-all text-lg px-8 py-7 rounded-xl">
                             {t("hero.buttons.exploreServices")}
                         </Button>
                     </Link>
