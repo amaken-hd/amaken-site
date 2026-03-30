@@ -48,5 +48,4 @@ jobs:
             EOF
             
             npm run build
-            mkdir -p tmp
-            touch tmp/restart.txt
+            pkill -f server.js
