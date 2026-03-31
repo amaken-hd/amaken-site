@@ -18,6 +18,7 @@ interface ERPProject {
     no_of_buildings: number;
     status: string;
     creation: string;
+    description: string;
 }
 
 interface ERPResponse {
@@ -40,7 +41,8 @@ export async function getProjectsFromERP(): Promise<ProjectData[]> {
         "no_of_units",
         "no_of_buildings",
         "status",
-        "implementation_year"
+        "implementation_year",
+        "description"
     ]);
 
     const filters = JSON.stringify([
@@ -102,8 +104,8 @@ export async function getProjectsFromERP(): Promise<ProjectData[]> {
                     ar: erpProject.project_name,
                 },
                 description: {
-                    en: `${erpProject.project_type || 'Residential'} project with ${erpProject.no_of_units || 0} units in ${erpProject.no_of_buildings || 0} buildings.`,
-                    ar: `مشروع ${erpProject.project_type || 'سكني'} يحتوي على ${erpProject.no_of_units || 0} وحدة في ${erpProject.no_of_buildings || 0} مبنى.`,
+                    en: erpProject.description,
+                    ar: erpProject.description,
                 },
                 location: {
                     en: `${erpProject.city || ''} ${erpProject.neighborhood ? ', ' + erpProject.neighborhood : ''}`,
@@ -184,6 +186,11 @@ interface ERPUnit {
     price: number;
     panner: string;
     status: string;
+    custom_name_on_website: string;
+    custom_description: string;
+    custom_unit_image: string;
+    marketing?: string;
+
 }
 
 export async function getProjectUnitsFromERP(projectId: string): Promise<UnitData[]> {
@@ -198,12 +205,17 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
         "number_of_bedrooms",
         "price",
         "panner",
-        "status"
+        "status",
+        "custom_name_on_website",
+        "custom_description",
+        "custom_unit_image"
     ]);
 
     // Assuming the 'Real Estate Sales' doctype links to the project via a 'custom_project' field
     const filters = JSON.stringify([
-        ["custom_project", "=", projectId]
+        ["custom_project", "=", projectId],
+        ["marketing", "=", "direct marketing"],
+        ["custom_is_published", "=", 1]
     ]);
 
     try {
@@ -231,20 +243,29 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
         if (!erpUnits || erpUnits.length === 0) return [];
 
         return erpUnits.map(u => {
-            let imageUrl = ""/// "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop";
+            let pannerUrl = "..";
             if (u.panner) {
                 if (u.panner.startsWith("http")) {
-                    imageUrl = u.panner;
+                    pannerUrl = u.panner;
                 } else {
-                    imageUrl = `${ERP_API_URL}${u.panner}`;
+                    pannerUrl = `${ERP_API_URL}${u.panner}`;
+                }
+            }
+
+            let imageUrl = "";
+            if (u.custom_unit_image) {
+                if (u.custom_unit_image.startsWith("http")) {
+                    imageUrl = u.custom_unit_image;
+                } else {
+                    imageUrl = `${ERP_API_URL}${u.custom_unit_image}`;
                 }
             }
 
             return {
                 id: u.name,
                 name: {
-                    en: u.name,
-                    ar: u.name
+                    en: u.custom_name_on_website || u.name,
+                    ar: u.custom_name_on_website || u.name
                 },
                 type: {
                     en: u.property_type || "Unit",
@@ -254,7 +275,13 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
                 rooms: u.number_of_bedrooms || 0,
                 price: u.price,
                 isSold: u.status === 'تم البيع',
-                image: imageUrl
+                image: imageUrl,
+                planner_image: pannerUrl,
+                description: {
+                    en: u.custom_description || "",
+                    ar: u.custom_description || ""
+                },
+                status: u.status || "غير متاح"
             };
         });
     } catch (error) {

@@ -40,15 +40,10 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
 
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">
-                    {unit.isSold ? (
-                        <span className="bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-red-600/20">
-                            {t.sold}
-                        </span>
-                    ) : (
-                        <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-emerald-600/20">
-                            {locale === "ar" ? "متاح" : "Available"}
-                        </span>
-                    )}
+                    <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-emerald-600/20">
+                        {unit.status}
+                    </span>
+
                 </div>
             </div>
 
@@ -61,7 +56,11 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
                         <span className="text-xs font-bold text-group-primary   ">
                             {unit.type[locale]}
                         </span>
-
+                        {unit.description?.[locale] && (
+                            <p className="text-xs text-zinc-500 mt-2 line-clamp-2">
+                                {unit.description[locale]}
+                            </p>
+                        )}
                     </div>
 
                     <div className=" flex flex-col grid grid-cols-2 gap-4 mb-6    ">
@@ -103,7 +102,7 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
                         ) : (
                             <div className="flex items-center gap-2">
                                 <span className="text-lg font-bold text-group-primary">
-                                    {formattedPrice}
+                                    {unit.price}
                                 </span>
                                 <span className="text-xs text-zinc-500">{t.currency}</span>
                             </div>

@@ -7,7 +7,10 @@ export interface UnitData {
     rooms: number;
     price?: number;
     isSold: boolean;
-    image: string; // Floor plan
+    image: string; // The main image on UnitCard
+    planner_image: string; // The panner image for the modal
+    description?: { en: string; ar: string };
+    status: string;
 }
 
 export interface ProjectData {

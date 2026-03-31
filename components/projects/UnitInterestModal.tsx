@@ -54,11 +54,15 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                         animate={{ rotate: rotation, scale: zoom }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                        <img
-                            src={unit.image || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop"}
-                            alt={unit.name[locale]}
-                            className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
-                        />
+                        {(!unit.planner_image) ? (
+                            <div className="text-zinc-400 font-bold text-6xl">..</div>
+                        ) : (
+                            <img
+                                src={unit.planner_image}
+                                alt='..'
+                                className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
+                            />
+                        )}
                     </motion.div>
 
                     {/* Image Controls */}
@@ -93,8 +97,8 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                 {/* Right Side: Form and Info */}
                 <div className="w-full md:w-[450px] p-6 md:p-10 flex flex-col bg-white overflow-y-auto">
                     <DialogHeader className="mb-8">
-                        <DialogTitle className="text-3xl font-bold">{t.form.title}</DialogTitle>
-                        <p className="text-zinc-500 mt-2">{t.form.subtitle}</p>
+                        <DialogTitle className="text-3xl font-bold">{unit.name[locale]}</DialogTitle>
+                        <p className="text-zinc-500 mt-2">{unit.description[locale]}</p>
                     </DialogHeader>
 
                     {/* Unit Info Summary */}
