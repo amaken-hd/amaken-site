@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useI18n } from "@/lib/i18n/context";
 import { UnitData } from "./types";
 import { Move, Bed, Bath, CheckCircle, RotateCcw, RotateCw, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 interface UnitInterestModalProps {
     unit: UnitData | null;
@@ -23,6 +23,9 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
     const [submitted, setSubmitted] = useState(false);
     const [rotation, setRotation] = useState(0);
     const [zoom, setZoom] = useState(1);
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -40,6 +43,8 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
     const handleReset = () => {
         setRotation(0);
         setZoom(1);
+        x.set(0);
+        y.set(0);
     };
 
     if (!unit) return null;
@@ -50,8 +55,20 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                 {/* Left Side: Image Viewer */}
                 <div className="relative flex-1 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-4 overflow-hidden min-h-[300px] md:min-h-[500px]">
                     <motion.div
-                        className="w-full h-full flex items-center justify-center"
-                        animate={{ rotate: rotation, scale: zoom }}
+                        className={`w-full h-full flex items-center justify-center ${zoom > 1 ? "cursor-grab active:cursor-grabbing" : ""}`}
+                        drag={zoom > 1}
+                        dragConstraints={{
+                            top: -200 * zoom,
+                            bottom: 200 * zoom,
+                            left: -200 * zoom,
+                            right: 200 * zoom,
+                        }}
+                        dragElastic={0.05}
+                        style={{ x, y }}
+                        animate={{
+                            rotate: rotation,
+                            scale: zoom,
+                        }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                         {(!unit.planner_image) ? (
@@ -61,6 +78,7 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                                 src={unit.planner_image}
                                 alt='..'
                                 className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
+                                draggable={false}
                             />
                         )}
                     </motion.div>
