@@ -36,7 +36,7 @@ export function UnitList({ units }: UnitListProps) {
                     <div>
                         <h2 className="text-3xl font-bold font-heading mb-2">{t.title}</h2>
                         <p className="text-zinc-500">
-                            {units.filter(u => !u.isSold).length} Available / {units.length} Total
+                            {units.filter(u => u.status !== 'تم البيع').length} Available / {units.length} Total
                         </p>
                     </div>
                     {/* Filter could go here */}

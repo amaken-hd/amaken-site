@@ -108,7 +108,7 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                     </div>
 
                     <div className="absolute top-6 left-6 bg-group-primary text-white px-4 py-2 rounded-lg font-bold shadow-lg z-10" style={{ backgroundColor: '#A28B67' }}>
-                        {unit.isSold ? tUnits.sold : `${unit.price} ${tUnits.currency}`}
+                        {unit.status === 'تم البيع' ? tUnits.sold : `${unit.price} ${tUnits.currency}`}
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                 <div className="w-full md:w-[450px] p-6 md:p-10 flex flex-col bg-white overflow-y-auto">
                     <DialogHeader className="mb-8">
                         <DialogTitle className="text-3xl font-bold">{unit.name[locale]}</DialogTitle>
-                        <p className="text-zinc-500 mt-2">{unit.description[locale]}</p>
+                        <p className="text-zinc-500 mt-2">{unit.description?.[locale]}</p>
                     </DialogHeader>
 
                     {/* Unit Info Summary */}

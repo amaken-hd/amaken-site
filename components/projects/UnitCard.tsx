@@ -26,7 +26,7 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            className={`bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border transition-all duration-300 ${unit.isSold
+            className={`bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border transition-all duration-300 ${unit.status === 'تم البيع'
                 ? "border-zinc-100 dark:border-zinc-800 opacity-80"
                 : "border-zinc-200 dark:border-zinc-700 hover:shadow-lg hover:border-group-primary/50"
                 }`}
@@ -35,16 +35,19 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
                 <img
                     src={unit.image || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop"}
                     alt={unit.name[locale]}
-                    className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${unit.isSold ? "grayscale" : ""}`}
+                    className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${unit.status === 'تم البيع' ? "grayscale" : ""}`}
                 />
 
                 {/* Status Badge */}
-                <div className="absolute top-3 right-3">
-                    <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-emerald-600/20">
+                {/* <div className="absolute top-3 right-3">
+                    <span className={`text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg ${unit.status === 'جديد' ? 'bg-emerald-600 shadow-emerald-600/20' :
+                        unit.status === 'محجوز' ? 'bg-zinc-500 shadow-zinc-500/20' :
+                            unit.status === 'تم البيع' ? 'bg-red-600 shadow-red-600/20' :
+                                'bg-group-primary shadow-[#A28B67]/20'
+                        }`}>
                         {unit.status}
                     </span>
-
-                </div>
+                </div> */}
             </div>
 
             <div className="p-5">
@@ -81,21 +84,21 @@ export function UnitCard({ unit, onRegisterInterest, index }: UnitCardProps) {
                 <div className="flex items-center justify-between mt-auto">
 
                     <Button
-                        variant={unit.isSold ? "outline" : "default"}
-                        disabled={unit.isSold}
+                        variant={unit.status === 'تم البيع' ? "outline" : "default"}
+                        disabled={unit.status === 'تم البيع'}
                         onClick={() => onRegisterInterest(unit)}
-                        style={!unit.isSold ? { backgroundColor: '#A28B67' } : {}}
+                        style={unit.status !== 'تم البيع' ? { backgroundColor: '#A28B67' } : {}}
                         className={`
-              ${unit.isSold
+              ${unit.status === 'تم البيع'
                                 ? "border-zinc-200 text-zinc-400"
                                 : "text-white transition-colors shadow-lg shadow-[#A28B67]/20 hover:opacity-90"}
             `}
                     >
-                        {unit.isSold ? t.sold : t.viewDetails}
+                        {unit.status === 'تم البيع' ? t.sold : t.viewDetails}
                     </Button>
 
                     <div>
-                        {unit.isSold ? (
+                        {unit.status === 'تم البيع' ? (
                             <span className="text-zinc-400 font-semibold italic">
                                 {t.priceHidden}
                             </span>

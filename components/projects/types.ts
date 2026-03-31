@@ -6,7 +6,6 @@ export interface UnitData {
     area: number;
     rooms: number;
     price?: number;
-    isSold: boolean;
     image: string; // The main image on UnitCard
     planner_image: string; // The panner image for the modal
     description?: { en: string; ar: string };

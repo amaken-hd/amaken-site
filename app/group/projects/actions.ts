@@ -274,7 +274,6 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
                 area: u.instrument_size || 0,
                 rooms: u.number_of_bedrooms || 0,
                 price: u.price,
-                isSold: u.status === 'تم البيع',
                 image: imageUrl,
                 planner_image: pannerUrl,
                 description: {
