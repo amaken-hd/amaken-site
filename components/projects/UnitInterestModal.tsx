@@ -27,13 +27,51 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            onOpenChange(false);
-        }, 3000);
+        setLoading(true);
+
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const phone = formData.get("phone") as string;
+
+        const submitPayload = {
+            first_name: name,
+            email_id: email,
+            mobile_no: phone,
+            // Send unit name as custom unit
+            custom_unit: unit?.id,
+            custom_project: unit?.project_id
+        };
+
+        console.log("Submitting lead payload:", submitPayload);
+
+        try {
+            const res = await fetch('/api/common/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(submitPayload),
+            });
+
+            if (res.ok) {
+                console.log("Lead created successfully");
+                setSubmitted(true);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    onOpenChange(false);
+                }, 3000);
+            } else {
+                const err = await res.json();
+                console.error("Error creating lead:", err);
+            }
+        } catch (error) {
+            console.error("API Error:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleRotateLeft = () => setRotation(prev => prev - 90);
@@ -153,23 +191,24 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="space-y-2">
                                 <Label htmlFor="modal-name">{t.form.name}</Label>
-                                <Input id="modal-name" required placeholder={t.form.name} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                                <Input id="modal-name" name="name" required placeholder={t.form.name} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="modal-email">{t.form.email}</Label>
-                                <Input id="modal-email" type="email" required placeholder={t.form.email} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                                <Input id="modal-email" name="email" type="email" required placeholder={t.form.email} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="modal-phone">{t.form.phone}</Label>
-                                <Input id="modal-phone" type="tel" required placeholder={t.form.phone} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
+                                <Input id="modal-phone" name="phone" type="tel" required placeholder={t.form.phone} className="h-12 bg-zinc-50 focus-visible:ring-[#A28B67] border-zinc-200" />
                             </div>
 
                             <Button
                                 type="submit"
+                                disabled={loading}
                                 style={{ backgroundColor: '#A28B67' }}
-                                className="w-full text-white mt-4 h-14 text-lg font-bold shadow-lg shadow-[#A28B67]/20 hover:opacity-90 transition-all active:scale-[0.98] rounded-xl"
+                                className="w-full text-white mt-4 h-14 text-lg font-bold shadow-lg shadow-[#A28B67]/20 hover:opacity-90 transition-all active:scale-[0.98] rounded-xl disabled:opacity-50"
                             >
-                                {t.form.submit}
+                                {loading ? "..." : t.form.submit}
                             </Button>
                         </form>
                     )}

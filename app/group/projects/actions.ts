@@ -190,7 +190,7 @@ interface ERPUnit {
     custom_description: string;
     custom_unit_image: string;
     marketing?: string;
-
+    custom_project: string;
 }
 
 export async function getProjectUnitsFromERP(projectId: string): Promise<UnitData[]> {
@@ -208,7 +208,8 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
         "status",
         "custom_name_on_website",
         "custom_description",
-        "custom_unit_image"
+        "custom_unit_image",
+        "custom_project"
     ]);
 
     // Assuming the 'Real Estate Sales' doctype links to the project via a 'custom_project' field
@@ -228,7 +229,8 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
                     Authorization: `token ${API_KEY}:${API_SECRET}`,
                     "Content-Type": "application/json",
                 },
-                next: { revalidate: 60 },
+                // next: { revalidate: 60 },
+                cache: "no-store", // Prevents caching stale data during development
             }
         );
 
@@ -280,7 +282,8 @@ export async function getProjectUnitsFromERP(projectId: string): Promise<UnitDat
                     en: u.custom_description || "",
                     ar: u.custom_description || ""
                 },
-                status: u.status || "غير متاح"
+                status: u.status || "غير متاح",
+                project_id: u.custom_project
             };
         });
     } catch (error) {

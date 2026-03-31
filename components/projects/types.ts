@@ -10,6 +10,7 @@ export interface UnitData {
     planner_image: string; // The panner image for the modal
     description?: { en: string; ar: string };
     status: string;
+    project_id: string;
 }
 
 export interface ProjectData {

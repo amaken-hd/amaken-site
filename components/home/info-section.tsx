@@ -20,10 +20,41 @@ export function InfoSection({ className, project }: InfoSectionProps) {
     const t = (dictionary as any).projectsPage;
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitted(true);
-        // Handle form submission logic here
+        setLoading(true);
+
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const phone = formData.get("phone") as string;
+
+        try {
+            const res = await fetch('/api/common/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    first_name: name,
+                    email_id: email,
+                    mobile_no: phone,
+                    custom_project: project?.id || "Projects",
+                }),
+            });
+
+            if (res.ok) {
+                console.log("Lead created successfully");
+                setSubmitted(true);
+            } else {
+                const err = await res.json();
+                console.error("Error creating lead:", err);
+            }
+        } catch (error) {
+            console.error("API Error:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     // Default values if no project is provided
@@ -171,6 +202,7 @@ export function InfoSection({ className, project }: InfoSectionProps) {
                                         <div className="relative">
                                             <input
                                                 id="info-name"
+                                                name="name"
                                                 required
                                                 className="w-full pr-12 pl-4 py-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#A28B67] focus:border-transparent transition-all shadow-sm"
                                                 placeholder={t.form.name}
@@ -191,6 +223,7 @@ export function InfoSection({ className, project }: InfoSectionProps) {
                                             <div className="relative">
                                                 <input
                                                     id="info-email"
+                                                    name="email"
                                                     type="email"
                                                     required
                                                     className="w-full pr-12 pl-4 py-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#A28B67] focus:border-transparent transition-all shadow-sm"
@@ -211,6 +244,7 @@ export function InfoSection({ className, project }: InfoSectionProps) {
                                             <div className="relative">
                                                 <input
                                                     id="info-phone"
+                                                    name="phone"
                                                     type="tel"
                                                     required
                                                     className="w-full pr-12 pl-4 py-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#A28B67] focus:border-transparent transition-all shadow-sm"
@@ -228,10 +262,11 @@ export function InfoSection({ className, project }: InfoSectionProps) {
                                     <div className="pt-4">
                                         <button
                                             type="submit"
+                                            disabled={loading}
                                             style={{ backgroundColor: '#A28B67' }}
-                                            className="w-full text-white h-16 text-lg font-bold rounded-2xl transition-all active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(162,139,103,0.5)] flex items-center justify-center gap-3 hover:opacity-90"
+                                            className="w-full text-white h-16 text-lg font-bold rounded-2xl transition-all active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(162,139,103,0.5)] flex items-center justify-center gap-3 hover:opacity-90 disabled:opacity-50"
                                         >
-                                            <span>{t.form.submit}</span>
+                                            <span>{loading ? '...' : t.form.submit}</span>
                                             <ArrowRight className={cn("w-5 h-5 transition-transform", locale === 'ar' ? "rotate-180" : "")} />
                                         </button>
                                     </div>
