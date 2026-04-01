@@ -3,14 +3,16 @@
 import { useI18n } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface AuctionsFilterProps {
     currentFilter: "all" | "upcoming" | "current" | "ended";
-    onFilterChange: (filter: "all" | "upcoming" | "current" | "ended") => void;
 }
 
-export function AuctionsFilter({ currentFilter, onFilterChange }: AuctionsFilterProps) {
+export function AuctionsFilter({ currentFilter }: AuctionsFilterProps) {
     const { t } = useI18n();
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     const filters = [
         { id: "all", label: t("auctions.filters.all") },
@@ -21,12 +23,22 @@ export function AuctionsFilter({ currentFilter, onFilterChange }: AuctionsFilter
 
     const groupColor = "#A28B67";
 
+    const handleFilterChange = (filterId: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (filterId === "all") {
+            params.delete("filter");
+        } else {
+            params.set("filter", filterId);
+        }
+        router.push(`/group/auctions?${params.toString()}`);
+    };
+
     return (
         <div className="flex flex-wrap justify-center gap-4 mb-12">
             {filters.map((filter) => (
                 <button
                     key={filter.id}
-                    onClick={() => onFilterChange(filter.id as any)}
+                    onClick={() => handleFilterChange(filter.id)}
                     className={cn(
                         "relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300",
                         currentFilter === filter.id
@@ -51,3 +63,4 @@ export function AuctionsFilter({ currentFilter, onFilterChange }: AuctionsFilter
         </div>
     );
 }
+

@@ -55,7 +55,7 @@ export default function SupportChat({ color = "#000000" }: SupportChatProps) {
         <div className="fixed bottom-24 right-6 z-50">
             {/* نافذة الشات */}
             {isOpen && (
-                <div className="mb-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+                <div className="fixed mb-4 w-80 bottom-24 right-25 z-10000 sm:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
                     {/* رأس الشات */}
                     <div className="p-4 flex items-center justify-between" style={{ backgroundColor: color }}>
                         <div className="flex items-center gap-3">

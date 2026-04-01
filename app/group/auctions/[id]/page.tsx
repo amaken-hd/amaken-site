@@ -3,8 +3,8 @@
 import { useI18n } from "@/lib/i18n/context";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { AuctionHero } from "@/components/group/auctions/auction-hero";
-import { PropertyCard, Property } from "@/components/group/auctions/property-card";
-import { SectionReveal } from "@/components/ui/section-reveal";
+import { AuctionUnitsSection } from "@/components/group/auctions/auction-units-section";
+import { AuctionInfoBar } from "@/components/group/auctions/auction-info-bar";
 
 // Mock Data (In a real app, fetch based on params.id)
 const mockAuctionDetails = {
@@ -18,44 +18,6 @@ const mockAuctionDetails = {
     status: "upcoming" as const,
     videoUrl: "/placeholder-video.mp4",
 };
-
-const mockProperties: Property[] = [
-    {
-        id: "p1",
-        auctionId: "1",
-        title: "Office Tower A",
-        description: "12-story office building with modern amenities.",
-        location: "Al Olaya, Riyadh",
-        type: "commercial",
-        area: 12000,
-        rooms: 40,
-        bathrooms: 20,
-        image: "/commercial-building-riyadh-saudi-arabia.jpg",
-        status: "available",
-    },
-    {
-        id: "p2",
-        auctionId: "1",
-        title: "Retail Annex",
-        description: "Separate retail space adjacent to the main tower.",
-        location: "Al Olaya, Riyadh",
-        type: "commercial",
-        area: 3000,
-        image: "/modern-luxury-apartment-building.jpg",
-        status: "available",
-    },
-    {
-        id: "p3",
-        auctionId: "1",
-        title: "Parking Structure",
-        description: "Multi-level parking facility.",
-        location: "Al Olaya, Riyadh",
-        type: "land",
-        area: 5000,
-        image: "/construction-site-machinery.jpg",
-        status: "available",
-    },
-];
 
 export default function AuctionDetailsPage({ params }: { params: { id: string } }) {
     const { t } = useI18n();
@@ -73,6 +35,15 @@ export default function AuctionDetailsPage({ params }: { params: { id: string } 
                 items={breadcrumbItems}
             />
 
+            {/* Info bar requested by user design */}
+            <AuctionInfoBar
+                title={mockAuctionDetails.title}
+                date="2026/04/12"
+                time="10:00 ص"
+                days={3}
+                productsCount={2}
+            />
+
             <AuctionHero
                 title={mockAuctionDetails.title}
                 description={mockAuctionDetails.description}
@@ -83,22 +54,7 @@ export default function AuctionDetailsPage({ params }: { params: { id: string } 
                 videoUrl={mockAuctionDetails.videoUrl}
             />
 
-            <section className="py-24">
-                <div className="container mx-auto px-4 lg:px-8">
-                    <SectionReveal className="mb-12 text-center">
-                        <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
-                            {t("projectsPage.units.title") || "Properties"}
-                        </h2>
-                        <div className="w-20 h-1 bg-[#A28B67] mx-auto" />
-                    </SectionReveal>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {mockProperties.map((property, index) => (
-                            <PropertyCard key={property.id} property={property} index={index} />
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <AuctionUnitsSection />
         </div>
     );
 }
