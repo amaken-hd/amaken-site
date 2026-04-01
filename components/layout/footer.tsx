@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface FooterProps {
     color?: string;
 }
 
 export function Footer({ color }: FooterProps) {
+    const { t } = useI18n();
+
     return (
         <footer
             id="contact"
@@ -22,11 +25,11 @@ export function Footer({ color }: FooterProps) {
 
                     {/* Brand */}
                     <div>
-                        <Link href="/" className="text-3xl font-bold tracking-tighter text-white block mb-6">
-                            AMAKEN
+                        <Link href="/group" className="text-3xl font-bold tracking-tighter text-white block mb-6">
+                            {t("common.brandName")}
                         </Link>
                         <p className="text-white/70 mb-6">
-                            Leading the way in real estate excellence. We build your dreams into reality.
+                            {t("footer.description")}
                         </p>
                         <div className="flex gap-4">
                             <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
@@ -46,34 +49,34 @@ export function Footer({ color }: FooterProps) {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-white font-bold text-lg mb-6">Quick Links</h4>
+                        <h4 className="text-white font-bold text-lg mb-6">{t("footer.quickLinks")}</h4>
                         <ul className="space-y-4">
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Home</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">About Us</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Services</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Projects</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Contact</Link></li>
+                            <li><Link href="/group" className="text-white/70 hover:text-white transition-colors">{t("nav.home")}</Link></li>
+                            <li><Link href="/group/about" className="text-white/70 hover:text-white transition-colors">{t("nav.about")}</Link></li>
+                            <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("nav.services")}</Link></li>
+                            <li><Link href="/group/projects" className="text-white/70 hover:text-white transition-colors">{t("nav.projects")}</Link></li>
+                            <li><Link href="/group/contact" className="text-white/70 hover:text-white transition-colors">{t("nav.contact")}</Link></li>
                         </ul>
                     </div>
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-white font-bold text-lg mb-6">Services</h4>
+                        <h4 className="text-white font-bold text-lg mb-6">{t("footer.services")}</h4>
                         <ul className="space-y-4">
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Property Development</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Real Estate Management</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Consultancy</Link></li>
-                            <li><Link href="#" className="text-white/70 hover:text-white transition-colors">Marketing</Link></li>
+                            <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("groupServices.management.title")}</Link></li>
+                            <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("groupServices.marketing.title")}</Link></li>
+                            <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("nav.consulting")}</Link></li>
+                            <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("nav.appraisal")}</Link></li>
                         </ul>
                     </div>
 
                     {/* Contact */}
                     <div>
-                        <h4 className="text-white font-bold text-lg mb-6">Contact Us</h4>
+                        <h4 className="text-white font-bold text-lg mb-6">{t("footer.contact")}</h4>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-4 text-white/70">
                                 <MapPin className="text-white mt-1 shrink-0" size={20} />
-                                <span>123 Business Bay,<br />Riyadh, Saudi Arabia</span>
+                                <span>{t("footer.address")}</span>
                             </li>
 
                             <li className="flex items-center gap-4 text-white/70">
@@ -81,22 +84,22 @@ export function Footer({ color }: FooterProps) {
                                 <Phone className="text-white shrink-0" size={20} />
 
                                 <a href="tel:+966920003401">
-                                    <span className="hover:text-white transition-colors">+966 920003401</span></a>
+                                    <span className="hover:text-white transition-colors">{t("common.phone")}</span></a>
                             </li>
 
                             <li className="flex items-center gap-4 text-white/70">
                                 <Mail className="text-white shrink-0" size={20} />
-                                <span className="hover:text-white transition-colors">info@goamaken.com</span>
+                                <span className="hover:text-white transition-colors">{t("common.email")}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
-                    <p>&copy; {new Date().getFullYear()} Amaken International Group. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} {t("common.brandName")} {t("common.brandSubtitle")}. {t("footer.rights")}</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-white transition-colors">{t("common.privacy")}</Link>
+                        <Link href="/terms" className="hover:text-white transition-colors">{t("common.terms")}</Link>
                     </div>
                 </div>
             </div>
