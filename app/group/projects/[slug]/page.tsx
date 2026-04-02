@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ProjectHero } from "@/components/group/projects/ProjectHero";
 import { UnitList } from "@/components/group/projects/UnitList";
 import { getProjectsFromERP, getProjectImagesFromERP, getProjectUnitsFromERP } from "@/app/group/projects/actions";
-import { ProjectData } from "@/components/group/projects/types";
+import { ProjectData } from "@/types/ProjectData";
 import { InfoSection } from "@/components/group/home/info-section";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { useI18n } from "@/lib/i18n/context";

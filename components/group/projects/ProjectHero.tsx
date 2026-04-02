@@ -7,7 +7,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"; // Assuming these exist
 import { Label } from "@/components/ui/label"; // Assuming these exist
-import { ProjectData } from "./types";
+import { ProjectData } from "@/types/ProjectData";
 
 interface ProjectHeroProps {
     project: ProjectData;

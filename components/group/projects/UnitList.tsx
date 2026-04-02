@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { UnitData } from "./types";
+import { UnitData } from "@/types/UnitData";
 import { UnitCard } from "./UnitCard";
 import { UnitInterestModal } from "./UnitInterestModal";
 import { useI18n } from "@/lib/i18n/context";

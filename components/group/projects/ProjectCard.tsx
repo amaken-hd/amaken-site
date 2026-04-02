@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { MapPin, ArrowRight, ArrowLeft } from "lucide-react";
-import { ProjectData } from "./types";
 import { useI18n } from "@/lib/i18n/context";
+import { ProjectData } from "@/types/ProjectData";
 
 interface ProjectCardProps {
     project: ProjectData;

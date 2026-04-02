@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-import { ProjectData } from "@/components/group/projects/types"
+import { ProjectData } from "@/types/ProjectData"
 
 const categories = [
     { id: "all", label: "All", labelAr: "الكل" },

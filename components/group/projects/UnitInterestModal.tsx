@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/lib/i18n/context";
-import { UnitData } from "./types";
+import { UnitData } from "@/types/UnitData";
 import { Move, Bed, Bath, CheckCircle, RotateCcw, RotateCw, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
 import { motion, useMotionValue } from "framer-motion";
 

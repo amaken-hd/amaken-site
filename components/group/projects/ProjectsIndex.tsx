@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
 import { ProjectCard } from "./ProjectCard";
-import { projectsData } from "./data";
-import { ProjectData } from "./types";
+import { ProjectData } from "@/types/ProjectData";
 import { getProjectsFromERP } from "@/app/group/projects/actions";
 import { Loader2 } from "lucide-react";
 

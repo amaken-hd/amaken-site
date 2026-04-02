@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ProjectData } from "@/components/group/projects/types";
 import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { ProjectData } from "@/types/ProjectData";
 
 interface InfoSectionProps {
     className?: string;
