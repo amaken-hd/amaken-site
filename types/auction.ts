@@ -18,9 +18,3 @@ export interface Auction {
     starting_bid?: number; // Custom field for starting price
     status?: string; // Status from ERPNext
 }
-
-
-export interface AuctionsResponse {
-    data: Auction[];
-    total: number;
-}
