@@ -243,8 +243,11 @@ const dictionariesObj = {
       status: {
         all: "All",
         upcoming: "Upcoming",
+        current: "Current",
         live: "Live",
+        ended: "Ended",
       },
+      noVideoAvailable: "No video available for this auction",
       filters: {
         all: "All",
         upcoming: "Upcoming",
@@ -1352,8 +1355,11 @@ const dictionariesObj = {
       status: {
         all: "الكل",
         upcoming: "قادم",
+        current: "جاري",
         live: "مباشر",
+        ended: "منتهي",
       },
+      noVideoAvailable: "لا يوجد فيديو متاح لهذا المزاد",
       filters: {
         all: "الكل",
         upcoming: "قادم",

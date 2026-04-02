@@ -4,18 +4,22 @@ import { useState, useEffect } from "react";
 import { Grid, List } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useI18n } from "@/lib/i18n/context";
-import { mockAuctionUnits } from "./unit-types";
+import { AuctionUnit } from "./unit-types";
 import { UnitCardGrid } from "./unit-card-grid";
 import { UnitCardList } from "./unit-card-list";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type ViewMode = "grid" | "list";
 
-export function AuctionUnitsSection() {
+interface AuctionUnitsSectionProps {
+    units: AuctionUnit[];
+    isLoading: boolean;
+}
+
+export function AuctionUnitsSection({ units, isLoading }: AuctionUnitsSectionProps) {
     const { t } = useI18n();
     const [viewMode, setViewMode] = useState<ViewMode>("grid");
     const [mounted, setMounted] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
 
     // Persist view preference
     useEffect(() => {
@@ -24,13 +28,6 @@ export function AuctionUnitsSection() {
         if (savedView === "grid" || savedView === "list") {
             setViewMode(savedView);
         }
-
-        // Simulate network fetch
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-
-        return () => clearTimeout(timer);
     }, []);
 
     const handleViewChange = (value: string) => {
@@ -41,8 +38,6 @@ export function AuctionUnitsSection() {
     };
 
     if (!mounted) return null;
-
-    const units = mockAuctionUnits;
 
     return (
         <section className="py-12 bg-gray-50/50" dir="rtl">

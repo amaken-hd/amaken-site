@@ -1,3 +1,5 @@
+import { AuctionUnit } from "@/components/group/auctions/unit-types";
+
 export interface Auction {
     name: string; // Frappe document name (ID)
     auction_name: string; // Title
@@ -17,4 +19,7 @@ export interface Auction {
     is_published?: 0 | 1; // Check field
     starting_bid?: number; // Custom field for starting price
     status?: string; // Status from ERPNext
+    youtube_url?: string;
+    units?: any[]; // To be mapped to AuctionUnit[]
+    mobasher_url?: string;
 }

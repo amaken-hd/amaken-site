@@ -13,12 +13,21 @@ interface AuctionHeroProps {
     location: string;
     status: "upcoming" | "current" | "ended";
     videoUrl?: string; // Placeholder for now
+    mobasher_url?: string;
 }
 
-export function AuctionHero({ title, description, date, time, location, status, videoUrl }: AuctionHeroProps) {
-    const { t, locale } = useI18n();
-    const groupColor = "#A28B67";
+export function AuctionHero({ title, description, date, time, location, status, videoUrl, mobasher_url }: AuctionHeroProps) {
+    // Helper to get YouTube ID
+    const getYouTubeId = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    };
 
+    const youtubeId = videoUrl ? getYouTubeId(videoUrl) : null;
+    const { t } = useI18n();
+    const groupColor = "#A28B67";
+    console.log(videoUrl);
     return (
         <section className="relative min-h-[80vh] flex items-center bg-[#faf7f2] overflow-hidden">
 
@@ -61,6 +70,7 @@ export function AuctionHero({ title, description, date, time, location, status, 
                                     size="lg"
                                     className="text-white px-8 text-lg h-14"
                                     style={{ backgroundColor: groupColor }}
+                                    onClick={() => mobasher_url && window.open(mobasher_url, "_blank")}
                                 >
                                     {t("auctions.labels.register")}
                                 </Button>
@@ -77,26 +87,27 @@ export function AuctionHero({ title, description, date, time, location, status, 
 
                     {/* Video Side */}
                     <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                        <SectionReveal delay={0.2} className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
-                            {/* Placeholder Video / Image */}
-                            <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
-                                {/* Replace with actual video component later */}
-                                <video
-                                    className="w-full h-full object-cover opacity-80"
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    poster="/placeholder-video-poster.jpg" // Add a poster if available
-                                >
-                                    <source src="/placeholder-video.mp4" type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-                                <div className="absolute bottom-8 left-8 right-8 text-white">
-                                    <p className="font-medium text-lg opacity-90">{t("auctions.previewSubtitle")}</p>
+                        <SectionReveal delay={0.2} className=" w-[860px] h-[515px] relative rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square bg-gray-900 border border-white/10">
+                            {videoUrl ? (
+                                <div className="absolute inset-0">
+                                    <iframe
+                                        className="w-full h-full border-0"
+                                        src={videoUrl.includes("embed") ? videoUrl : `https://www.youtube.com/embed/${getYouTubeId(videoUrl)}?autoplay=1&mute=1&loop=1`}
+                                        title="YouTube video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                    />
                                 </div>
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white/50 italic font-light">
+                                    {t("auctions.noVideoAvailable")}
+                                </div>
+                            )}
+                            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
+                            <div className="absolute bottom-8 left-8 right-8 text-white pointer-events-none z-20">
+                                <p className="font-serif italic text-lg opacity-80">{t("auctions.previewSubtitle")}</p>
                             </div>
                         </SectionReveal>
                     </div>

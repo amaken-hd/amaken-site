@@ -5,28 +5,79 @@ import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { AuctionHero } from "@/components/group/auctions/auction-hero";
 import { AuctionUnitsSection } from "@/components/group/auctions/auction-units-section";
 import { AuctionInfoBar } from "@/components/group/auctions/auction-info-bar";
+import { useState, useEffect, use } from "react";
+import { Auction } from "@/types/auction";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Mock Data (In a real app, fetch based on params.id)
-const mockAuctionDetails = {
-    id: "1",
-    title: "Commercial Building - Al Olaya District",
-    description: "A prime commercial opportunity in the heart of Riyadh's business district. This auction features a multi-story office building with high potential for ROI.",
-    location: "Riyadh",
-    date: "2026-02-15",
-    time: "10:00 AM",
-    type: "online",
-    status: "upcoming" as const,
-    videoUrl: "/placeholder-video.mp4",
-};
-
-export default function AuctionDetailsPage({ params }: { params: { id: string } }) {
+export default function AuctionDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const { t } = useI18n();
+    const [auction, setAuction] = useState<Auction | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchAuction = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch(`/api/group/auctions/${id}`);
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || "Failed to fetch auction");
+                }
+
+                console.log("Fetched Auction Data:", result.data);
+                setAuction(result.data);
+            } catch (err: any) {
+                setError(err.message);
+                console.error("Error fetching auction:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchAuction();
+    }, [id]);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <Skeleton className="h-[400px] w-full" />
+                <div className="container mx-auto px-4 py-8 space-y-8">
+                    <Skeleton className="h-20 w-full" />
+                    <Skeleton className="h-[600px] w-full" />
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !auction) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="text-center p-8 bg-white rounded-xl shadow-sm border">
+                    <h2 className="text-xl font-bold text-red-600 mb-2">Error</h2>
+                    <p className="text-gray-600">{error || "Auction not found"}</p>
+                </div>
+            </div>
+        );
+    }
 
     const breadcrumbItems = [
         { label: t("nav.home"), href: "/group" },
         { label: t("auctions.pageTitles.auctions"), href: "/group/auctions" },
-        { label: mockAuctionDetails.title, href: `/group/auctions/${params.id}` },
+        { label: auction.auction_name, href: `/group/auctions/${id}` },
     ];
+
+    // Map ERPNext statuses (Arabic/English) to internal keys
+    const getStatusKey = (status: string): "upcoming" | "current" | "ended" => {
+        const s = status?.toLowerCase();
+        if (s === "active" || s === "جاري" || s === "جارة") return "current";
+        if (s === "ended" || s === "منتهي") return "ended";
+        return "upcoming";
+    };
+
+    const status = getStatusKey(auction.status || "");
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -35,35 +86,44 @@ export default function AuctionDetailsPage({ params }: { params: { id: string } 
                 items={breadcrumbItems}
             />
             <AuctionHero
-                title={mockAuctionDetails.title}
-                description={mockAuctionDetails.description}
-                date={mockAuctionDetails.date}
-                time={mockAuctionDetails.time}
-                location={mockAuctionDetails.location}
-                status={mockAuctionDetails.status}
-                videoUrl={mockAuctionDetails.videoUrl}
+                title={auction.auction_name}
+                description={auction.auction_name} // Using name as description if not available
+                date={auction.auction_start_date}
+                time={auction.auction_start_time}
+                location={auction.location || auction.city || ""}
+                status={status}
+                videoUrl={auction.youtube_url}
+                mobasher_url={auction.mobasher_url}
             />
 
-            {/* Info bar requested by user design */}
             <AuctionInfoBar
-                title={mockAuctionDetails.title}
-                date="2026/04/12"
-                time="10:00 ص"
-                days={3}
-                productsCount={2}
+                title={auction.auction_name}
+                date={auction.auction_start_date}
+                time={auction.auction_start_time}
+                days={1} // Placeholder as we don't have remaining days calculation here
+                productsCount={auction.units?.length || auction.no_of_realestates || 0}
+                status={status}
+                targetDate={status === "upcoming" ? `${auction.auction_start_date}T${auction.auction_start_time}` : `${auction.auction_end_date || auction.auction_start_date}T${auction.auction_end_time || auction.auction_start_time}`}
+
+
             />
 
-            <AuctionHero
-                title={mockAuctionDetails.title}
-                description={mockAuctionDetails.description}
-                date={mockAuctionDetails.date}
-                time={mockAuctionDetails.time}
-                location={mockAuctionDetails.location}
-                status={mockAuctionDetails.status}
-                videoUrl={mockAuctionDetails.videoUrl}
+            <AuctionUnitsSection
+                units={auction.units?.map((u: any) => ({
+                    id: u.name,
+                    auctionId: id,
+                    lotNumber: u.plot_number || "0",
+                    title: u.title,
+                    type: u.property_type,
+                    location: u.city,
+                    startingBid: parseFloat(u.auctionprice) || 0,
+                    highestBid: parseFloat(u.auctionprice) || 0, // Placeholder
+                    bidCount: 0, // Placeholder
+                    status: status === "current" ? "active" : status as any,
+                    image: u.image11 || "/placeholder.svg"
+                })) || []}
+                isLoading={isLoading}
             />
-
-            <AuctionUnitsSection />
         </div>
     );
 }
