@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjectsIndex } from "@/components/projects/ProjectsIndex";
+import { ProjectsIndex } from "@/components/group/projects/ProjectsIndex";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { useI18n } from "@/lib/i18n/context";
 

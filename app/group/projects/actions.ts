@@ -1,7 +1,7 @@
 "use server";
 
-import { ProjectData, UnitData } from "@/components/projects/types";
-import { generateUnits } from "@/components/projects/data";
+import { ProjectData, UnitData } from "@/components/group/projects/types";
+import { generateUnits } from "@/components/group/projects/data";
 
 const ERP_API_URL = process.env.NEXT_PUBLIC_ERPNEXT_URL;
 const API_KEY = process.env.ERP_API_KEY;
