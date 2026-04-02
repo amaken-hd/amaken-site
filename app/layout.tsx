@@ -66,6 +66,10 @@ export const metadata: Metadata = {
     follow: true,
   },
   generator: "v0.app",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/amaken-logo.png",
+  },
 };
 
 export const viewport: Viewport = {
