@@ -6,7 +6,7 @@ import { ProjectHero } from "@/components/projects/ProjectHero";
 import { UnitList } from "@/components/projects/UnitList";
 import { getProjectsFromERP, getProjectImagesFromERP, getProjectUnitsFromERP } from "@/app/group/projects/actions";
 import { ProjectData } from "@/components/projects/types";
-import { InfoSection } from "@/components/home/info-section";
+import { InfoSection } from "@/components/group/home/info-section";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { useI18n } from "@/lib/i18n/context";
 

@@ -1,9 +1,9 @@
 import { ServicesSection2 } from "@/components/group/services-section-2";
 import { ProjectsSection } from "@/components/group/projects-section";
-import { ClientsSection } from "@/components/home/clients-section";
-import { AuctionsPreview } from "@/components/home/auctions-preview";
-import { CTASection } from "@/components/home/cta-section";
-import { Hero } from "@/components/home/hero";
+import { ClientsSection } from "@/components/group/home/clients-section";
+import { AuctionsPreview } from "@/components/group/home/auctions-preview";
+import { CTASection } from "@/components/group/home/cta-section";
+import { Hero } from "@/components/group/home/hero";
 import { getProjectsFromERP } from "@/app/group/projects/actions";
 
 export default async function HomePage() {

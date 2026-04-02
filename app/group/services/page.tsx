@@ -13,7 +13,7 @@ import {
     ArrowRight,
     LucideIcon
 } from "lucide-react";
-import { CTASection } from "@/components/home/cta-section";
+import { CTASection } from "@/components/group/home/cta-section";
 
 interface ServiceItem {
     id: string;
