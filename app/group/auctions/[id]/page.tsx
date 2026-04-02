@@ -34,6 +34,15 @@ export default function AuctionDetailsPage({ params }: { params: { id: string } 
                 title={t("auctions.pageTitles.auctionDetails")}
                 items={breadcrumbItems}
             />
+            <AuctionHero
+                title={mockAuctionDetails.title}
+                description={mockAuctionDetails.description}
+                date={mockAuctionDetails.date}
+                time={mockAuctionDetails.time}
+                location={mockAuctionDetails.location}
+                status={mockAuctionDetails.status}
+                videoUrl={mockAuctionDetails.videoUrl}
+            />
 
             {/* Info bar requested by user design */}
             <AuctionInfoBar
