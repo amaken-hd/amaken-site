@@ -127,7 +127,7 @@ export function Footer() {
                     {t("common.emailLabel")}
                   </p>
                   <a
-                    href="mailto:info@amaken.com.sa"
+                    href="mailto:info@goamaken.com"
                     className="text-primary-foreground hover:underline"
                   >
                     {t("common.email")}

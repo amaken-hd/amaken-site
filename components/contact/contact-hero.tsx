@@ -38,8 +38,8 @@ export function ContactHero() {
               {
                 icon: Mail,
                 label: t("contactPage.hero.stats.email"),
-                value: "info@amaken.com.sa",
-                href: "mailto:info@amaken.com.sa",
+                value: "info@goamaken.com",
+                href: "mailto:info@goamaken.com",
               },
               {
                 icon: Clock,
