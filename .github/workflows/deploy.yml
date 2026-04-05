@@ -49,4 +49,6 @@ jobs:
             
             npm run build
 
-            sleep 1 && kill $(pgrep -f "amaken-site/server.js")
+            pkill -f "amaken-site/server.js" || true
+            sleep 1
+            echo "Server restarted successfully!!!!"
