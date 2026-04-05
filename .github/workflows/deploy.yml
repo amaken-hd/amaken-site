@@ -48,3 +48,5 @@ jobs:
             EOF
             
             npm run build
+
+            sleep 1 && kill $(pgrep -f "amaken-site/server.js")
