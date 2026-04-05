@@ -55,6 +55,7 @@ export function Footer({ color }: FooterProps) {
                             <li><Link href="/group/about" className="text-white/70 hover:text-white transition-colors">{t("nav.about")}</Link></li>
                             <li><Link href="/group/services" className="text-white/70 hover:text-white transition-colors">{t("nav.services")}</Link></li>
                             <li><Link href="/group/projects" className="text-white/70 hover:text-white transition-colors">{t("nav.projects")}</Link></li>
+                            <li><Link href="/group/miscellaneous-units" className="text-white/70 hover:text-white transition-colors">{t("nav.miscellaneousUnits")}</Link></li>
                             <li><Link href="/group/contact" className="text-white/70 hover:text-white transition-colors">{t("nav.contact")}</Link></li>
                         </ul>
                     </div>
@@ -76,7 +77,12 @@ export function Footer({ color }: FooterProps) {
                         <ul className="space-y-4">
                             <li className="flex items-start gap-4 text-white/70">
                                 <MapPin className="text-white mt-1 shrink-0" size={20} />
-                                <span>{t("footer.address")}</span>
+                                <a href="https://maps.app.goo.gl/LNGfUUWbQE4vuXrm7"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <span>{t("footer.address")}</span>
+                                </a>
                             </li>
 
                             <li className="flex items-center gap-4 text-white/70">
