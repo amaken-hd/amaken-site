@@ -65,10 +65,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  generator: "v0.app",
+  generator: "Amaken International Group",
   icons: {
-    icon: "/icon.svg",
-    apple: "/amaken-logo.png",
+    icon: "/A-logo-black.png",
+    apple: "/A-logo-black.png",
   },
 };
 
