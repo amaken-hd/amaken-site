@@ -15,7 +15,7 @@ interface InterestModalProps {
 }
 
 export function InterestModal({ open, onOpenChange }: InterestModalProps) {
-    const { dictionary, locale } = useI18n();
+    const { dictionary, locale, direction } = useI18n();
     const t = (dictionary as any).groupCTA;
     const [submitted, setSubmitted] = useState(false);
 
@@ -30,7 +30,7 @@ export function InterestModal({ open, onOpenChange }: InterestModalProps) {
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[500px] p-8 bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
+            <DialogContent dir={direction} className="sm:max-w-[500px] p-8 bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 max-h-[90dvh] overflow-y-auto">
                 <DialogHeader className="mb-6">
                     <DialogTitle className="text-2xl font-bold text-center">
                         {t.title}

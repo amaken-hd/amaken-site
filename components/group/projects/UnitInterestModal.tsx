@@ -17,7 +17,7 @@ interface UnitInterestModalProps {
 }
 
 export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModalProps) {
-    const { dictionary, locale } = useI18n();
+    const { dictionary, locale, direction } = useI18n();
     const t = (dictionary as any).projectsPage;
     const tUnits = t.units;
     const [submitted, setSubmitted] = useState(false);
@@ -89,7 +89,7 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[1200px] w-[95vw] h-[90vh] sm:h-auto overflow-hidden bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 p-0 flex flex-col md:flex-row">
+            <DialogContent dir={direction} className="sm:max-w-[1200px] w-[95vw] max-h-[90dvh] overflow-hidden bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 p-0 flex flex-col md:flex-row">
                 {/* Left Side: Image Viewer */}
                 <div className="relative flex-1 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-4 overflow-hidden min-h-[300px] md:min-h-[500px]">
                     <motion.div
