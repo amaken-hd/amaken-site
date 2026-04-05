@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { Quote } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
@@ -13,15 +14,17 @@ export function AboutFounder() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <SectionReveal>
             <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-                <img
-                  src="/professional-saudi-businessman-ceo-portrait.jpg"
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden relative   h-200">
+                <Image
+                  src="/ceo-founder.png"
                   alt="Khalid bin Abdulkarim Al-Jasser"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
               {/* Decorative Element */}
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/5 rounded-2xl -z-10" />
+              {/* <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/5 rounded-2xl -z-10" /> */}
             </div>
           </SectionReveal>
 
