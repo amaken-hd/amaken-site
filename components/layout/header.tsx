@@ -28,6 +28,8 @@ interface NavItem {
 const navigation: NavItem[] = [
   { key: "home", href: "/" },
   { key: "realEstate", href: "/real-estate" },
+  { key: "projects", href: "/group/projects" },
+  { key: "miscellaneousUnits", href: "/group/miscellaneous-units" },
   { key: "about", href: "/about" },
   { key: "news", href: "/news" },
   { key: "contact", href: "/contact" },

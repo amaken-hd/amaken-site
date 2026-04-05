@@ -7,6 +7,7 @@ const groupNavigation = [
     { key: "home", href: "/group" },
     { key: "services", href: "/group/services" },
     { key: "projects", href: "/group/projects" },
+    { key: "miscellaneousUnits", href: "/group/miscellaneous-units" },
     { key: "auctions", href: "/group/auctions" },
     { key: "about", href: "/group/about" },
     { key: "contactus", href: "/group/contact" },

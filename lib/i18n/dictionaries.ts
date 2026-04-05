@@ -66,6 +66,7 @@ const dictionariesObj = {
       services: "Services",
       contactus: "Contact Us",
       projects: "Projects",
+      miscellaneousUnits: "Individual Units",
     },
     hero: {
       tagline: "Amaken Group",
@@ -1099,6 +1100,20 @@ const dictionariesObj = {
       title: "Our Clients",
     },
 
+    miscellaneousUnitsPage: {
+      title: "Miscellaneous Units",
+      subtitle: "Explore our diverse range of individual real estate units",
+      filters: {
+        type: "Unit Type",
+        city: "City",
+        neighborhood: "Neighborhood",
+        minPrice: "Min Price",
+        maxPrice: "Max Price",
+        all: "All",
+        search: "Search...",
+      },
+      noResults: "No units found matching your criteria.",
+    },
   }
   , ar: {
 
@@ -1164,6 +1179,7 @@ const dictionariesObj = {
       services: "الخدمات",
       contactus: "اتصل بنا",
       projects: "المشاريع",
+      miscellaneousUnits: "الوحدات",
     },
 
     hero: {
@@ -2045,6 +2061,20 @@ const dictionariesObj = {
     },
     clients: {
       title: "عملاؤنا المتميزين",
+    },
+    miscellaneousUnitsPage: {
+      title: "الوحدات",
+      subtitle: "استكشف مجموعة متنوعة من الوحدات العقارية",
+      filters: {
+        type: "نوع الوحدة",
+        city: "المدينة",
+        neighborhood: "الحي",
+        minPrice: "أقل سعر",
+        maxPrice: "أعلى سعر",
+        all: "الكل",
+        search: "بحث...",
+      },
+      noResults: "لم يتم العثور على وحدات تطابق معايير البحث.",
     },
   },
 }
