@@ -48,7 +48,3 @@ jobs:
             EOF
             
             npm run build
-
-            pkill -f "amaken-site/server.js" || true
-            sleep 1
-            echo "Server restarted successfully!!!!"
