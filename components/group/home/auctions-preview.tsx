@@ -1,50 +1,57 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react"
+import { ArrowRight, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { SectionReveal } from "@/components/ui/section-reveal"
 import { useI18n } from "@/lib/i18n/context"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
-
-// Mock auction data - will be replaced with ERPNext data
-const mockAuctions = [
-  {
-    id: "1",
-    title: "Commercial Building - Al Olaya District",
-    location: "Riyadh",
-    date: "2026-02-15",
-    time: "10:00 AM",
-    type: "online",
-    status: "upcoming",
-    image: "/commercial-building-riyadh-saudi-arabia.jpg",
-  },
-  {
-    id: "2",
-    title: "Industrial Equipment Lot",
-    location: "Jeddah",
-    date: "2026-02-20",
-    time: "2:00 PM",
-    type: "onsite",
-    status: "upcoming",
-    image: "/industrial-machinery-equipment-auction.jpg",
-  },
-  {
-    id: "3",
-    title: "Residential Villa - Al Rabwah",
-    location: "Riyadh",
-    date: "2026-02-25",
-    time: "11:00 AM",
-    type: "hybrid",
-    status: "upcoming",
-    image: "/luxury-villa-residential-property-saudi-arabia.jpg",
-  },
-]
+import { Auction } from "@/types/auction"
+import { AuctionCard } from "@/components/group/auctions/auction-card"
 
 export function AuctionsPreview() {
-  const { t } = useI18n()
+  const { t, direction } = useI18n()
+  const isRTL = direction === "rtl"
+  const [auctions, setAuctions] = useState<Auction[]>([])
+  const [loading, setLoading] = useState(true)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    async function fetchAuctions() {
+      try {
+        const response = await fetch("/api/group/auctions")
+        const result = await response.json()
+        if (response.ok) {
+          setAuctions(result.data || [])
+        }
+      } catch (error) {
+        console.error("Failed to fetch auctions:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchAuctions()
+  }, [])
+
+  const scroll = (slideDirection: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current
+      // In RTL, scrollLeft is negative or handled differently by browsers
+      // A safe way is to determine scroll amount
+      const scrollAmount = clientWidth * 0.8
+      const scrollTo = slideDirection === (isRTL ? "right" : "left")
+        ? scrollLeft - scrollAmount
+        : scrollLeft + scrollAmount
+
+      scrollRef.current.scrollTo({
+        left: scrollTo,
+        behavior: "smooth"
+      })
+    }
+  }
+
+  if (!loading && auctions.length === 0) return null
 
   return (
     <section className="py-24 lg:py-32 bg-[#faf7f2]">
@@ -58,74 +65,50 @@ export function AuctionsPreview() {
               {t("auctions.previewSubtitle")}
             </p>
           </div>
-          <Link href="/auctions">
-            <Button variant="outline" className="gap-2 bg-transparent">
+          <Link href="/group/auctions">
+            <Button variant="outline" className="gap-2 bg-transparent border-neutral-300">
               {t("common.viewAll")}
               <ArrowRight className="w-4 h-4 ml-2 rtl:rotate-180" />
             </Button>
           </Link>
         </SectionReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {mockAuctions.map((auction, index) => (
-            <SectionReveal key={auction.id} delay={index * 0.1}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                className="group bg-card border border-border rounded-xl overflow-hidden"
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={auction.image || "/placeholder.svg"}
-                    alt={auction.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <Badge
-                    className={cn(
-                      "absolute top-4 left-4",
-                      auction.type === "online" && "bg-appraisal",
-                      auction.type === "onsite" && "bg-consulting",
-                      auction.type === "hybrid" && "bg-realestate",
-                    )}
-                  >
-                    {t(`auctions.types.${auction.type}`)}
-                  </Badge>
+        <div className="relative group">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 lg:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide no-scrollbar"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {loading ? (
+              // Skeleton loaders
+              [...Array(3)].map((_, i) => (
+                <div key={i} className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] h-[500px] bg-neutral-200 animate-pulse rounded-2xl" />
+              ))
+            ) : (
+              auctions.map((auction, index) => (
+                <div key={auction.name} className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] snap-start">
+                  <AuctionCard auction={auction} index={index} />
                 </div>
+              ))
+            )}
+          </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-semibold text-foreground mb-3 line-clamp-2">{auction.title}</h3>
+          {/* Navigation Buttons - Adjusted to match Projects Section */}
+          <button
+            onClick={() => scroll("left")}
+            className={`absolute top-[40%] -left-4 lg:-left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-[#A28B67] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-110 disabled:opacity-50 z-10 ${isRTL ? "right-auto left-auto -right-6" : ""}`}
+            aria-label="Previous auctions"
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </button>
 
-                  <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      <span>{auction.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>
-                        {new Date(auction.date).toLocaleDateString(t("nav.language") === "English" ? "ar-SA" : "en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      <span>{auction.time}</span>
-                    </div>
-                  </div>
-
-                  <Link href={`/auctions/${auction.id}`}>
-                    <Button variant="outline" className="w-full bg-transparent">
-                      {t("auctions.viewDetails")}
-                    </Button>
-                  </Link>
-                </div>
-              </motion.div>
-            </SectionReveal>
-          ))}
+          <button
+            onClick={() => scroll("right")}
+            className={`absolute top-[40%] -right-4 lg:-right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-[#A28B67] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-110 disabled:opacity-50 z-10 ${isRTL ? "left-auto right-auto -left-6" : ""}`}
+            aria-label="Next auctions"
+          >
+            <ArrowRight className="w-6 h-6" />
+          </button>
         </div>
       </div>
     </section>
