@@ -11,6 +11,8 @@ export default function DatadogInit() {
             forwardErrorsToLogs: true,
             sessionSampleRate: 100
         });
+        datadogLogs.logger.info('App loaded', { name: 'goamaken', env: 'production' });
+
     }, []);
 
     return null;
