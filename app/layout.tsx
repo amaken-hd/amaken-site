@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter, Cairo, Playfair_Display, Amiri } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import DatadogInit from "@/components/layout/DataDogInit";
 import "./globals.css";
 
 const inter = Inter({
@@ -93,6 +94,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cairo.variable} ${playfair.variable} ${amiri.variable} font-sans antialiased`}
       >
+        <DatadogInit />
         <I18nProvider>
           <AuthProvider>
             {children}
