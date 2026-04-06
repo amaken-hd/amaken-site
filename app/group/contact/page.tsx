@@ -59,7 +59,7 @@ export default function GroupContactPage() {
                                             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                                                 <Mail className="w-5 h-5" />
                                             </div>
-                                            <span className="pt-2 font-medium">info@amaken.sa</span>
+                                            <span className="pt-2 font-medium">info@goamaken.com</span>
                                         </div>
 
                                         <div className="flex items-start gap-5">
