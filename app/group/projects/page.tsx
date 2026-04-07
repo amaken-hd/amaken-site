@@ -11,7 +11,7 @@ export default function ProjectsPage() {
         { label: locale === "ar" ? "المشاريع" : "Projects", href: "/group/projects" },
     ];
     return (
-        <div className="pt-24 min-h-screen bg-zinc-50 dark:bg-zinc-950">
+        <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
             <PageBreadcrumb
                 title={locale === "ar" ? "المشاريع" : "Projects"}
                 items={breadcrumbItems}

@@ -104,7 +104,7 @@ export default function MiscellaneousUnitsPage() {
     };
 
     return (
-        <div className="pt-24 min-h-screen bg-zinc-50 dark:bg-zinc-950" dir={direction}>
+        <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950" dir={direction}>
             <PageBreadcrumb
                 title={t.title}
                 items={breadcrumbItems}

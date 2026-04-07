@@ -1,17 +1,7 @@
 "use client";
 
 import { Footer } from "@/components/layout/footer";
-import { Header } from "@/components/layout/header";
-
-const groupNavigation = [
-    { key: "home", href: "/group" },
-    { key: "services", href: "/group/services" },
-    { key: "projects", href: "/group/projects" },
-    { key: "miscellaneousUnits", href: "/group/miscellaneous-units" },
-    { key: "auctions", href: "/group/auctions" },
-    { key: "about", href: "/group/about" },
-    { key: "contactus", href: "/group/contact" },
-];
+import { Navbar } from "@/components/layout/navbar";
 
 export default function GroupLayout({
     children,
@@ -20,7 +10,7 @@ export default function GroupLayout({
 }) {
     return (
         <div className="min-h-screen">
-            <Header links={groupNavigation} color="#A28B67" logo="/amaken-logo.png" />
+            <Navbar />
             <main>{children}</main>
             <Footer color="#A28B67" />
         </div>

@@ -24,7 +24,7 @@ export function PageBreadcrumb({ title, items, className }: PageBreadcrumbProps)
         <div
             dir={isRTL ? "rtl" : "ltr"}
             className={cn(
-                "w-full pt-32 pb-12",
+                "w-full pt-5 pb-5",
                 "bg-gradient-to-br from-[#A28B67]/10 via-[#A28B67]/5 to-transparent",
                 "border-b border-[#A28B67]/20",
                 className

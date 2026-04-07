@@ -104,7 +104,7 @@ export default async function AuctionsPage({
     });
 
     return (
-        <div className="min-h-screen bg-[#faf7f2]">
+        <div className="min-h-screen  ">
             <PageBreadcrumb
                 title={t("auctions.pageTitles.auctions")}
                 items={breadcrumbItems}
