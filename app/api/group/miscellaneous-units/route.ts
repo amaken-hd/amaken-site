@@ -21,12 +21,14 @@ export async function GET() {
         "custom_description",
         "custom_unit_image",
         "marketing",
-        "city"
+        "city",
+        "authorization_number"
     ]);
 
     const filters = JSON.stringify([
         ["marketing", "in", ["وحدات متفرقة", "direct marketing"]],
-        ["custom_is_published", "=", 1]
+        ["custom_is_published", "=", 1],
+        ["authorization_number", "!=", ""]
     ]);
 
     try {
@@ -83,7 +85,8 @@ export async function GET() {
                 },
                 status: u.status || "غير متاح",
                 city: u.city || "",
-                neighborhood: u.neighborhood || ""
+                neighborhood: u.neighborhood || "",
+                authorization_number: u.authorization_number
             };
         });
 

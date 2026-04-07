@@ -155,6 +155,7 @@ export function UnitInterestModal({ unit, open, onOpenChange }: UnitInterestModa
                     <DialogHeader className="mb-8">
                         <DialogTitle className="text-3xl font-bold">{unit.name[locale]}</DialogTitle>
                         <p className="text-zinc-500 mt-2">{unit.description?.[locale]}</p>
+                        <h5 className="text-zinc-500 mt-2">رقم ترخيص الإعلان: {unit.authorization_number}</h5>
                     </DialogHeader>
 
                     {/* Unit Info Summary */}

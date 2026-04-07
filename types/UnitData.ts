@@ -13,4 +13,5 @@ export interface UnitData {
     project_id?: string;
     city?: string;
     neighborhood?: string;
+    authorization_number: string;
 }
