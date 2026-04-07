@@ -48,7 +48,7 @@ export function Navbar() {
     return (
         <header
             className={cn(
-                "relative z-50 transition-all duration-300 bg-white py-8"
+                "relative z-50 transition-all duration-300 bg-white py-4"
             )}
         >
             <div className="container mx-auto px-4 lg:px-8">
@@ -57,7 +57,7 @@ export function Navbar() {
                     {/* Logo and Desktop Navigation */}
                     <div className="flex items-center gap-10">
                         <Link href="/group" className="flex items-center">
-                            <span className="text-2xl font-bold tracking-tighter text-black uppercase">
+                            <span className="text-5xl font-bold tracking-tighter text-black uppercase">
                                 AMAKEN
                             </span>
                         </Link>
@@ -71,7 +71,7 @@ export function Navbar() {
                                         <Link
                                             href={link.href}
                                             className={cn(
-                                                "px-3 py-2  text-2xl font-bold transition-all inline-flex items-center whitespace-nowrap",
+                                                "px-3 py-2  text-l font-bold transition-all inline-flex items-center whitespace-nowrap",
                                                 isActive ? "text-[#A28B67]" : "text-black hover:text-[#A28B67]"
                                             )}
                                             style={isActive ? { color: groupColor } : {}}
@@ -80,7 +80,7 @@ export function Navbar() {
                                             {isActive && (
                                                 <motion.div
                                                     layoutId="activeTabUnderline"
-                                                    className="absolute bottom-[-1px] left-3 right-3 h-[3px] rounded-full text-2xl"
+                                                    className="absolute bottom-[-1px] left-3 right-3 h-[3px] rounded-full text-xl"
                                                     style={{ backgroundColor: groupColor }}
                                                 />
                                             )}
@@ -95,7 +95,7 @@ export function Navbar() {
                     <div className="flex items-center gap-8">
                         <button
                             onClick={toggleLanguage}
-                            className="text-xl font-bold text-[#A28B67] hover:opacity-80 transition-opacity"
+                            className="text-l font-bold text-[#A28B67] hover:opacity-80 transition-opacity"
                         >
                             {locale === "en" ? "العربية" : "English"}
                         </button>
