@@ -4,10 +4,21 @@ import { ClientsSection } from "@/components/group/home/clients-section";
 import { AuctionsPreview } from "@/components/group/home/auctions-preview";
 import { CTASection } from "@/components/group/home/cta-section";
 import { Hero } from "@/components/group/home/hero";
-import { getProjectsFromERP } from "@/app/group/projects/actions";
+async function getProjects() {
+    try {
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+        const res = await fetch(`${baseUrl}/api/group/projects`, { next: { revalidate: 60 } });
+        if (!res.ok) return [];
+        const json = await res.json();
+        return json.data || [];
+    } catch (error) {
+        console.error("Failed to fetch projects via API:", error);
+        return [];
+    }
+}
 
 export default async function HomePage() {
-    const projects = await getProjectsFromERP();
+    const projects = await getProjects();
 
     return (
         <>

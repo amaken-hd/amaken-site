@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectData } from "@/types/ProjectData";
-import { getProjectsFromERP } from "@/app/group/projects/actions";
 import { Loader2 } from "lucide-react";
 
 export function ProjectsIndex() {
@@ -18,8 +17,10 @@ export function ProjectsIndex() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                // Fetch from ERP
-                const erpProjects = await getProjectsFromERP();
+                // Fetch from our new internal API Route
+                const res = await fetch("/api/group/projects");
+                const json = await res.json();
+                const erpProjects = json.data || [];
 
                 // If ERP projects detailed, use them. Otherwise fallback or combine as needed
                 // Instructions say: "Wipe static projects and units keep them static"

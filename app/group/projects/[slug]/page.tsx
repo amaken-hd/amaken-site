@@ -4,7 +4,7 @@ import { use, useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import { ProjectHero } from "@/components/group/projects/ProjectHero";
 import { UnitList } from "@/components/group/projects/UnitList";
-import { getProjectsFromERP, getProjectImagesFromERP, getProjectUnitsFromERP } from "@/app/group/projects/actions";
+// Fetches removed in favor of API Routes
 import { ProjectData } from "@/types/ProjectData";
 import { InfoSection } from "@/components/group/home/info-section";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
@@ -25,16 +25,26 @@ export default function ProjectPage({
 
         const fetchProject = async () => {
             try {
-                const erpProjects = await getProjectsFromERP();
+                // Fetch projects from our API
+                const resProjects = await fetch('/api/group/projects');
+                const jsonProjects = await resProjects.json();
+                const erpProjects: ProjectData[] = jsonProjects.data || [];
+
                 // Find the project that matches the dynamically generated slug
                 const found = erpProjects.find((p) => p.slug === slug);
                 if (found) {
-                    const images = await getProjectImagesFromERP(found.id);
-                    if (images.length > 0) {
-                        found.images = images;
+                    // Fetch images
+                    const resImages = await fetch(`/api/group/projects/${found.id}/images`);
+                    const jsonImages = await resImages.json();
+                    if (jsonImages.data && jsonImages.data.length > 0) {
+                        found.images = jsonImages.data;
                     }
-                    const units = await getProjectUnitsFromERP(found.id);
-                    found.units = units;
+
+                    // Fetch units
+                    const resUnits = await fetch(`/api/group/projects/${found.id}/units`);
+                    const jsonUnits = await resUnits.json();
+                    found.units = jsonUnits.data || [];
+
                     setProject(found);
                 } else {
                     setProject(null);
