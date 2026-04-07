@@ -84,7 +84,7 @@ export function InterestModal({ open, onOpenChange }: InterestModalProps) {
                             </div>
                         </div>
 
-                        <div className="space-y-2">
+                        {/* <div className="space-y-2">
                             <Label>{locale === "ar" ? "نوع الاهتمام" : "Interest Type"}</Label>
                             <Select required>
                                 <SelectTrigger className="h-12 bg-zinc-50 dark:bg-zinc-800 border-zinc-200 focus:ring-[#A28B67]">
@@ -95,7 +95,7 @@ export function InterestModal({ open, onOpenChange }: InterestModalProps) {
                                     <SelectItem value="interested">{t.interestedBtn}</SelectItem>
                                 </SelectContent>
                             </Select>
-                        </div>
+                        </div> */}
 
                         <Button
                             type="submit"
