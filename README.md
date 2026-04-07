@@ -1,322 +1,163 @@
-# Amaken Unified Website
+# Amaken Unified Website - Team Guide
 
-A modern, multilingual Next.js website for Amaken, featuring real estate services, auctions, appraisals, and consulting divisions.
-
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linter
-npm run lint
-```
-
-Visit [http://localhost:3000](http://localhost:3000) to see the website.
-
-## 📋 Project Overview
-
-**Amaken** is a comprehensive property services company offering:
-- **Real Estate**: Property sales, leasing, and management.
-- **Auctions**: Online property auctions with real-time bidding.
-- **Appraisal**: Professional property and asset valuation.
-- **Consulting**: Feasibility studies and market analysis.
-
-## 🏗️ Technology Stack
-
-- **Framework**: Next.js 16.0.10
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4.1.9
-- **UI Components**: Radix UI + Shadcn/ui
-- **Animations**: Framer Motion
-- **Forms**: React Hook Form + Zod
-- **i18n**: Custom implementation (English & Arabic)
-- **Analytics**: Vercel Analytics
-
-## 📁 Project Structure
-
-```
-amaken-unified-website/
-├── app/                      # Next.js app router
-│   ├── page.tsx             # Home page
-│   ├── about/               # About page
-│   ├── consulting/          # Consulting division
-│   ├── appraisal/           # Appraisal division
-│   ├── real-estate/         # Real estate division
-│   ├── auctions/            # Auctions section
-│   ├── news/                # News/blog
-│   ├── contact/             # Contact page
-│   └── portal/              # User authentication
-├── components/              # React components
-│   ├── ui/                 # Reusable UI components (61)
-│   ├── layout/             # Header, Footer
-│   ├── home/               # Home page sections
-│   ├── about/              # About page components
-│   ├── consulting/         # Consulting components
-│   ├── appraisal/          # Appraisal components
-│   ├── real-estate/        # Real estate components
-│   ├── auctions/           # Auction components
-│   ├── news/               # News components
-│   └── contact/            # Contact components
-├── lib/                     # Utilities
-│   ├── i18n/               # Internationalization
-│   │   ├── context.tsx     # i18n provider
-│   │   └── dictionaries.ts # Translations
-│   └── utils.ts            # Helper functions
-├── hooks/                   # Custom React hooks
-├── styles/                  # Global styles
-├── public/                  # Static assets
-└── types/                   # TypeScript definitions
-```
-
-## 🌍 Internationalization (i18n)
-
-The website supports **English** and **Arabic** with automatic:
-- Text direction switching (LTR/RTL)
-- Language persistence via localStorage
-- Browser language detection
-- Dynamic `lang` and `dir` attributes
-
-### Using i18n in Components
-
-```tsx
-import { useI18n } from "@/lib/i18n/context"
-
-export function MyComponent() {
-  const { t, locale, setLocale } = useI18n()
-  
-  return (
-    <div>
-      <h1>{t("page.title")}</h1>
-      <button onClick={() => setLocale(locale === "en" ? "ar" : "en")}>
-        Switch Language
-      </button>
-    </div>
-  )
-}
-```
-
-## 📄 Pages & Routes
-
-| Route | Page | Status |
-|-------|------|--------|
-| `/` | Home | ✅ Active |
-| `/about` | About Us | ✅ Active |
-| `/consulting` | Consulting Services | ✅ Active |
-| `/consulting/feasibility` | Feasibility Studies | ✅ Active |
-| `/consulting/highest-best-use` | Highest & Best Use | ✅ Active |
-| `/appraisal` | Appraisal Services | ✅ Active |
-| `/appraisal/methods` | Appraisal Methods | ✅ Active |
-| `/real-estate` | Real Estate | ✅ Active |
-| `/auctions` | Auctions Listing | ✅ Active |
-| `/auctions/[id]` | Auction Details | 🔄 Dynamic |
-| `/news` | News & Updates | ✅ Active |
-| `/news/[id]` | Article Details | 🔄 Dynamic |
-| `/contact` | Contact Us | ✅ Active |
-| `/portal/login` | User Login | ⏳ Pending Backend |
-| `/portal/register` | User Registration | ⏳ Pending Backend |
-
-## 🎨 Design System
-
-### Division Themes
-
-Each division has unique branding via CSS classes:
-- `division-consulting` - Consulting section
-- `division-appraisal` - Appraisal section
-- `division-realestate` - Real estate section
-
-### Color Palette
-
-Defined in `app/globals.css` using CSS variables:
-- Primary colors for each division
-- Light/dark mode support
-- Accessible color contrasts
-
-## 🔧 Development
-
-### Environment Variables
-
-Create a `.env.local` file:
-
-```env
-# Analytics
-NEXT_PUBLIC_VERCEL_ANALYTICS_ID=
-
-# Future: API endpoints
-NEXT_PUBLIC_API_URL=
-```
-
-### Code Guidelines
-
-1. **Components**: Use `"use client"` directive for client components
-2. **Styling**: Tailwind utility classes preferred
-3. **i18n**: Always use `t()` for user-facing text
-4. **Forms**: React Hook Form + Zod validation
-5. **TypeScript**: Strict mode enabled
-
-### Adding Translations
-
-Edit `lib/i18n/dictionaries.ts`:
-
-```typescript
-export const dictionaries = {
-  en: {
-    page: {
-      title: "My Page Title"
-    }
-  },
-  ar: {
-    page: {
-      title: "عنوان صفحتي"
-    }
-  }
-}
-```
-
-## 📦 Backend Integration (Planned)
-
-### Required APIs
-
-1. **Authentication**: User login/registration
-2. **Auctions**: CRUD + real-time bidding
-3. **News**: Article management
-4. **Contact**: Form submissions
-5. **Content**: Dynamic content delivery
-
-### Recommended Stack
-
-- **Database**: PostgreSQL
-- **ORM**: Prisma
-- **API**: Next.js API Routes
-- **Auth**: NextAuth.js or JWT
-- **Storage**: AWS S3 or Cloudinary
-- **Email**: SendGrid or AWS SES
-- **Cache**: Redis
-
-See `docs/backend-architecture.md` for detailed specifications.
-
-## 📊 Project Status
-
-### ✅ Completed
-- [x] Next.js project setup
-- [x] Component architecture
-- [x] i18n system implementation
-- [x] UI component library
-- [x] Responsive design
-- [x] Theme system (light/dark)
-- [x] Arabic RTL support
-- [x] All page layouts
-
-### 🔄 In Progress
-- [ ] i18n translation completion
-- [ ] Backend API development
-- [ ] Authentication system
-- [ ] Real-time auction bidding
-- [ ] CMS integration
-
-### ⏳ Planned
-- [ ] Unit testing
-- [ ] E2E testing
-- [ ] Performance optimization
-- [ ] SEO optimization
-- [ ] Production deployment
-
-## 📝 Key Features
-
-### Current
-- ✅ Responsive design
-- ✅ Multilingual (EN/AR)
-- ✅ RTL support
-- ✅ Dark mode
-- ✅ Form validation
-- ✅ Accessible UI components
-- ✅ Smooth animations
-
-### Upcoming
-- ⏳ Real-time auction bidding
-- ⏳ User authentication
-- ⏳ News article CMS
-- ⏳ Contact form backend
-- ⏳ Email notifications
-- ⏳ File uploads
-- ⏳ Admin dashboard
-
-## 🧪 Testing
-
-```bash
-# Run linter
-npm run lint
-
-# Type checking
-npx tsc --noEmit
-```
-
-**Note**: Unit and E2E tests are planned for future development.
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Manual Build
-
-```bash
-npm run build
-npm run start
-```
-
-## 📚 Documentation
-
-Comprehensive documentation available in the `docs/` folder:
-- **project-documentation.md**: Complete project overview
-- **backend-architecture.md**: Backend API specifications
-- **component-inventory.md**: Component catalog
-
-## 🤝 Contributing
-
-### Workflow
-1. Create feature branch
-2. Make changes
-3. Test thoroughly
-4. Submit for review
-
-### Commit Convention
-```
-feat: Add new feature
-fix: Bug fix
-docs: Documentation update
-style: Code formatting
-refactor: Code refactoring
-test: Add tests
-chore: Maintenance
-```
-
-## 📞 Support
-
-For questions or issues:
-- **Email**: support@amaken.sa
-- **Location**: مجمع أماكن العقارية، الرياض
-
-## 📄 License
-
-Proprietary - © 2026 Amaken. All rights reserved.
+Welcome to the **Amaken Unified Website** project. This document serves as the primary technical guide for all team members. It covers the system architecture, folder structure, development workflows, and integration with ERPNext.
 
 ---
 
-**Built with ❤️ using Next.js**
+## 🚀 Quick Start
+
+### 1. Prerequisites
+- **Node.js**: 18.x or higher
+- **Package Manager**: `npm` (standard)
+
+### 2. Setup
+```bash
+# Clone the repository
+git clone <repo-url>
+cd amaken-site
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.example .env.local
+# Fill in ERPNext credentials in .env.local
+```
+
+### 3. Development
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🏗️ System Architecture
+
+The application follows a **Decoupled Headless CMS** pattern where Next.js acts as the frontend "Head" for the **ERPNext (Frappe)** backend.
+
+### High-Level Flow
+```mermaid
+graph TD
+    Client[Web Browser / Client]
+    
+    subgraph Frontend [Next.js App Router]
+        UI[Components - Radix/Tailwind]
+        API_Handlers[Next.js API Routes]
+        Services[lib/api.ts - Fetch Logic]
+    end
+    
+    subgraph Backend [ERPNext / Frappe]
+        Frappe_API[REST API / Whitelisted Methods]
+        DocTypes[Real Estate, Auction, Lead, etc.]
+        DB[(MariaDB)]
+    end
+    
+    Client --> UI
+    UI --> API_Handlers
+    API_Handlers --> Services
+    Services --> Frappe_API
+    Frappe_API --> DocTypes
+    DocTypes --> DB
+```
+
+---
+
+## 📁 Folder Structure Breakdown
+
+| Directory | Description |
+|-----------|-------------|
+| `app/` | **Next.js App Router**. Defines all routes and API endpoints. |
+| `app/group/` | Core business logic for Projects, Units, and Auctions. |
+| `app/api/` | Internal API handlers that proxy requests to ERPNext. |
+| `components/` | React components grouped by feature (group, layout, ui). |
+| `components/ui/` | Reusable base components (shadcn/ui). |
+| `lib/` | Shared utilities, API client (`lib/api.ts`), and i18n logic. |
+| `types/` | TypeScript interfaces for Domain Models (Project, Unit, Auction). |
+| `hooks/` | Custom React hooks (e.g., `use-toast`, `use-mobile`). |
+| `public/` | Static assets (images, fonts). |
+
+---
+
+## 🛠️ Key Modules & Features
+
+### 1. Group Module (`app/group`)
+Handles the primary real estate display:
+- **Projects**: Listing and detail pages for real estate developments.
+- **Units**: Individual properties within projects.
+- **Auctions**: Real-time property auction listing and details.
+
+### 2. Lead Generation Flow
+Captured via modals (e.g., `InterestModal.tsx`) and sent to ERPNext.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend (Client)
+    participant A as Next Proxy (/api/common/lead)
+    participant E as ERPNext Backend
+    
+    U->>F: Submits "Register Interest" Form
+    F->>F: Validates with Zod
+    F->>A: POST Payload
+    A->>E: POST /api/method/create_lead
+    E-->>A: Lead Created (200 OK)
+    A-->>F: Success Message
+    F->>U: Show Toast Notification
+```
+
+---
+
+## 🔄 Redundant Actions (Developer Cheat Sheet)
+
+These are the most common tasks you will perform. Follow these patterns to maintain consistency:
+
+### 1. Adding a New Page
+1. Create a folder in `app/` with a `page.tsx`.
+2. If it's a sub-page of a division, place it in `app/group/`, `app/real-estate/`, etc.
+3. Update the navigation menu in `components/layout/Navbar`.
+
+### 2. Fetching Data from ERPNext
+1. **Define the Type**: Add the interface in `types/`.
+2. **Create API Proxy**: Add a route in `app/api/group/` to handle the request securely.
+3. **Use Fetch**: In your component, fetch from the internal `/api/...` endpoint.
+   > [!TIP]
+   > Use server-side fetching in `page.tsx` whenever possible for SEO.
+
+### 3. Adding Translations (i18n)
+1. Open `lib/i18n/dictionaries.ts`.
+2. Add your key-value pairs in both `en` and `ar`.
+3. Use the `t` function in your component:
+   ```tsx
+   const { t } = useI18n();
+   <span>{t("common.submit")}</span>
+   ```
+
+### 4. Styling Components
+- Use **Tailwind CSS** utility classes.
+- For complex variants, use `cva` (Class Variance Authority) as seen in `components/ui/`.
+- Ensure **RTL support** by using logical properties (e.g., `ps-4` instead of `pl-4`).
+
+---
+
+## 🔗 Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_ERPNEXT_URL` | Yes | The base URL of the ERPNext instance. |
+| `ERP_API_KEY` | Yes | API Key for authenticating with Frappe. |
+| `ERP_API_SECRET` | Yes | API Secret for authenticating with Frappe. |
+
+---
+
+## 🤝 Development Standards
+
+- **Git**: Use descriptive feature branches (`feat/`, `fix/`).
+- **Commits**: Follow [Conventional Commits](https://www.conventionalcommits.org/).
+- **Types**: No `any`. Use the shared types in `types/`.
+- **Formatting**: Linter will run on build; ensure `npm run lint` passes.
+
+---
+
+**Built by the Amaken Engineering Team.**
+For support, contact the system administrator.
