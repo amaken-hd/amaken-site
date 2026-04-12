@@ -1,12 +1,3 @@
-import { AuthLayout } from "@/components/appraisal/google-stitch/login-register/AuthLayout"
-
-export default function Page() {
-    return (
-        <AuthLayout />
-    )
-}
-
-/*
 import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
 import HeroSection from "@/components/appraisal/google-stitch/landing-page/HeroSection"
 import StatsBar from "@/components/appraisal/google-stitch/landing-page/StatsBar"
@@ -35,4 +26,3 @@ export default function Page() {
         </>
     )
 }
-*/
