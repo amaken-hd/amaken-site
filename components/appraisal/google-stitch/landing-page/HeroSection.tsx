@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HeroSection() {
     return (
         <section className="relative min-h-[870px] flex items-center overflow-hidden bg-[#041534]">
@@ -20,13 +22,16 @@ export default function HeroSection() {
 
                     <div className="flex flex-wrap gap-4 justify-start">
 
-                        <button className="bg-[#006A66] text-white px-10 py-4 rounded-xl text-lg font-bold shadow-xl">
-                            طلب تقييم
-                        </button>
-
-                        <button className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold">
-                            تعرف علينا
-                        </button>
+                        <Link href="/appraisal/request-appraisal-form">
+                            <button className="bg-[#006A66] text-white px-10 py-4 rounded-xl text-lg font-bold shadow-xl">
+                                طلب تقييم
+                            </button>
+                        </Link>
+                        <Link href="/appraisal/about-us">
+                            <button className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold">
+                                تعرف علينا
+                            </button>
+                        </Link>
 
                     </div>
 

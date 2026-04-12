@@ -30,7 +30,7 @@ export const RequestDetailLayout = () => {
                 {/* Right Column: Notes & Invoice (4/12) */}
                 <div className="lg:col-span-4 space-y-8">
                     <RequestInvoice />
-                    <RequestActivity />
+                    {/* <RequestActivity /> */}
                 </div>
             </main>
         </div>

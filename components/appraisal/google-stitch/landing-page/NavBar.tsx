@@ -9,7 +9,7 @@ const links = [
     { key: "home", title: "Home", href: "/appraisal" },
     { key: "services", title: "Services", href: "/appraisal/service-detail" },
     { key: "about", title: "About", href: "/appraisal/about-us" },
-    { key: "reports", title: "Reports", href: "/appraisal/reports" },
+    { key: "reports", title: "Reports", href: "/appraisal/sample-reports" },
     { key: "blog", title: "Blog", href: "/appraisal/blog-insights" },
     { key: "contactus", title: "Contact", href: "/appraisal/contact-us" },
 ];
@@ -42,10 +42,11 @@ export default function Navbar() {
 
             <div className="flex items-center gap-4">
                 <span className="text-xs font-bold text-slate-400 cursor-pointer">EN</span>
-
-                <button className="bg-[#006A66] text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 duration-150">
-                    Request Appraisal
-                </button>
+                <Link href="/appraisal/request-appraisal-form">
+                    <button className="bg-[#041534] text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 duration-150">
+                        Request Appraisal
+                    </button>
+                </Link>
 
                 <User className="w-6 h-6 cursor-pointer" />
             </div>
