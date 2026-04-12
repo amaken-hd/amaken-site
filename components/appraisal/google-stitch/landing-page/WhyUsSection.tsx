@@ -1,3 +1,5 @@
+import { color } from "framer-motion"
+
 export default function WhyUsSection() {
     const items = [
         {
@@ -54,11 +56,11 @@ export default function WhyUsSection() {
 
                 </div>
 
-                <div>
+                <div style={{ color: "white" }}>
                     <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBObbasxqCOc0cxYXpAYFAWV_xjBPyKyRUOdczcHsPgdslc-dkSDRda9bfbROmlSQFV0X0fZtutYqAcLGG4svdvUiLOK8gGmMckhWJwVmBXuQW-zkumtmbq22Ubq5fSkOdUkWcCONmsPvHa5z0DRVuc63WHaMbSoqejDBSHCesv55KRz_K_ULYIwrEfN1oDPTdNeWean2Tjo5LcQSn3WrK1eUSktULUXN43OAJ5h8tmXj3dUF-6otSSTxCRIaC-w-O1-GNl8Cf_soQ"
+                        src=""
                         className="rounded-3xl shadow-2xl"
-                        alt="why us"
+                        alt="why us photo"
                     />
                 </div>
 

@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+
 import { AppraisalStepper } from './AppraisalStepper'
 import { AppraisalCategory } from './AppraisalCategory'
 import { AppraisalAssetDetails } from './AppraisalAssetDetails'
@@ -17,7 +16,6 @@ export const RequestAppraisalLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main className="max-w-5xl mx-auto px-6 py-12" dir="ltr">
                 <AppraisalStepper />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -31,7 +29,6 @@ export const RequestAppraisalLayout = () => {
                 </div>
                 <AppraisalSuccessModal />
             </main>
-            <Footer />
         </div>
     )
 }

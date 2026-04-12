@@ -1,23 +1,26 @@
-"use client"
+import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
+import HeroSection from "@/components/appraisal/google-stitch/landing-page/HeroSection"
+import StatsBar from "@/components/appraisal/google-stitch/landing-page/StatsBar"
+import ServicesSection from "@/components/appraisal/google-stitch/landing-page/ServicesSection"
 
-import { AppraisalHero } from "@/components/appraisal/appraisal-hero"
-import { AppraisalServices } from "@/components/appraisal/appraisal-services"
-import { Plans } from "@/components/appraisal/plans"
-import { AppraisalAccreditations } from "@/components/appraisal/appraisal-accreditations"
-import { AppraisalIndustries } from "@/components/appraisal/appraisal-industries"
-import { AppraisalCTA } from "@/components/appraisal/appraisal-cta"
-import { MethodsFAQ } from "@/components/appraisal/methods/methods-faq"
+import ReportsSection from "@/components/appraisal/google-stitch/landing-page/ReportsSection"
+import TeamSection from "@/components/appraisal/google-stitch/landing-page/TeamSection"
+import Partners from "@/components/appraisal/google-stitch/landing-page/Partners"
+import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+import WhyUsSection from "@/components/appraisal/google-stitch/landing-page/WhyUsSection"
+import Achievements from "@/components/appraisal/google-stitch/landing-page/Achievements"
 
-export default function AppraisalPage() {
-  return (
-    <>
-      <AppraisalHero />
-      <AppraisalServices />
-      <Plans />
-      < AppraisalAccreditations />
-      <AppraisalIndustries />
-      <AppraisalCTA />
-      <MethodsFAQ />
-    </>
-  )
+export default function Page() {
+    return (
+        <>
+            <HeroSection />
+            <StatsBar />
+            <ServicesSection />
+            <WhyUsSection />
+            <Achievements />
+            <ReportsSection />
+            <TeamSection />
+            <Partners />
+        </>
+    )
 }

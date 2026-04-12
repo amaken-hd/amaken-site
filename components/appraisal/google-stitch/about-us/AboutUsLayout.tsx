@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+
 import { HeroSection } from './HeroSection'
 import { StatsSection } from './StatsSection'
 import { TimelineSection } from './TimelineSection'
@@ -18,7 +17,6 @@ export const AboutUsLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main>
                 <HeroSection />
                 <StatsSection />
@@ -28,7 +26,6 @@ export const AboutUsLayout = () => {
                 <CertificationsSection />
                 <TeamSection />
             </main>
-            <Footer />
         </div>
     )
 }

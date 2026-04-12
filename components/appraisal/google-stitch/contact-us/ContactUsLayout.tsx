@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+
 import { ContactHero } from './ContactHero'
 import { ContactForm } from './ContactForm'
 import { ContactInfo } from './ContactInfo'
@@ -15,7 +14,6 @@ export const ContactUsLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main className="min-h-screen max-w-7xl mx-auto px-6 py-12 lg:py-20">
                 <ContactHero />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -26,7 +24,6 @@ export const ContactUsLayout = () => {
                     </aside>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

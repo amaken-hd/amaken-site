@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+
 import { SampleReportsHero } from './SampleReportsHero'
 import { FeaturedReport } from './FeaturedReport'
 import { ReportFilters } from './ReportFilters'
@@ -66,7 +65,6 @@ export const SampleReportsLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main className="max-w-7xl mx-auto px-6 py-12">
                 <SampleReportsHero />
                 <FeaturedReport />
@@ -86,7 +84,6 @@ export const SampleReportsLayout = () => {
                     <p className="mt-4 text-[#45464e] text-sm italic">الوصول إلى قاعدة بيانات تضم أكثر من ١,٢٠٠ تقرير موثق</p>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

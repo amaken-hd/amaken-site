@@ -1,8 +1,6 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
 import { RequestHeader } from './RequestHeader'
 import { RequestTimeline } from './RequestTimeline'
 import { AssetSummary } from './AssetSummary'
@@ -17,7 +15,6 @@ export const RequestDetailLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main className="max-w-[1440px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <RequestHeader />
                 <div className="lg:col-span-12">
@@ -36,7 +33,6 @@ export const RequestDetailLayout = () => {
                     <RequestActivity />
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

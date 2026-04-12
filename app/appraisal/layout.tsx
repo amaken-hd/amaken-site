@@ -1,7 +1,9 @@
 "use client"
 
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
+import Footer from "@/components/appraisal/google-stitch/landing-page/Footer";
+import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar";
+
+
 
 const appraisalNavigation = [
     { key: "home", href: "/appraisal" },
@@ -16,10 +18,10 @@ export default function AppraisalLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="min-h-screen division-appraisal">
-            <Header color="#1b9d98" links={appraisalNavigation} />
+        <>
+            <Navbar />
             <main>{children}</main>
-            <Footer color="#1b9d98" />
-        </div>
+            <Footer />
+        </>
     )
 }

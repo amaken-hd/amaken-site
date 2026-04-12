@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar"
-import Footer from "@/components/appraisal/google-stitch/landing-page/Footer"
+
 import { ServiceHero } from './ServiceHero'
 import { AppraisalTypes } from './AppraisalTypes'
 import { ServiceProcess } from './ServiceProcess'
@@ -19,7 +18,6 @@ export const ServiceDetailLayout = () => {
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
                 rel="stylesheet"
             />
-            <Navbar />
             <main>
                 <ServiceHero />
                 <AppraisalTypes />
@@ -30,7 +28,6 @@ export const ServiceDetailLayout = () => {
                 <ServiceCTA />
                 <RelatedServices />
             </main>
-            <Footer />
         </div>
     )
 }
