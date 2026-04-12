@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n/context";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, formatAuctionTime } from "@/lib/utils";
 import { Auction } from "@/types/auction";
+import { ERPNEXT_URL } from "@/lib/api";
 
 interface AuctionCardProps {
     auction: Auction;
@@ -46,7 +47,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
             {/* Image */}
             <div className="relative h-56 overflow-hidden">
                 <img
-                    src={auction.auction_image || "/placeholder.svg"}
+                    src={auction.auction_image ? (auction.auction_image.startsWith('http') ? auction.auction_image : `${ERPNEXT_URL}${auction.auction_image}`) : "/placeholder.svg"}
                     alt={auction.auction_name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -111,7 +112,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
                     </div>
                     <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-[#A28B67]" />
-                        <span>{auction.auction_start_time?.slice(0, 5)}</span>
+                        <span>{formatAuctionTime(auction.auction_start_time, locale)}</span>
                     </div>
                 </div>
 

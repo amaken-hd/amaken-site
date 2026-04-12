@@ -94,6 +94,8 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                 status={status}
                 videoUrl={auction.youtube_url}
                 mobasher_url={auction.mobasher_url}
+                approvalNumber={auction.general_authority_for_real_estate_approval_number}
+                auctionImage={auction.auction_image}
             />
 
             <AuctionInfoBar
@@ -104,8 +106,7 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                 productsCount={auction.units?.length || auction.no_of_realestates || 0}
                 status={status}
                 targetDate={status === "upcoming" ? `${auction.auction_start_date}T${auction.auction_start_time}` : `${auction.auction_end_date || auction.auction_start_date}T${auction.auction_end_time || auction.auction_start_time}`}
-
-
+                brochureUrl={auction.brochure}
             />
 
             <AuctionUnitsSection

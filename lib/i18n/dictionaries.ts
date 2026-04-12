@@ -268,6 +268,7 @@ const dictionariesObj = {
         location: "Location",
         date: "Date",
         register: "Register Now",
+        approvalNumber: "REGA Approval Number",
       },
       contact: {
         title: "Send Us a Message",
@@ -1395,6 +1396,7 @@ const dictionariesObj = {
         location: "الموقع",
         date: "التاريخ",
         register: "سجل الآن",
+        approvalNumber: "رقم موافقة الهيئة العامة للعقار على إقامة المزاد",
       },
     },
 

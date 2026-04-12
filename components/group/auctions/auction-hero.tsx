@@ -4,6 +4,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { ERPNEXT_URL } from "@/lib/api";
+import { formatAuctionTime } from "@/lib/utils";
 
 interface AuctionHeroProps {
     title: string;
@@ -14,9 +16,11 @@ interface AuctionHeroProps {
     status: "upcoming" | "current" | "ended";
     videoUrl?: string; // Placeholder for now
     mobasher_url?: string;
+    approvalNumber?: string;
+    auctionImage?: string;
 }
 
-export function AuctionHero({ title, description, date, time, location, status, videoUrl, mobasher_url }: AuctionHeroProps) {
+export function AuctionHero({ title, description, date, time, location, status, videoUrl, mobasher_url, approvalNumber, auctionImage }: AuctionHeroProps) {
     // Helper to get YouTube ID
     const getYouTubeId = (url: string) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -25,7 +29,7 @@ export function AuctionHero({ title, description, date, time, location, status, 
     };
 
     const youtubeId = videoUrl ? getYouTubeId(videoUrl) : null;
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
     const groupColor = "#A28B67";
     console.log(videoUrl);
     return (
@@ -57,12 +61,20 @@ export function AuctionHero({ title, description, date, time, location, status, 
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="w-5 h-5 text-[#A28B67]" />
-                                    <span>{time}</span>
+                                    <span>{formatAuctionTime(time, locale)}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MapPin className="w-5 h-5 text-[#A28B67]" />
                                     <span>{location}</span>
                                 </div>
+                                {approvalNumber && (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-5 h-5 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A28B67" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+                                        </div>
+                                        <span>{t("auctions.labels.approvalNumber") || "رقم موافقة الهيئة العامة للعقار على إقامة المزاد"}: {approvalNumber}</span>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="flex flex-wrap gap-4">
@@ -97,6 +109,14 @@ export function AuctionHero({ title, description, date, time, location, status, 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         referrerPolicy="strict-origin-when-cross-origin"
                                         allowFullScreen
+                                    />
+                                </div>
+                            ) : auctionImage ? (
+                                <div className="absolute inset-0">
+                                    <img
+                                        src={auctionImage.startsWith('http') ? auctionImage : `${ERPNEXT_URL}${auctionImage}`}
+                                        alt={title}
+                                        className="w-full h-full object-cover"
                                     />
                                 </div>
                             ) : (

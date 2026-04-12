@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
 import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
-import { Copy, MapPin } from "lucide-react";
+import { formatAuctionTime } from "@/lib/utils";
+import { ERPNEXT_URL } from "@/lib/api";
+import { useCountdown } from "@/hooks/use-countdown";
 
 interface AuctionInfoBarProps {
     title: string;
@@ -14,79 +14,21 @@ interface AuctionInfoBarProps {
     productsCount: number;
     status: "upcoming" | "current" | "ended";
     targetDate?: string; // The date to count down to (starts at or ends at)
+    brochureUrl?: string;
 }
 
-export function AuctionInfoBar({ title, date, time, days, productsCount, status, targetDate }: AuctionInfoBarProps) {
+export function AuctionInfoBar({ title, date, time, days, productsCount, status, targetDate, brochureUrl }: AuctionInfoBarProps) {
     const { t, locale } = useI18n();
     const isRTL = locale !== "en";
-    const [timeLeft, setTimeLeft] = useState<{ days: number, hours: number, minutes: number, seconds: number } | null>(null);
-
-    // Robust date parser for ERPNext formats (handles cases like 9:5:1.123 and YYYY-MM-DD)
-    const getTargetDate = (dateStr: string) => {
-        if (!dateStr) return null;
-        try {
-            // If it's already a clean ISO string, use it
-            if (dateStr.includes('T') && dateStr.split('T')[1].split(':').every(part => part.length >= 2)) {
-                return new Date(dateStr);
-            }
-
-            // Otherwise, normalize (e.g. 2026-05-03T9:0:0 -> 2026-05-03T09:00:00)
-            const [datePart, timePart] = dateStr.trim().split('T');
-            if (!timePart) return new Date(datePart.trim());
-
-            const timeComponents = timePart.trim().split(':');
-            const normalizedTime = timeComponents.map((comp, i) => {
-                const cleaned = comp.trim();
-                if (i === 2) { // Seconds + Millis
-                    const [s, m] = cleaned.split('.');
-                    return `${(s || '00').padStart(2, '0')}${m ? '.' + m : ''}`;
-                }
-                return (cleaned || '00').padStart(2, '0');
-            }).join(':');
-
-            const isoStr = `${datePart.trim()}T${normalizedTime}`;
-            const finalDate = new Date(isoStr);
-            return finalDate;
-        } catch (e) {
-            console.error("Date parsing error:", e);
-            return new Date(dateStr);
-        }
-    };
-
-    useEffect(() => {
-        if (status === "ended" || !targetDate) {
-            setTimeLeft(null);
-            return;
-        }
-
-        const calculateTimeLeft = () => {
-            const tDate = getTargetDate(targetDate);
-            if (!tDate || isNaN(tDate.getTime())) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-            const difference = +tDate - +new Date();
-            let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-            if (difference > 0) {
-                timeLeft = {
-                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                    minutes: Math.floor((difference / 1000 / 60) % 60),
-                    seconds: Math.floor((difference / 1000) % 60),
-                };
-            }
-            return timeLeft;
-        };
-
-        setTimeLeft(calculateTimeLeft());
-
-        const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [targetDate, status]);
+    const timeLeft = useCountdown(targetDate, status);
 
     const formatNumber = (num: number) => num.toString().padStart(2, '0').split('');
+
+    const handleBrochureClick = () => {
+        if (!brochureUrl) return;
+        const fullUrl = `${ERPNEXT_URL}${brochureUrl}`;
+        window.open(fullUrl, "_blank");
+    };
 
     return (
         <div className="w-full bg-white mb-8" dir={isRTL ? "rtl" : "ltr"}>
@@ -105,7 +47,7 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
                         </div>
                         <div className="flex items-center gap-4 text-lg">
                             <span className="font-bold text-gray-900">{date}</span>
-                            <span className="font-bold text-gray-900">{time}</span>
+                            <span className="font-bold text-gray-900">{formatAuctionTime(time, locale)}</span>
                         </div>
 
                     </div>
@@ -167,7 +109,11 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
                     )}
                     {/* Buttons */}
                     <div className="flex gap-4 pb-3">
-                        <Button className="bg-[#A28B67] hover:bg-[#8A7556] text-white rounded-full px-6 text-base h-11 font-medium shadow-sm transition-all hover:scale-105 active:scale-95">
+                        <Button
+                            className="bg-[#A28B67] hover:bg-[#8A7556] text-white rounded-full px-6 text-base h-11 font-medium shadow-sm transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                            onClick={handleBrochureClick}
+                            disabled={!brochureUrl}
+                        >
                             بروشور المزاد
                         </Button>
                         <Button className="bg-[#A28B67] hover:bg-[#8A7556] text-white rounded-full px-6 text-base h-11 font-medium shadow-sm transition-all hover:scale-105 active:scale-95">

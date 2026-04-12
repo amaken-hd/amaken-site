@@ -22,4 +22,6 @@ export interface Auction {
     youtube_url?: string;
     units?: any[]; // To be mapped to AuctionUnit[]
     mobasher_url?: string;
+    general_authority_for_real_estate_approval_number?: string;
+    brochure?: string;
 }
