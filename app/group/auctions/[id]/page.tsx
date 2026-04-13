@@ -27,7 +27,6 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                     throw new Error(result.error || "Failed to fetch auction");
                 }
 
-                console.log("Fetched Auction Data:", result.data);
                 setAuction(result.data);
             } catch (err: any) {
                 setError(err.message);
