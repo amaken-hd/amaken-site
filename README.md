@@ -206,6 +206,24 @@ sequenceDiagram
 ### 5. Authentication (`app/portal`)
 User portal with login, registration, and password recovery, integrated with ERPNext accounts.
 
+#### Next.js & Frappe Communication (Login / Register)
+
+```mermaid
+sequenceDiagram
+    participant C as Client Browser
+    participant N as Next.js /api/auth/login (Proxy)
+    participant F as Frappe Backend
+
+    C->>N: POST credentials
+    N->>F: POST /api/method/frappe.client.get_user (verify)
+    F-->>N: Session token
+    N-->>C: Set httpOnly cookie with token
+    C->>N: Future requests (token in cookie)
+    N->>F: Forward request + token
+    F-->>N: Validate token → allow / block
+    N-->>C: Response
+```
+
 ---
 
 ## 🔄 Developer Cheat Sheet
