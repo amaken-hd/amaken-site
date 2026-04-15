@@ -5,11 +5,9 @@ export function middleware(req: NextRequest) {
   const sid = req.cookies.get("sid")?.value
 
   if (!sid) {
-    if (req.nextUrl.pathname.startsWith("/appraisal/client-dashboard")) {
+    if (req.nextUrl.pathname.startsWith("/appraisal/client-dashboard") ||
+      req.nextUrl.pathname.startsWith("/appraisal/request-appraisal-form")) {
       return NextResponse.redirect(new URL("/appraisal/login-register", req.url))
-    }
-    if (req.nextUrl.pathname.startsWith("/dashboard")) {
-      return NextResponse.redirect(new URL("/portal/login", req.url))
     }
   }
 
@@ -17,5 +15,6 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/appraisal/client-dashboard/:path*"],
+  matcher: ["/appraisal/client-dashboard/:path*",
+    "/appraisal/request-appraisal-form/:path*"],
 }

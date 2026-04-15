@@ -67,6 +67,9 @@ const dictionariesObj = {
       contactus: "Contact Us",
       projects: "Projects",
       miscellaneousUnits: "Individual Units",
+      reports: "Reports",
+      blog: "Blog",
+      requestAppraisal: "Request Appraisal",
     },
     hero: {
       tagline: "Amaken Group",
@@ -1115,6 +1118,94 @@ const dictionariesObj = {
       },
       noResults: "No units found matching your criteria.",
     },
+    appraisalAuth: {
+      benefits: {
+        brand: "Amaken",
+        badge: "Appraisal",
+        heading: "Value your",
+        headingHighlight: "Property",
+        headingSuffix: "with confidence.",
+        trust: {
+          title: "Trusted by Thousands",
+          description: "Certified valuations accepted by all major Saudi institutions."
+        },
+        speed: {
+          title: "Unmatched Speed",
+          description: "Receive your preliminary report in as little as 4 hours."
+        },
+        accuracy: {
+          title: "Data-Driven Accuracy",
+          description: "Leveraging the Kingdom's largest real estate transaction database."
+        }
+      },
+      quote: {
+        text: "The precision and reliability of Amaken's appraisal services have been instrumental in our valuation projects. Highly recommended.",
+        role: "Executive Project Manager",
+        company: "Real Estate Development Fund"
+      },
+      login: {
+        tab: "Login",
+        title: "Welcome Back",
+        subtitle: "Sign in to access your reports and manage valuations.",
+        email: "Registered Email",
+        emailPlaceholder: "name@company.com",
+        password: "Password",
+        forgotPassword: "Forgot your password?",
+        rememberMe: "Remember this device",
+        submit: "Sign In",
+        submitting: "Signing in...",
+        orDivider: "OR CONTINUE WITH",
+        otpLogin: "Mobile Number / OTP"
+      },
+      register: {
+        title: "Create Account",
+        subtitle: "Join the Saudi Kingdom's most advanced appraisal portal.",
+        firstName: "First Name",
+        firstNamePlaceholder: "Khalid",
+        lastName: "Last Name",
+        lastNamePlaceholder: "Al-Jasser",
+        email: "Work Email",
+        emailPlaceholder: "name@company.com",
+        phone: "Mobile Number",
+        phonePlaceholder: "05xxxxxxxx",
+        companySection: "Company Details",
+        companyName: "Legal Company Name",
+        companyPlaceholder: "Amaken International Group",
+        crNumber: "Commercial Registration (CR)",
+        crPlaceholder: "1010xxxxxx",
+        addressSection: "National Address Information",
+        buildingNumber: "Building Number",
+        buildingPlaceholder: "1234",
+        streetName: "Street Name",
+        streetPlaceholder: "King Fahd Rd",
+        district: "District",
+        districtPlaceholder: "Al-Nuzha",
+        city: "City",
+        cityPlaceholder: "Riyadh",
+        postalCode: "Postal Code",
+        postalPlaceholder: "12345",
+        additionalNumber: "Additional Number",
+        additionalPlaceholder: "1234",
+        securitySection: "Account Security",
+        password: "Set Password",
+        confirmPassword: "Confirm Password",
+        submit: "Create Professional Account",
+        submitting: "Creating account...",
+        passwordMismatch: "The passwords do not match.",
+        passwordMinLength: "Password must be at least 8 characters long.",
+        tab: "Register",
+      },
+      footer: {
+        termsPrefix: "By creating an account, you agree to our",
+        terms: "Terms of Service",
+        and: "and",
+        privacy: "Privacy Policy"
+      },
+      status: {
+        title: "System Status",
+        operational: "All appraisal nodes are operational."
+      }
+    }
   }
   , ar: {
 
@@ -1175,12 +1266,15 @@ const dictionariesObj = {
       about: "من نحن",
       news: "الأخبار",
       contact: "اتصل بنا",
-      portal: "بوابة العملاء",
+      portal: "تقاريري",
       language: "English",
       services: "الخدمات",
       contactus: "اتصل بنا",
       projects: "المشاريع",
       miscellaneousUnits: "الوحدات",
+      reports: "التقارير",
+      blog: "المدونة",
+      requestAppraisal: "طلب تقييم",
     },
 
     hero: {
@@ -2066,7 +2160,7 @@ const dictionariesObj = {
     },
     miscellaneousUnitsPage: {
       title: "الوحدات",
-      subtitle: "استكشف مجموعة متنوعة من الوحدات العقارية",
+      subtitle: "استكشف مجموعتنا المتنوعة من الوحدات العقارية الفردية",
       filters: {
         type: "نوع الوحدة",
         city: "المدينة",
@@ -2076,8 +2170,96 @@ const dictionariesObj = {
         all: "الكل",
         search: "بحث...",
       },
-      noResults: "لم يتم العثور على وحدات تطابق معايير البحث.",
+      noResults: "لم يتم العثور على وحدات تطابق معاييرك.",
     },
+    appraisalAuth: {
+      benefits: {
+        brand: "أماكن",
+        badge: "للتقييم",
+        heading: "قيم",
+        headingHighlight: "عقارك",
+        headingSuffix: "بكل ثقة.",
+        trust: {
+          title: "موثوق من الآلاف",
+          description: "تقييمات معتمدة ومقبولة لدى جميع المؤسسات السعودية الكبرى."
+        },
+        speed: {
+          title: "سرعة لا تضاهى",
+          description: "احصل على تقريرك الأولي في خلال 4 ساعات فقط."
+        },
+        accuracy: {
+          title: "دقة مبنية على البيانات",
+          description: "نعتمد على أكبر قاعدة بيانات للمعاملات العقارية في المملكة."
+        }
+      },
+      quote: {
+        text: "إن دقة وموثوقية خدمات التقييم من أماكن كانت أساسية في مشاريع التقييم لدينا. نوصي بها بشدة.",
+        role: "مدير مشروع تنفيذي",
+        company: "صندوق التنمية العقارية"
+      },
+      login: {
+        tab: "دخول",
+        title: "مرحباً بك مجدداً",
+        subtitle: "قم بتسجيل الدخول للوصول إلى تقاريرك وإدارة التقييمات.",
+        email: "البريد الإلكتروني المسجل",
+        emailPlaceholder: "name@company.com",
+        password: "كلمة المرور",
+        forgotPassword: "هل نسيت كلمة المرور؟",
+        rememberMe: "تذكر هذا الجهاز",
+        submit: "تسجيل الدخول",
+        submitting: "جاري تسجيل الدخول...",
+        orDivider: "أو المتابعة باستخدام",
+        otpLogin: "رقم الجوال / رمز التحقق"
+      },
+      register: {
+        title: "إنشاء حساب",
+        subtitle: "انضم إلى بوابة التقييم الأكثر تقدماً في المملكة العربية السعودية.",
+        firstName: "الاسم الأول",
+        firstNamePlaceholder: "خالد",
+        lastName: "اسم العائلة",
+        lastNamePlaceholder: "الجاسر",
+        email: "بريد العمل الإلكتروني",
+        emailPlaceholder: "name@company.com",
+        phone: "رقم الجوال",
+        phonePlaceholder: "05xxxxxxxx",
+        companySection: "تفاصيل الشركة",
+        companyName: "الاسم القانوني للشركة",
+        companyPlaceholder: "مجموعة أماكن الدولية",
+        crNumber: "السجل التجاري",
+        crPlaceholder: "1010xxxxxx",
+        addressSection: "معلومات العنوان الوطني",
+        buildingNumber: "رقم المبنى",
+        buildingPlaceholder: "1234",
+        streetName: "اسم الشارع",
+        streetPlaceholder: "طريق الملك فهد",
+        district: "الحي",
+        districtPlaceholder: "النزهة",
+        city: "المدينة",
+        cityPlaceholder: "الرياض",
+        postalCode: "الرمز البريدي",
+        postalPlaceholder: "12345",
+        additionalNumber: "الرقم الإضافي",
+        additionalPlaceholder: "1234",
+        securitySection: "أمان الحساب",
+        password: "تعيين كلمة المرور",
+        confirmPassword: "تأكيد كلمة المرور",
+        submit: "إنشاء حساب احترافي",
+        submitting: "جاري إنشاء الحساب...",
+        passwordMismatch: "كلمات المرور غير متطابقة.",
+        passwordMinLength: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+        tab: "تسجيل",
+      },
+      footer: {
+        termsPrefix: "بإنشاء الحساب، أنت توافق على",
+        terms: "شروط الخدمة",
+        and: "و",
+        privacy: "سياسة الخصوصية"
+      },
+      status: {
+        title: "حالة النظام",
+        operational: "جميع عقد التقييم تعمل بشكل طبيعي."
+      }
+    }
   },
 }
 

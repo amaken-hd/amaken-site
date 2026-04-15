@@ -14,8 +14,8 @@ interface User {
 interface AuthContextType {
     user: User | null;
     loading: boolean;
-    login: (data: any) => Promise<void>;
-    register: (data: any) => Promise<void>;
+    login: (data: any, options?: { redirectTo?: string }) => Promise<void>;
+    register: (data: any, options?: { redirectTo?: string }) => Promise<void>;
     logout: () => Promise<void>;
     refreshUser: () => Promise<void>;
 }
@@ -29,10 +29,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const refreshUser = async () => {
         try {
-            const res = await fetch('/api/auth/user');
+            const res = await fetch('/api/appraisal/auth/user');
             if (res.ok) {
                 const data = await res.json();
-                setUser(data.message || data.user || null); // Adjust based on actual API response
+                setUser(data.message || data.user || null);
             } else {
                 setUser(null);
             }
@@ -48,9 +48,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         refreshUser();
     }, []);
 
-    const login = async (credentials: any) => {
+    const login = async (credentials: any, options?: { redirectTo?: string }) => {
         try {
-            const res = await fetch('/api/auth/login', {
+            const res = await fetch('/api/appraisal/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
@@ -64,16 +64,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
             toast.success('Login successful');
             await refreshUser();
-            router.push('/');
+            router.push(options?.redirectTo || '/');
         } catch (error: any) {
             toast.error(error.message);
             throw error;
         }
     };
 
-    const register = async (userData: any) => {
+    const register = async (userData: any, options?: { redirectTo?: string }) => {
         try {
-            const res = await fetch('/api/auth/register', {
+            const res = await fetch('/api/appraisal/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(userData),
@@ -86,7 +86,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             }
 
             toast.success('Registration successful! Please login.');
-            router.push('/portal/login');
+            router.push(options?.redirectTo || '/appraisal/login-register');
+
         } catch (error: any) {
             toast.error(error.message);
             throw error;
@@ -95,10 +96,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const logout = async () => {
         try {
-            await fetch('/api/auth/logout', { method: 'POST' });
+            await fetch('/api/appraisal/auth/logout', { method: 'POST' });
             setUser(null);
             toast.success('Logged out successfully');
-            router.push('/portal/login');
+            router.push('/appraisal/login-register');
         } catch (error) {
             console.error('Logout error', error);
         }

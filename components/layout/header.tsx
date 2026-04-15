@@ -9,7 +9,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 // import { useAuth } from "@/lib/auth/auth-context"
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth-context";
+import { useAuth } from "@/lib/group/auth-context";
 import {
   DropdownMenu,
   DropdownMenuContent,

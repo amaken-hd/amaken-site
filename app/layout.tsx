@@ -80,7 +80,7 @@ export const viewport: Viewport = {
 };
 
 import { I18nProvider } from "@/lib/i18n/context";
-import { AuthProvider } from "@/lib/auth-context";
+import { AuthProvider } from "@/lib/group/auth-context";
 import ContactsWrapper from "@/components/layout/contacts-wrapper";
 import { Toaster } from "@/components/ui/sonner";
 

@@ -2,15 +2,22 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { useI18n } from '@/lib/i18n/context'
 
-export const AuthInput = ({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string, icon?: string }) => (
+export const AuthInput = ({ label, icon, className, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string, icon?: string }) => (
     <div className="space-y-2">
-        <label className="block text-xs font-bold text-[#041534] uppercase tracking-wider" htmlFor={props.id}>
-            {label}
-        </label>
+        {label && (
+            <label className="block text-xs font-bold text-[#041534] uppercase tracking-wider" htmlFor={props.id}>
+                {label}
+            </label>
+        )}
         <div className="relative group">
             <input
-                className="w-full px-4 py-4 bg-[#f2f4f6] border-none rounded-xl text-sm focus:ring-2 focus:ring-[#006a66] transition-all"
+                className={cn(
+                    "w-full py-4 bg-[#f2f4f6] border-none rounded-xl text-sm focus:ring-2 focus:ring-[#006a66] transition-all disabled:opacity-50",
+                    icon ? "pl-12 pr-4" : "px-4",
+                    className
+                )}
                 {...props}
             />
             {icon && (
@@ -25,7 +32,7 @@ export const AuthInput = ({ label, icon, ...props }: React.InputHTMLAttributes<H
 export const AuthButton = ({ variant = 'primary', children, icon, className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary', icon?: string }) => (
     <button
         className={cn(
-            "w-full py-4 font-bold rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]",
+            "w-full py-4 font-bold rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
             variant === 'primary'
                 ? "bg-[#041534] text-white shadow-lg hover:shadow-xl"
                 : "border-2 border-[#e1e2e4] text-[#041534] hover:bg-[#f2f4f6]",
@@ -38,32 +45,35 @@ export const AuthButton = ({ variant = 'primary', children, icon, className, ...
     </button>
 )
 
-export const AuthTabs = ({ activeTab, onTabChange }: { activeTab: 'login' | 'register', onTabChange: (tab: 'login' | 'register') => void }) => (
-    <div className="flex w-full bg-[#f2f4f6] p-1 rounded-xl">
-        <button
-            onClick={() => onTabChange('login')}
-            className={cn(
-                "flex-1 py-3 text-sm transition-all duration-300 rounded-lg",
-                activeTab === 'login'
-                    ? "font-bold text-[#006a66] bg-white shadow-sm"
-                    : "font-medium text-[#75777f] hover:text-[#041534]"
-            )}
-        >
-            Login
-        </button>
-        <button
-            onClick={() => onTabChange('register')}
-            className={cn(
-                "flex-1 py-3 text-sm transition-all duration-300 rounded-lg",
-                activeTab === 'register'
-                    ? "font-bold text-[#006a66] bg-white shadow-sm"
-                    : "font-medium text-[#75777f] hover:text-[#041534]"
-            )}
-        >
-            Register
-        </button>
-    </div>
-)
+export const AuthTabs = ({ activeTab, onTabChange }: { activeTab: 'login' | 'register', onTabChange: (tab: 'login' | 'register') => void }) => {
+    const { t } = useI18n()
+    return (
+        <div className="flex w-full bg-[#f2f4f6] p-1 rounded-xl">
+            <button
+                onClick={() => onTabChange('login')}
+                className={cn(
+                    "flex-1 py-3 text-sm transition-all duration-300 rounded-lg",
+                    activeTab === 'login'
+                        ? "font-bold text-[#006a66] bg-white shadow-sm"
+                        : "font-medium text-[#75777f] hover:text-[#041534]"
+                )}
+            >
+                {t('appraisalAuth.login.tab')}
+            </button>
+            <button
+                onClick={() => onTabChange('register')}
+                className={cn(
+                    "flex-1 py-3 text-sm transition-all duration-300 rounded-lg",
+                    activeTab === 'register'
+                        ? "font-bold text-[#006a66] bg-white shadow-sm"
+                        : "font-medium text-[#75777f] hover:text-[#041534]"
+                )}
+            >
+                {t('appraisalAuth.register.tab')}
+            </button>
+        </div>
+    )
+}
 
 export const AuthCheckbox = ({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) => (
     <div className="flex items-center gap-2">

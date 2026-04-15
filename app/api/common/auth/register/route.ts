@@ -11,10 +11,18 @@ export async function POST(req: NextRequest) {
             first_name: body.first_name,
             last_name: body.last_name,
             phone: body.phone,
-            password: body.password, // Sent securely server-to-server
+            password: body.password,
             interest_type: body.interest_type,
             source: 'Website',
-            expected_income: body.expected_income || 0
+            expected_income: body.expected_income || 0,
+            company_name: body.company_name,
+            cr_number: body.cr_number,
+            building_number: body.building_number,
+            street_name: body.street_name,
+            district: body.district,
+            city: body.city,
+            postal_code: body.postal_code,
+            additional_number: body.additional_number,
         };
 
         // Note: Using the path suggested by the business logic or standard ERPNext setup

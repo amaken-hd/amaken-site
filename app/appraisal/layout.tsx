@@ -2,26 +2,23 @@
 
 import Footer from "@/components/appraisal/google-stitch/landing-page/Footer";
 import Navbar from "@/components/appraisal/google-stitch/landing-page/NavBar";
-
-
-
-const appraisalNavigation = [
-    { key: "home", href: "/appraisal" },
-    { key: "services", href: "/appraisal/services" },
-    { key: "about", href: "/appraisal/about" },
-    { key: "contactus", href: "/appraisal/contactus" },
-];
+import { AuthProvider } from "@/lib/appraisal/auth-context";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function AppraisalLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const { locale } = useI18n();
+
     return (
-        <>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-        </>
+        <AuthProvider>
+            <div dir={locale === "ar" ? "rtl" : "ltr"} className={locale === "ar" ? "font-arabic" : ""}>
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
+            </div>
+        </AuthProvider>
     )
 }
