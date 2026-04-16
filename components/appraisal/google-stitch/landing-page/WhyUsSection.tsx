@@ -58,7 +58,7 @@ export default function WhyUsSection() {
 
                 <div style={{ color: "white" }}>
                     <img
-                        src=""
+                        src="#"
                         className="rounded-3xl shadow-2xl"
                         alt="why us photo"
                     />

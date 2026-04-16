@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-export const ServiceHero = () => (
+export const ServiceHero = ({ title, description, icon }: { title: string, description: string, icon: string }) => (
     <section className="relative bg-[#041534] text-white pt-24 pb-32 px-8 overflow-hidden" dir="rtl">
         <div
             className="absolute inset-0 opacity-10"
@@ -18,16 +18,16 @@ export const ServiceHero = () => (
                 <span className="material-symbols-outlined text-xs">chevron_left</span>
                 <span>خدماتنا</span>
                 <span className="material-symbols-outlined text-xs">chevron_left</span>
-                <span className="text-white">تقييم العقارات السكنية والتجارية</span>
+                <span className="text-white">{title}</span>
             </nav>
             <div className="flex items-center gap-4 mb-4 justify-end">
                 <div className="w-12 h-12 bg-[#006a66] flex items-center justify-center rounded-xl shadow-lg">
-                    <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>domain</span>
+                    <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">تقييم العقارات السكنية والتجارية</h1>
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">{title}</h1>
             </div>
             <p className="text-lg text-[#8392b7] max-w-2xl leading-relaxed mr-0 ml-auto">
-                نقدم خدمات تقييم عقاري احترافية مبنية على معايير التقييم الدولية (IVS) ومعايير الهيئة السعودية للمقيمين المعتمدين (تقييم).
+                {description}
             </p>
         </div>
     </section>

@@ -2,15 +2,10 @@
 
 import React from 'react'
 
-const types = [
-    "أراضي خام", "فلل سكنية", "شقق تمليك", "مجمعات تجارية",
-    "أبراج مكتبية", "مستودعات", "فنادق", "مزارع", "مشاريع تحت الإنشاء"
-]
-
-export const AppraisalTypes = () => (
+export const AppraisalTypes = ({ types }: { types: string[] }) => (
     <section className="max-w-7xl mx-auto px-8 -mt-12 relative z-20" dir="rtl">
         <div className="bg-[#ffffff] p-8 rounded-xl shadow-xl shadow-[#041534]/5 text-right">
-            <h2 className="text-xs uppercase text-[#45464e] tracking-widest mb-6 font-bold">أنواع العقارات التي نقوم بتقييمها</h2>
+            <h2 className="text-xs uppercase text-[#45464e] tracking-widest mb-6 font-bold">نطاق التقييم</h2>
             <div className="flex flex-wrap gap-3 justify-start">
                 {types.map((type, idx) => (
                     <span

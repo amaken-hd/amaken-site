@@ -2,7 +2,7 @@ export default function StatsBar() {
     const stats = [
         { value: "+100k", label: "تقارير منجزة" },
         { value: "+10", label: "سنوات الخبرة" },
-        { value: "+50k", label: "عميل سعيد" },
+        { value: "+50k", label: "عملاء راضين" },
         { value: "+3", label: "مدن رئيسية" }
     ]
 

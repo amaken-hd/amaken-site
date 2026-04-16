@@ -12,7 +12,7 @@ const steps = [
 
 export const ServiceProcess = () => (
     <section className="max-w-7xl mx-auto px-8 py-24" dir="rtl">
-        <h2 className="text-3xl font-bold text-[#041534] mb-12 text-center">رحلة التقييم العقاري</h2>
+        <h2 className="text-3xl font-bold text-[#041534] mb-12 text-center">رحلة التقييم </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
             {steps.map((step) => (
                 <div key={step.id} className="flex flex-col items-center text-center group">
