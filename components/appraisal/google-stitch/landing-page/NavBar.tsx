@@ -15,6 +15,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { DashboardHeader } from "../client-dashboard/DashboardHeader"
+import DropdownNeu from "../ui/dropdownneu"
 
 const links = [
     { key: "home", href: "/appraisal" },
@@ -26,6 +28,7 @@ const links = [
 ];
 
 export default function Navbar() {
+
     const pathname = usePathname();
     const router = useRouter();
     const { user, logout } = useAuth();
@@ -42,6 +45,10 @@ export default function Navbar() {
             .join('')
             .toUpperCase();
     };
+
+    if (pathname === "/appraisal/client-dashboard" || pathname === "/appraisal/me") {
+        return <DashboardHeader />
+    }
 
     return (
         <nav className="bg-white/80 backdrop-blur-md text-[#041534] text-sm font-medium tracking-tight sticky top-0 z-50 shadow-sm flex justify-between items-center w-full px-6 py-4">
@@ -85,41 +92,7 @@ export default function Navbar() {
                 )}
 
                 {user ? (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <div className="cursor-pointer">
-                                <Avatar className="w-8 h-8 border border-slate-200">
-                                    <AvatarImage src={user.image} alt={user.name} />
-                                    <AvatarFallback className="bg-[#006A66] text-white text-xs">
-                                        {getInitials(user.full_name || user.name || "U")}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </div>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-56">
-                            <DropdownMenuLabel>
-                                <div className="flex flex-col space-y-1">
-                                    <p className="text-sm font-medium leading-none">{user.full_name || user.name}</p>
-                                    <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
-                                </div>
-                            </DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem asChild>
-                                <Link href="/appraisal/client-dashboard" className="cursor-pointer w-full">
-                                    <User className="mr-2 h-4 w-4" />
-                                    <span>{t("nav.portal")}</span>
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem
-                                onClick={() => logout()}
-                                className="text-red-600 cursor-pointer"
-                            >
-                                <LogOut className="mr-2 h-4 w-4" />
-                                <span>{locale === 'ar' ? 'تسجيل الخروج' : 'Logout'}</span>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <DropdownNeu />
                 ) : (
                     <Link href="/appraisal/login-register" className="text-slate-600 hover:text-[#006A66]">
                         <User className="w-6 h-6 cursor-pointer" />

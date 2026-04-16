@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
             email: body.email,
             first_name: body.first_name,
             last_name: body.last_name,
-            phone: body.phone,
+            mobile_no: body.phone,
             password: body.password,
             building_number: body.building_number,
             street_name: body.street_name,

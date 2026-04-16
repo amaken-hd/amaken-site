@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 export async function GET(req: NextRequest) {
     try {
         const cookieStore = await cookies();
-        const sid = cookieStore.get('sid')?.value;
+        const sid = cookieStore.get('appraisal_sid')?.value;
 
         if (!sid) {
             return NextResponse.json({ message: 'Not logged in' }, { status: 401 });

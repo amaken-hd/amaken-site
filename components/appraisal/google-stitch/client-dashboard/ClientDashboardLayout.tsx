@@ -8,7 +8,7 @@ import { DashboardRecentRequests } from './DashboardRecentRequests'
 import { DashboardActions } from './DashboardActions'
 import { DashboardFAB } from './DashboardFAB'
 
-export const ClientDashboardLayout = () => {
+export const ClientDashboardLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="bg-[#f8f9fb] text-[#191c1e] min-h-screen" dir="rtl">
             <link
@@ -19,9 +19,7 @@ export const ClientDashboardLayout = () => {
             <main className="mr-64 min-h-screen">
                 <DashboardHeader />
                 <div className="p-8 space-y-8 max-w-7xl mx-auto">
-                    <DashboardStats />
-                    <DashboardRecentRequests />
-                    <DashboardActions />
+                    {children}
                 </div>
             </main>
             <DashboardFAB />
