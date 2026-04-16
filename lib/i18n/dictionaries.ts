@@ -1,4 +1,4 @@
-﻿export type Locale = "en" | "ar";
+export type Locale = "en" | "ar";
 
 export const locales: Locale[] = ["en", "ar"];
 export const defaultLocale: Locale = "en";
@@ -1205,6 +1205,204 @@ const dictionariesObj = {
         title: "System Status",
         operational: "All appraisal nodes are operational."
       }
+    },
+    consultation: {
+      home: {
+        hero: {
+          tagline: "Vision 2030 Strategic Partner",
+          titleFront: "Excellence in",
+          titleHighlight: "Land Utilization",
+          titleBack: "& Market Intelligence.",
+          description: "Empowering Saudi Arabia's landscape through data-driven feasibility studies and highest-and-best-use strategies for tomorrow's infrastructure.",
+          buttons: {
+            request: "Request a Consultation",
+            portfolio: "View Portfolio"
+          },
+          marketReport: {
+            title: "Market Report 2024",
+            description: "Real Estate growth projections for the Riyadh Central District.",
+            download: "Download Now"
+          }
+        },
+        trustSignals: {
+          years: "Years Experience",
+          projects: "Projects Completed",
+          valuation: "Asset Valuation",
+          success: "Success Rate"
+        },
+        coreServices: {
+          badge: "Core Competencies",
+          titleFront: "Redefining Strategic",
+          titleBack: "Development Landscapes",
+          description: "We provide the analytical rigor required to transform vast terrains into high-performance urban assets.",
+          services: {
+            s1: {
+              title: "Market Research",
+              description: "Deep-dive intelligence into local demand, competitor landscape, and macroeconomic trends specific to the Saudi Arabian market."
+            },
+            s2: {
+              title: "Feasibility Studies",
+              description: "Comprehensive financial modeling and risk assessment to ensure the economic viability of large-scale infrastructure projects."
+            },
+            s3: {
+              title: "HBU of Land Studies",
+              description: "Determination of the Highest and Best Use of Land, maximizing investment returns while aligning with Vision 2030 directives."
+            }
+          },
+          learnMore: "Learn More"
+        },
+        strategicForesight: {
+          titleFront: "Strategic Foresight for the",
+          titleHighlight: "Saudi Renaissance.",
+          description: "At Amaken, we don't just analyze data; we architect possibilities. Our team of consultants brings global methodology paired with deep local nuances to solve the complex puzzles of regional development.",
+          points: {
+            p1: {
+              title: "Policy Alignment",
+              description: "Every study we conduct is cross-referenced with Ministry directives and Vision 2030 goals."
+            },
+            p2: {
+              title: "Proprietary Datasets",
+              description: "Exclusive access to real estate transaction histories across the Kingdom's major cities."
+            }
+          }
+        },
+        clientLogos: {
+          title: "Trusted by Leading Entities"
+        },
+        cta: {
+          title: "Ready to unlock your land's potential?",
+          description: "Connect with our consultants for a detailed preliminary analysis of your asset.",
+          buttons: {
+            expert: "Get an Expert Opinion",
+            methodology: "Learn about our methodology"
+          }
+        }
+      },
+      services: {
+        hero: {
+          badge: "Professional Insights",
+          titleFront: "Strategic",
+          titleHighlight: "Real Estate",
+          titleBack: "Solutions.",
+          description: "Data-driven market intelligence and land utilization studies that unlock the true potential of Saudi Arabia's evolving landscape."
+        },
+        marketResearch: {
+          badge: "Service Deep Dive",
+          title: "Market Research & Intelligence",
+          descBold: "Precision is the foundation of every successful development.",
+          desc: "Our market research goes beyond simple demographics. We analyze micro-market trends, supply-demand gaps, and future urban planning trajectories within the Saudi Vision 2030 framework.",
+          features: {
+            f1: {
+              title: "Trend Forecasting",
+              desc: "Predicting market shifts 5-10 years ahead."
+            },
+            f2: {
+              title: "Consumer Behavior",
+              desc: "Deep analysis of evolving lifestyle needs."
+            }
+          },
+          methodology: {
+            title: "Methodology Architecture",
+            steps: {
+              s1: {
+                title: "Data Aggregation",
+                desc: "Collecting primary data from government portals and field surveys."
+              },
+              s2: {
+                title: "Competitive Mapping",
+                desc: "Geospatial analysis of existing and planned competitor projects."
+              },
+              s3: {
+                title: "Synthesized Insights",
+                desc: "Converting complex data into actionable investment strategies."
+              }
+            }
+          }
+        },
+        hbuStudies: {
+          badge: "Land Optimization",
+          title: "Highest & Best Use (HBU) Studies",
+          sitePotential: {
+            title: "Site Potential Analysis",
+            desc: "We evaluate every plot against four critical pillars: Legally Permissible, Physically Possible, Financially Feasible, and Maximally Productive."
+          },
+          compliance: {
+            title: "Legal Compliance",
+            desc: "Ensuring alignment with municipal zoning, MOMRAH regulations, and Vision 2030 codes."
+          },
+          viability: {
+            title: "Financial Viability",
+            desc: "Detailed IRR and NPV projections for multiple development scenarios."
+          }
+        },
+        successHighlights: {
+          title: "Success Highlights",
+          mixedUse: {
+            badge: "Mixed-Use Project",
+            title: "Optimizing 40,000 SQM in North Riyadh.",
+            desc: "Achieved 22% increase in projected ROI by pivoting from pure residential to an integrated 'Live-Work-Play' model based on our HBU study.",
+            link: "View Details"
+          },
+          accuracy: {
+            title: "Forecast Accuracy",
+            desc: "Our market absorption rate predictions for the Jeddah Waterfront expansion."
+          },
+          delivered: "Studies Delivered",
+          analyzed: "Asset Value Analyzed"
+        },
+        cta: {
+          title: "Ready to define the future of your assets?",
+          description: "Connect with our consultants for a detailed exploratory session on your next landmark project.",
+          buttons: {
+            request: "Request a Consultation",
+            download: "Download Service Brochure"
+          }
+        }
+      },
+      contact: {
+        header: {
+          badge: "Get in Touch",
+          titleFront: "Strategic Partnerships",
+          titleHighlight: "Begin Here.",
+          description: "Amaken Consulting provides the architectural intelligence required for the Saudi market. Contact our Riyadh-based experts to scale your vision."
+        },
+        form: {
+          title: "Registration of Interest & Service Request",
+          description: "Please provide your project details below. Our consultants will respond within 24 business hours.",
+          fullName: "Full Name",
+          phoneNumber: "Phone Number",
+          email: "Professional Email",
+          serviceType: {
+            label: "Service Type",
+            options: {
+              marketResearch: "Market Research",
+              feasibilityStudy: "Feasibility Study",
+              hbu: "HBU Analysis",
+              other: "Other Advisory"
+            }
+          },
+          projectDetails: {
+            label: "Project Details",
+            placeholder: "Briefly describe your objectives, location, and timeline..."
+          },
+          submit: "Submit Request"
+        },
+        sidebar: {
+          hq: {
+            title: "Riyadh Headquarters",
+            addressLabel: "Address",
+            address: "King Abdullah Financial District (KAFD)<br />Building 4.12, Floor 14<br />Riyadh, Saudi Arabia",
+            contactLabel: "Contact",
+            hoursLabel: "Hours",
+            hours: "Sun – Thu: 09:00 – 18:00"
+          },
+          mapBadge: "HQ Location View",
+          trustBadge: {
+            title: "Vision 2030 Certified",
+            desc: "Strategic alignment with national objectives."
+          }
+        }
+      }
     }
   }
   , ar: {
@@ -2258,6 +2456,204 @@ const dictionariesObj = {
       status: {
         title: "حالة النظام",
         operational: "جميع عقد التقييم تعمل بشكل طبيعي."
+      }
+    },
+    consultation: {
+      home: {
+        hero: {
+          tagline: "شريك استراتيجي لرؤية 2030",
+          titleFront: "التميز في",
+          titleHighlight: "استخدام الأراضي",
+          titleBack: " السوقية.",
+          description: "نُمكّن المشهد التنموي في المملكة العربية السعودية من خلال دراسات جدوى مبنية على البيانات واستراتيجيات الاستخدام الأفضل والأعلى لبنية الغد التحتية.",
+          buttons: {
+            request: "اطلب استشارة",
+            portfolio: "عرض محفظة الأعمال"
+          },
+          marketReport: {
+            title: "تقرير السوق 2024",
+            description: "توقعات نمو قطاع العقارات للحي المركزي في الرياض.",
+            download: "حمل الآن"
+          }
+        },
+        trustSignals: {
+          years: "سنوات من الخبرة",
+          projects: "مشاريع منجزة",
+          valuation: "تقييم الأصول",
+          success: "نسبة النجاح"
+        },
+        coreServices: {
+          badge: "الكفاءات الأساسية",
+          titleFront: "إعادة تعريف المشهد الاستراتيجي",
+          titleBack: "للتطوير",
+          description: "نقدم الدقة التحليلية اللازمة لتحويل المساحات الشاسعة إلى أصول حضرية عالية الأداء.",
+          services: {
+            s1: {
+              title: "أبحاث السوق",
+              description: "رؤية معمقة للطلب المحلي، والمشهد التنافسي، والاتجاهات الاقتصادية الكلية الخاصة بالسوق السعودي."
+            },
+            s2: {
+              title: "دراسات الجدوى",
+              description: "نمذجة مالية شاملة وتقييم للمخاطر لضمان الجدوى الاقتصادية لمشاريع البنية التحتية واسعة النطاق."
+            },
+            s3: {
+              title: "دراسات أفضل وأعلى استخدام (HBU)",
+              description: "تحديد أفضل وأعلى استخدام للأرض، مما يعظم عوائد الاستثمار تماشياً مع توجيهات رؤية 2030."
+            }
+          },
+          learnMore: "اعرف المزيد"
+        },
+        strategicForesight: {
+          titleFront: "رؤية استراتيجية من أجل",
+          titleHighlight: "النهضة السعودية.",
+          description: "في أماكن، نحن لا نقوم بتحليل البيانات فحسب؛ بل نصمم الاحتمالات. يقدم فريقنا من المستشارين منهجية عالمية مقترنة بفهم عميق للتفاصيل المحلية لحل التحديات الكبرى في التطوير الإقليمي.",
+          points: {
+            p1: {
+              title: "التوافق مع السياسات",
+              description: "يتم مطابقة كل دراسة نجريها مع توجيهات الوزارة وأهداف رؤية 2030 المحددة."
+            },
+            p2: {
+              title: "بيانات حصرية",
+              description: "أداة حصرية للوصول إلى بيانات المعاملات العقارية في المدن الكبرى بالمملكة."
+            }
+          }
+        },
+        clientLogos: {
+          title: "شركاء موثوقون للجهات الرائدة"
+        },
+        cta: {
+          title: "جاهز لإطلاق إمكانات أصولك؟",
+          description: "تواصل مع مستشارينا للحصول على تحليل أولي مفصل لمشروعك.",
+          buttons: {
+            expert: "احصل على رأي خبير",
+            methodology: "تعرف على منهجيتنا"
+          }
+        }
+      },
+      services: {
+        hero: {
+          badge: "رؤى احترافية",
+          titleFront: "حلول عقارية",
+          titleHighlight: "استراتيجية.",
+          titleBack: "",
+          description: "تحليل ذكي للسوق ودراسات استخدام الأراضي المدعومة بالبيانات، لإطلاق الإمكانات الحقيقية للمشهد التنموي المتطور في المملكة العربية السعودية."
+        },
+        marketResearch: {
+          badge: "نظرة متعمقة على الخدمة",
+          title: "أبحاث السوق ",
+          descBold: "الدقة هي الأساس لكل استثمار ناجح.",
+          desc: "تتخطى أبحاثنا دراسة التركيبة السكانية، نحن نقوم بتحليل اتجاهات السوق الجزئية، والفجوات بين العرض والطلب، ومسارات التخطيط الحضري المستقبلية بناءً على إطار رؤية 2030.",
+          features: {
+            f1: {
+              title: "التنبؤ بالاتجاهات",
+              desc: "توقع التغيرات في السوق لمدة 5 إلى 10 سنوات قادمة."
+            },
+            f2: {
+              title: "سلوك المستهلك",
+              desc: "تحليل معمق لتطور الاحتياجات ونمط الحياة."
+            }
+          },
+          methodology: {
+            title: "منهجية العمل",
+            steps: {
+              s1: {
+                title: "تجميع البيانات",
+                desc: "جمع البيانات الأولية من البوابات الحكومية والمسوحات الميدانية."
+              },
+              s2: {
+                title: "التصنيف التنافسي",
+                desc: "تحليل النطاق المكاني للمشاريع التنافسية الحالية والمخطط لها."
+              },
+              s3: {
+                title: "الرؤى والنتائج",
+                desc: "تحويل البيانات المعقدة إلى استراتيجيات استثمار قابلة للتنفيذ."
+              }
+            }
+          }
+        },
+        hbuStudies: {
+          badge: "تعظيم الاستفادة من الأراضي",
+          title: "دراسات أفضل وأعلى استخدام (HBU)",
+          sitePotential: {
+            title: "تحليل إمكانات الموقع",
+            desc: "نقوم بتقييم كل قطعة أرض مقابل أربع ركائز أساسية: جائزة المسموح به قانونيا، والممكن مادياً، والمجدي مالياً، والأكثر إنتاجية."
+          },
+          compliance: {
+            title: "الامتثال القانوني",
+            desc: "ضمان التوافق مع تقسيم الأراضي البلدية (زونينج)، وأنظمة وزارة الشؤون البلدية، ولوائح رؤية 2030."
+          },
+          viability: {
+            title: "الجدوى المالية",
+            desc: "إعداد توقعات دقيقة للعوائد لمجموعة متنوعة من سيناريوهات التطوير."
+          }
+        },
+        successHighlights: {
+          title: "أبرز النجاحات",
+          mixedUse: {
+            badge: "مشروع متعدد الاستخدامات",
+            title: "تحسين 40,000 متر مربع في شمال الرياض.",
+            desc: "حققنا زيادة بنسبة 22% في عائد الاستثمار المستهدف عبر التحول من نموذج سكني بحت إلى نموذج 'سكني-تجاري-ترفيهي' استناداً لدراستنا لأفضل استخدام.",
+            link: "عرض التفاصيل"
+          },
+          accuracy: {
+            title: "دقة التوقعات",
+            desc: "توقعاتنا لمعدلات استيعاب السوق لتوسعة واجهة جدة البحرية."
+          },
+          delivered: "دراسة منجزة",
+          analyzed: "قيمة الأصول المحللة"
+        },
+        cta: {
+          title: "جاهز لتحديد ملامح مستقبل مشاريعك؟",
+          description: "تواصل مع مستشارينا للحصول على جلسة استكشافية مفصلة حول مشروعك الاستثنائي القادم.",
+          buttons: {
+            request: "اطلب استشارة",
+            download: "تحميل الكتيب"
+          }
+        }
+      },
+      contact: {
+        header: {
+          badge: "تواصل معنا",
+          titleFront: "الشراكات الاستراتيجية",
+          titleHighlight: "تبدأ هنا.",
+          description: "توفر شركة أماكن للاستشارات المعرفة الفنية المطلوبة للسوق السعودي. تواصل مع خبرائنا لتوسيع نطاق رؤيتك."
+        },
+        form: {
+          title: "تسجيل الاهتمام وطلب خدمة",
+          description: "يرجى تقديم تفاصيل مشروعك أدناه. سيقوم مستشارونا بالرد عليك خلال 24 ساعة عمل.",
+          fullName: "الاسم الكامل",
+          phoneNumber: "رقم الجوال",
+          email: "البريد الإلكتروني للعمل",
+          serviceType: {
+            label: "نوع الخدمة",
+            options: {
+              marketResearch: "أبحاث السوق",
+              feasibilityStudy: "دراسة جدوى",
+              hbu: "أفضل استغلال",
+              other: "استشارات أخرى"
+            }
+          },
+          projectDetails: {
+            label: "تفاصيل المشروع",
+            placeholder: "أخبرنا بإيجاز عن الموقع المخطط للمشروع والجدول الزمني..."
+          },
+          submit: "إرسال الطلب"
+        },
+        sidebar: {
+          hq: {
+            title: "المقر الرئيسي للإدارة (الرياض)",
+            addressLabel: "العنوان",
+            address: "مركز الملك عبدالله المالي (KAFD)<br />مبنى 4.12، الطابق 14<br />الرياض، المملكة العربية السعودية",
+            contactLabel: "للتواصل",
+            hoursLabel: "أوقات العمل",
+            hours: "الأحد – الخميس: 09:00 – 18:00"
+          },
+          mapBadge: "عرض التوجيه",
+          trustBadge: {
+            title: "معتمدة من رؤية 2030",
+            desc: "التوافق الاستراتيجي مع الأهداف الوطنية."
+          }
+        }
       }
     }
   },
