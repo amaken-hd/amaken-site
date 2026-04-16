@@ -68,21 +68,21 @@ export const SampleReportsLayout = () => {
             <main className="max-w-7xl mx-auto px-6 py-12">
                 <SampleReportsHero />
                 <FeaturedReport />
-                <ReportFilters />
+                {/* <ReportFilters />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {reports.map((report, index) => (
                         <ReportCard key={index} {...report} />
                     ))}
-                </div>
+                </div> */}
 
                 {/* Load More Section */}
-                <div className="mt-16 flex flex-col items-center">
+                {/* <div className="mt-16 flex flex-col items-center">
                     <button className="px-8 py-4 border-2 border-[#041534] text-[#041534] rounded-lg font-bold hover:bg-[#041534] hover:text-white transition-all">
                         استكشاف المزيد من الأرشيف
                     </button>
                     <p className="mt-4 text-[#45464e] text-sm italic">الوصول إلى قاعدة بيانات تضم أكثر من ١,٢٠٠ تقرير موثق</p>
-                </div>
+                </div> */}
             </main>
         </div>
     )

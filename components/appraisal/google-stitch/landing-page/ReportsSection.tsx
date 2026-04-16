@@ -6,7 +6,7 @@ export default function ReportsSection() {
 
                 <div className="flex-1">
                     <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdyLjpZiCMiInGDi1Ssbk_yNm4hu6hmdVnyGq3__iy5JHJ3dIzD11NqNesIZ8qUJ35nMv-sx7EgYNb5VOrIwViUw_-UMiCJMG5oZ9a1YagJzJdmoRKDcpxZUncWrSqJV6qsy0vTZam3lBTFDmNm5ZjMcYWqXz4uOPDjBPzSNHzJV0W1eVVPbagWk_rYinQAEQEVmexJ4SvxhpM2F7Vd5i49A9M8v2na-xbnq9HaZvtg7aBzQXMF92GnSdwPzXNtwTgWWZ62FlQFe4"
+                        src="#"
                         className="rounded-3xl shadow-2xl w-full"
                         alt="report"
                     />
