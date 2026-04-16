@@ -1,9 +1,9 @@
 import React from 'react';
-import { ServicesHero } from '../_components/ServicesHero';
-import { MarketResearchDeepDive } from '../_components/MarketResearchDeepDive';
-import { HbuStudiesDetail } from '../_components/HbuStudiesDetail';
-import { ConsultationSuccessHighlights } from '../_components/ConsultationSuccessHighlights';
-import { ServicesBottomCTA } from '../_components/ServicesBottomCTA';
+import { ServicesHero } from '@/components/consultation/ServicesHero';
+import { MarketResearchDeepDive } from '@/components/consultation/MarketResearchDeepDive';
+import { HbuStudiesDetail } from '@/components/consultation/HbuStudiesDetail';
+import { ConsultationSuccessHighlights } from '@/components/consultation/ConsultationSuccessHighlights';
+import { ServicesBottomCTA } from '@/components/consultation/ServicesBottomCTA';
 
 export default function ServicesPage() {
   return (

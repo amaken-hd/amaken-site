@@ -1,6 +1,6 @@
 import React from 'react';
-import { ConsultationHeader } from './_components/ConsultationHeader';
-import { ConsultationFooter } from './_components/ConsultationFooter';
+import { ConsultationHeader } from '../../components/consultation/ConsultationHeader';
+import { ConsultationFooter } from '../../components/consultation/ConsultationFooter';
 
 export default function ConsultationLayout({
   children,

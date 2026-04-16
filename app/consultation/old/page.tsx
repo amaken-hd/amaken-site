@@ -1,10 +1,10 @@
 "use client"
 
-import { ConsultingHero } from "@/components/consultation/consulting-hero"
-import { ConsultingServices } from "@/components/consultation/consulting-services"
-import { ConsultingProcess } from "@/components/consultation/consulting-process"
-import { ConsultingCaseStudies } from "@/components/consultation/consulting-case-studies"
-import { ConsultingCTA } from "@/components/consultation/consulting-cta"
+import { ConsultingHero } from "@/components/consultation/oldcomponant/consulting-hero"
+import { ConsultingServices } from "@/components/consultation/oldcomponant/consulting-services"
+import { ConsultingProcess } from "@/components/consultation/oldcomponant/consulting-process"
+import { ConsultingCaseStudies } from "@/components/consultation/oldcomponant/consulting-case-studies"
+import { ConsultingCTA } from "@/components/consultation/oldcomponant/consulting-cta"
 
 export default function consultationPage() {
   return (

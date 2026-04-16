@@ -1,10 +1,10 @@
 import React from 'react';
-import { ConsultationHero } from './_components/ConsultationHero';
-import { TrustSignals } from './_components/TrustSignals';
-import { CoreServices } from './_components/CoreServices';
-import { StrategicForesight } from './_components/StrategicForesight';
-import { ClientLogos } from './_components/ClientLogos';
-import { ConsultationCTA } from './_components/ConsultationCTA';
+import { ConsultationHero } from '../../components/consultation/ConsultationHero';
+import { TrustSignals } from '../../components/consultation/TrustSignals';
+import { CoreServices } from '../../components/consultation/CoreServices';
+import { StrategicForesight } from '../../components/consultation/StrategicForesight';
+import { ClientLogos } from '../../components/consultation/ClientLogos';
+import { ConsultationCTA } from '../../components/consultation/ConsultationCTA';
 
 export default function ConsultationPage() {
   return (
