@@ -2,24 +2,18 @@
 
 import React from 'react'
 
-export const ReportSamplePreview = () => (
+export const ReportSamplePreview = ({ title, description, features }: { title: string, description: string, features: string[] }) => (
     <section className="max-w-7xl mx-auto px-8 py-24 flex flex-col md:flex-row items-center gap-16" dir="rtl">
         <div className="flex-1 space-y-6 text-right">
-            <h2 className="text-3xl font-bold text-[#041534] leading-tight">نموذج من تقاريرنا الاحترافية</h2>
-            <p className="text-[#45464e] text-lg">نلتزم بالشفافية والدقة في عرض البيانات. تقاريرنا شاملة تحتوي على الصور الجوية، تحليل السوق، وخرائط النطاق السعري.</p>
+            <h2 className="text-3xl font-bold text-[#041534] leading-tight">{title}</h2>
+            <p className="text-[#45464e] text-lg">{description}</p>
             <ul className="space-y-4">
-                <li className="flex items-center gap-3 justify-start">
-                    <span className="material-symbols-outlined text-[#006a66] align-middle">check_circle</span>
-                    <span className="font-medium">تحليل SWOT للعقار</span>
-                </li>
-                <li className="flex items-center gap-3 justify-start">
-                    <span className="material-symbols-outlined text-[#006a66] align-middle">check_circle</span>
-                    <span className="font-medium">طرق التقييم الثلاثة (السوق، التكلفة، الدخل)</span>
-                </li>
-                <li className="flex items-center gap-3 justify-start">
-                    <span className="material-symbols-outlined text-[#006a66] align-middle">check_circle</span>
-                    <span className="font-medium">خرائط تفاعلية للموقع والخدمات</span>
-                </li>
+                {features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-3 justify-start">
+                        <span className="material-symbols-outlined text-[#006a66] align-middle">check_circle</span>
+                        <span className="font-medium">{feature}</span>
+                    </li>
+                ))}
             </ul>
             <button className="flex items-center gap-2 px-8 py-4 bg-[#041534] text-white rounded-lg font-bold hover:bg-[#1b2a4a] transition-all shadow-lg">
                 <span>تحميل عينة من التقرير</span>

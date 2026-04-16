@@ -11,7 +11,9 @@ import { PricingPlans } from './PricingPlans'
 import { ServiceCTA } from './ServiceCTA'
 import { RelatedServices } from './RelatedServices'
 
-export const ServiceDetailLayout = () => {
+import { ServiceData } from '../services/serviceData'
+
+export const ServiceDetailLayout = ({ service }: { service: ServiceData }) => {
     return (
         <div className="bg-[#f8f9fb] text-[#191c1e] min-h-screen" dir="rtl">
             <link
@@ -19,14 +21,22 @@ export const ServiceDetailLayout = () => {
                 rel="stylesheet"
             />
             <main>
-                <ServiceHero />
-                <AppraisalTypes />
-                <ServiceProcess />
-                <ServiceUseCases />
-                <ReportSamplePreview />
-                <PricingPlans />
-                <ServiceCTA />
-                <RelatedServices />
+                <ServiceHero title={service.hero.title} description={service.hero.description} icon={service.hero.icon} />
+                <AppraisalTypes types={service.types} />
+                {/* <ServiceProcess /> */}
+                <ServiceUseCases useCases={service.useCases} />
+                <ReportSamplePreview
+                    title={service.reportPreview.title}
+                    description={service.reportPreview.description}
+                    features={service.reportPreview.features}
+                />
+                <PricingPlans
+                    title={service.pricing.title}
+                    subtitle={service.pricing.subtitle}
+                    plans={service.pricing.plans}
+                />
+                <ServiceCTA title={service.cta.title} subtitle={service.cta.subtitle} />
+                {/* <RelatedServices /> */}
             </main>
         </div>
     )
