@@ -20,7 +20,7 @@ import DropdownNeu from "../ui/dropdownneu"
 
 const links = [
     { key: "home", href: "/appraisal" },
-    { key: "services", href: "/appraisal/service-detail" },
+    { key: "services", href: "/appraisal/services" },
     { key: "about", href: "/appraisal/about-us" },
     { key: "reports", href: "/appraisal/sample-reports" },
     { key: "blog", href: "/appraisal/blog-insights" },

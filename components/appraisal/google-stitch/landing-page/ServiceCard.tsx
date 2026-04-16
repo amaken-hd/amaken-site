@@ -1,13 +1,16 @@
+import Link from "next/link";
+import React from "react";
+
 interface Props {
-    icon: string
+    icon: React.ReactNode
     title: string
     description: string
+    href?: string
 }
 
-export default function ServiceCard({ icon, title, description }: Props) {
-    return (
-        <div className="group bg-white p-10 rounded-2xl border-l-0 border-[#006A66] hover:border-l-8 transition-all duration-300 shadow-sm flex flex-col justify-between min-h-[320px]">
-
+export default function ServiceCard({ icon, title, description, href }: Props) {
+    const CardContent = (
+        <div className={`group bg-white p-10 rounded-2xl border-l-0 border-[#006A66] hover:border-l-8 transition-all duration-300 shadow-sm flex flex-col justify-between min-h-[320px] ${!href ? 'cursor-default' : ''}`}>
             <div>
                 <span className="text-5xl mb-6 block">{icon}</span>
 
@@ -20,10 +23,17 @@ export default function ServiceCard({ icon, title, description }: Props) {
                 </p>
             </div>
 
-            <div className="mt-8 flex items-center text-[#006A66] font-bold gap-2 cursor-pointer">
+            <div className={`mt-8 flex items-center text-[#006A66] font-bold gap-2 ${href ? 'cursor-pointer' : ''}`}>
                 اقرأ المزيد
             </div>
-
         </div>
-    )
+    );
+
+    return href ? (
+        <Link href={href}>
+            {CardContent}
+        </Link>
+    ) : (
+        CardContent
+    );
 }

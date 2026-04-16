@@ -8,7 +8,7 @@ export default function Footer() {
 
     const links = [
         { key: "home", href: "/appraisal" },
-        { key: "services", href: "/appraisal/service-detail" },
+        { key: "services", href: "/appraisal/services" },
         { key: "about", href: "/appraisal/about-us" },
         { key: "contactus", href: "/appraisal/contact-us" },
     ];

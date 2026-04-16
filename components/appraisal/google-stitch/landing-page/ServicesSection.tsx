@@ -7,21 +7,24 @@ export default function ServicesSection() {
             <div className="grid md:grid-cols-3 gap-8">
 
                 <ServiceCard
-                    icon="🏢"
+                    icon={<span className="text-5xl">🏢</span>}
                     title="التقييم العقاري"
                     description="تقييم الأراضي والمجمعات السكنية بدقة."
+                    href="/appraisal/services/real-estate"
                 />
 
                 <ServiceCard
-                    icon="⚙️"
+                    icon={<span className="text-5xl">⚙️</span>}
                     title="تقييم الآلات"
                     description="تثمين خطوط الإنتاج والآلات الصناعية."
+                    href="/appraisal/services/machinery"
                 />
 
                 <ServiceCard
-                    icon="🏭"
+                    icon={<span className="text-5xl">🏭</span>}
                     title="تقييم المنشآت"
                     description="دراسة القيمة السوقية للمنشآت."
+                    href="/appraisal/services/facilities"
                 />
 
             </div>
