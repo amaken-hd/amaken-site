@@ -116,6 +116,11 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-manrope: var(--font-manrope);
+  --font-public-sans: var(--font-public-sans);
+  --font-tajawal: var(--font-tajawal);
+  --font-headline: var(--font-manrope), var(--font-tajawal);
+  --font-body: var(--font-public-sans), var(--font-tajawal);
   --color-group-primary: var(--group-primary);
 }
 

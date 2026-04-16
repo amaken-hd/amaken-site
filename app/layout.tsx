@@ -1,9 +1,28 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Inter, Cairo, Playfair_Display, Amiri } from "next/font/google";
+import { Inter, Cairo, Playfair_Display, Amiri, Manrope, Public_Sans, Tajawal } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import DatadogInit from "@/components/layout/DataDogInit";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  variable: "--font-public-sans",
+  display: "swap",
+});
+
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  weight: ["300", "500", "700"],
+  variable: "--font-tajawal",
+  display: "swap",
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -91,8 +110,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={`${inter.variable} ${cairo.variable} ${playfair.variable} ${amiri.variable} font-sans antialiased`}
+        className={`${inter.variable} ${cairo.variable} ${playfair.variable} ${amiri.variable} ${manrope.variable} ${publicSans.variable} ${tajawal.variable} font-sans antialiased`}
       >
         <DatadogInit />
         <I18nProvider>
