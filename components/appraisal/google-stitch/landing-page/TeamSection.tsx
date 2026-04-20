@@ -1,9 +1,14 @@
+"use client"
+import { useI18n } from "@/lib/i18n/context"
+
 export default function TeamSection() {
+    const { t } = useI18n();
+
     const members = [
-        { name: "م. عبدالله منصور", role: "كبير مقيمي العقارات" },
-        { name: "أ. سارة الحربي", role: "مديرة الجودة والامتثال" },
-        { name: "د. فيصل العتيبي", role: "مقيم منشآت معتمد" },
-        { name: "م. خالد القحطاني", role: "مقيم آلات ومعدات" }
+        { name: t("appraisal.home.team.members.0.name"), role: t("appraisal.home.team.members.0.role") },
+        { name: t("appraisal.home.team.members.1.name"), role: t("appraisal.home.team.members.1.role") },
+        { name: t("appraisal.home.team.members.2.name"), role: t("appraisal.home.team.members.2.role") },
+        { name: t("appraisal.home.team.members.3.name"), role: t("appraisal.home.team.members.3.role") }
     ]
 
     return (
@@ -12,7 +17,7 @@ export default function TeamSection() {
             <div className="container mx-auto px-6">
 
                 <h2 className="text-4xl font-extrabold text-center text-[#041534] mb-16">
-                    نخبة من المقيمين المعتمدين
+                    {t("appraisal.home.team.title")}
                 </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

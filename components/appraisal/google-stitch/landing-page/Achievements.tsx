@@ -1,9 +1,14 @@
+"use client"
+import { useI18n } from "@/lib/i18n/context"
+
 export default function Achievements() {
+    const { t } = useI18n();
+
     const items = [
-        { label: "قيمة الأصول المقيمة", value: "500B+ SAR" },
-        { label: "رضا العملاء", value: "98%" },
-        { label: "تغطية جغرافية", value: "100%" },
-        { label: "جوائز تميز", value: "12" }
+        { label: t("appraisal.home.achievements.items.0.label"), value: "500B+ SAR" },
+        { label: t("appraisal.home.achievements.items.1.label"), value: "98%" },
+        { label: t("appraisal.home.achievements.items.2.label"), value: "100%" },
+        { label: t("appraisal.home.achievements.items.3.label"), value: "12" }
     ]
 
     return (
@@ -12,7 +17,7 @@ export default function Achievements() {
             <div className="container mx-auto px-6">
 
                 <h2 className="text-3xl font-extrabold text-[#041534] text-center mb-16">
-                    إنجازاتنا في أرقام
+                    {t("appraisal.home.achievements.title")}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

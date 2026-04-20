@@ -1,22 +1,25 @@
-import { color } from "framer-motion"
+"use client"
+import { useI18n } from "@/lib/i18n/context"
 
 export default function WhyUsSection() {
+    const { t } = useI18n();
+
     const items = [
         {
-            title: "تقارير معتمدة",
-            desc: 'متوافقة تماماً مع معايير "تقييم" السعودية.'
+            title: t("appraisal.home.whyUs.items.0.title"),
+            desc: t("appraisal.home.whyUs.items.0.desc")
         },
         {
-            title: "سرعة الاستجابة",
-            desc: "نلتزم بجداول زمنية صارمة للتسليم."
+            title: t("appraisal.home.whyUs.items.1.title"),
+            desc: t("appraisal.home.whyUs.items.1.desc")
         },
         {
-            title: "مصداقية عالية",
-            desc: "استقلالية تامة في كافة عمليات التقييم."
+            title: t("appraisal.home.whyUs.items.2.title"),
+            desc: t("appraisal.home.whyUs.items.2.desc")
         },
         {
-            title: "خبراء متخصصون",
-            desc: "فريق من المقيمين المعتمدين دولياً."
+            title: t("appraisal.home.whyUs.items.3.title"),
+            desc: t("appraisal.home.whyUs.items.3.desc")
         }
     ]
 
@@ -27,12 +30,11 @@ export default function WhyUsSection() {
                 <div className="space-y-8">
 
                     <h2 className="text-4xl font-extrabold text-white">
-                        لماذا تختار أماكن للتقييم؟
+                        {t("appraisal.home.whyUs.title")}
                     </h2>
 
                     <p className="text-slate-300 text-lg">
-                        نحن لا نقدم مجرد أرقام، بل نقدم رؤى استراتيجية مبنية
-                        على بيانات دقيقة وخبرات عميقة في السوق السعودي.
+                        {t("appraisal.home.whyUs.description")}
                     </p>
 
                     <div className="grid grid-cols-2 gap-6">

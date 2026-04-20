@@ -69,7 +69,7 @@ export default function Navbar() {
                                     : "text-slate-600 hover:text-[#006A66]"
                             )}
                         >
-                            {t(`nav.${link.key}`)}
+                            {t(`appraisal.navbar.${link.key}`)}
                         </Link>
                     ))}
                 </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 {!user && (
                     <Link href="/appraisal/request-appraisal-form">
                         <button className="bg-[#041534] text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 duration-150">
-                            {t("nav.requestAppraisal")}
+                            {t("appraisal.navbar.requestAppraisal")}
                         </button>
                     </Link>
                 )}

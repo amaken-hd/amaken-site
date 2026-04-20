@@ -18,22 +18,22 @@ export default function Footer() {
             <div className="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 className="text-lg font-bold mb-4">
-                        {t("services.appraisal.title")}
+                        {t("appraisal.home.services.realEstate.title")}
                     </h3>
 
                     <p className="text-slate-300 text-sm">
-                        {t("footer.description")}
+                        {t("appraisal.footer.description")}
                     </p>
                 </div>
 
                 <div>
-                    <h4 className="font-bold mb-4">{t("footer.quickLinks")}</h4>
+                    <h4 className="font-bold mb-4">{t("appraisal.footer.quickLinks")}</h4>
 
                     <ul className="space-y-2 text-sm">
                         {links.map((link) => (
                             <li key={link.key}>
                                 <Link href={link.href} className="hover:text-[#FBD164] transition-colors">
-                                    {t(`nav.${link.key}`)}
+                                    {t(`appraisal.navbar.${link.key}`)}
                                 </Link>
                             </li>
                         ))}
@@ -42,7 +42,7 @@ export default function Footer() {
 
                 <div>
                     <h4 className="font-bold mb-4">
-                        {locale === 'ar' ? 'البقاء على اطلاع' : 'Stay Connected'}
+                        {t("appraisal.footer.stayConnected")}
                     </h4>
 
                     <div className="flex gap-2">
@@ -51,7 +51,7 @@ export default function Footer() {
                             placeholder={t("projectsPage.form.email")}
                         />
                         <button className="bg-[#006A66] px-4 py-2 rounded-lg whitespace-nowrap">
-                            {locale === 'ar' ? 'اشترك' : 'Subscribe'}
+                            {t("appraisal.footer.subscribe")}
                         </button>
                     </div>
                 </div>

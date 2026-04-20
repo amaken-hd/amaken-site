@@ -1403,6 +1403,76 @@ const dictionariesObj = {
           }
         }
       }
+    },
+    appraisal: {
+      navbar: {
+        home: "Home",
+        services: "Services",
+        about: "About",
+        reports: "Reports",
+        blog: "Blog",
+        contactus: "Contact Us",
+        requestAppraisal: "Request Appraisal"
+      },
+      footer: {
+        stayConnected: "Stay Connected",
+        subscribe: "Subscribe",
+        quickLinks: "Quick Links",
+        description: "Amaken International Group is a leading Saudi company providing professional appraisal, consulting, and real estate services since 2010."
+      },
+      home: {
+        hero: {
+          title: "Professional Appraisal",
+          highlight: "Reliable and Certified",
+          description: "We provide real estate and industrial appraisal services with the highest standards of accuracy and credibility to empower your investments in the Kingdom.",
+          requestBtn: "Request Appraisal",
+          aboutBtn: "Know Us"
+        },
+        stats: {
+          reports: "Reports Completed",
+          years: "Years of Experience",
+          clients: "Satisfied Clients",
+          cities: "Main Cities"
+        },
+        services: {
+          realEstate: { title: "Real Estate Appraisal", desc: "Accurate appraisal of lands and residential complexes." },
+          machinery: { title: "Machinery Appraisal", desc: "Valuation of production lines and industrial machinery." },
+          facilities: { title: "Facilities Appraisal", desc: "Market value studies for facilities." }
+        },
+        whyUs: {
+          title: "Why Choose Amaken for Appraisal?",
+          description: "We don't just provide numbers, but strategic insights based on accurate data and deep experience in the Saudi market.",
+          items: [
+            { title: "Certified Reports", desc: "Fully compliant with Saudi 'Taqeem' standards." },
+            { title: "Quick Response", desc: "We commit to strict delivery timelines." },
+            { title: "High Credibility", desc: "Full independence in all appraisal processes." },
+            { title: "Specialized Experts", desc: "A team of internationally certified appraisers." }
+          ]
+        },
+        achievements: {
+          title: "Our Achievements in Numbers",
+          items: [
+            { label: "Value of Appraised Assets", value: "500B+ SAR" },
+            { label: "Client Satisfaction", value: "98%" },
+            { label: "Geographical Coverage", value: "100%" },
+            { label: "Excellence Awards", value: "12" }
+          ]
+        },
+        reports: {
+          title: "Customized Reports for Each Sector",
+          description: "We develop smart report models that meet the needs of banks, real estate developers, and investors.",
+          button: "View Report Sample"
+        },
+        team: {
+          title: "Elite Certified Appraisers",
+          members: [
+            { name: "Eng. Abdullah Mansour", role: "Senior Real Estate Appraiser" },
+            { name: "Mrs. Sara Al-Harbi", role: "Quality and Compliance Manager" },
+            { name: "Dr. Faisal Al-Otaibi", role: "Certified Facilities Appraiser" },
+            { name: "Eng. Khalid Al-Qahtani", role: "Machinery and Equipment Appraiser" }
+          ]
+        }
+      }
     }
   }
   , ar: {
@@ -2653,6 +2723,76 @@ const dictionariesObj = {
             title: "معتمدة من رؤية 2030",
             desc: "التوافق الاستراتيجي مع الأهداف الوطنية."
           }
+        }
+      }
+    },
+    appraisal: {
+      navbar: {
+        home: "الرئيسية",
+        services: "الخدمات",
+        about: "من نحن",
+        reports: "التقارير",
+        blog: "المدونة",
+        contactus: "تواصل معنا",
+        requestAppraisal: "طلب تقييم"
+      },
+      footer: {
+        stayConnected: "البقاء على اطلاع",
+        subscribe: "اشترك",
+        quickLinks: "روابط سريعة",
+        description: "مجموعة أماكن الدولية هي شركة سعودية رائدة تقدم خدمات التقييم والاستشارات والخدمات العقارية المهنية منذ عام 2010."
+      },
+      home: {
+        hero: {
+          title: "تقييم احترافي",
+          highlight: "موثوق ومعتمد",
+          description: "نقدم خدمات التقييم العقاري والصناعي بأعلى معايير الدقة والمصداقية لتمكين استثماراتكم في المملكة.",
+          requestBtn: "طلب تقييم",
+          aboutBtn: "تعرف علينا"
+        },
+        stats: {
+          reports: "تقارير منجزة",
+          years: "سنوات الخبرة",
+          clients: "عملاء راضين",
+          cities: "مدن رئيسية"
+        },
+        services: {
+          realEstate: { title: "التقييم العقاري", desc: "تقييم الأراضي والمجمعات السكنية بدقة." },
+          machinery: { title: "تقييم الآلات", desc: "تثمين خطوط الإنتاج والآلات الصناعية." },
+          facilities: { title: "تقييم المنشآت", desc: "دراسة القيمة السوقية للمنشآت." }
+        },
+        whyUs: {
+          title: "لماذا تختار أماكن للتقييم؟",
+          description: "نحن لا نقدم مجرد أرقام، بل نقدم رؤى استراتيجية مبنية على بيانات دقيقة وخبرات عميقة في السوق السعودي.",
+          items: [
+            { title: "تقارير معتمدة", desc: 'متوافقة تماماً مع معايير "تقييم" السعودية.' },
+            { title: "سرعة الاستجابة", desc: "نلتزم بجداول زمنية صارمة للتسليم." },
+            { title: "مصداقية عالية", desc: "استقلالية تامة في كافة عمليات التقييم." },
+            { title: "خبراء متخصصون", desc: "فريق من المقيمين المعتمدين دولياً." }
+          ]
+        },
+        achievements: {
+          title: "إنجازاتنا في أرقام",
+          items: [
+            { label: "قيمة الأصول المقيمة", value: "500B+ SAR" },
+            { label: "رضا العملاء", value: "98%" },
+            { label: "تغطية جغرافية", value: "100%" },
+            { label: "جوائز تميز", value: "12" }
+          ]
+        },
+        reports: {
+          title: "تقارير مخصصة لكل قطاع",
+          description: "نطور نماذج تقارير ذكية تلبي احتياجات البنوك وشركات التطوير العقاري والمستثمرين.",
+          button: "عرض نموذج تقرير"
+        },
+        team: {
+          title: "نخبة من المقيمين المعتمدين",
+          members: [
+            { name: "م. عبدالله منصور", role: "كبير مقيمي العقارات" },
+            { name: "أ. سارة الحربي", role: "مديرة الجودة والامتثال" },
+            { name: "د. فيصل العتيبي", role: "مقيم منشآت معتمد" },
+            { name: "م. خالد القحطاني", role: "مقيم آلات ومعدات" }
+          ]
         }
       }
     }

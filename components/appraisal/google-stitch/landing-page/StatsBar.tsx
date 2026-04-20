@@ -1,9 +1,14 @@
+"use client"
+import { useI18n } from "@/lib/i18n/context"
+
 export default function StatsBar() {
+    const { t } = useI18n();
+
     const stats = [
-        { value: "+100k", label: "تقارير منجزة" },
-        { value: "+10", label: "سنوات الخبرة" },
-        { value: "+50k", label: "عملاء راضين" },
-        { value: "+3", label: "مدن رئيسية" }
+        { value: "+100k", label: t("appraisal.home.stats.reports") },
+        { value: "+10", label: t("appraisal.home.stats.years") },
+        { value: "+50k", label: t("appraisal.home.stats.clients") },
+        { value: "+3", label: t("appraisal.home.stats.cities") }
     ]
 
     return (

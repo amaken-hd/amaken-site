@@ -1,6 +1,10 @@
+"use client"
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function HeroSection() {
+    const { t } = useI18n();
+
     return (
         <section className="relative min-h-[870px] flex items-center overflow-hidden bg-[#041534]">
             <div className="absolute inset-0 bg-gradient-to-tr from-[#041534] to-transparent opacity-60"></div>
@@ -10,26 +14,25 @@ export default function HeroSection() {
                 <div className="text-right space-y-8 order-2 md:order-1">
 
                     <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight">
-                        تقييم احترافي
+                        {t("appraisal.home.hero.title")}
                         <br />
-                        <span className="text-[#86f5ee]">موثوق ومعتمد</span>
+                        <span className="text-[#86f5ee]">{t("appraisal.home.hero.highlight")}</span>
                     </h1>
 
                     <p className="text-xl text-slate-300 max-w-xl">
-                        نقدم خدمات التقييم العقاري والصناعي بأعلى معايير الدقة والمصداقية
-                        لتمكين استثماراتكم في المملكة.
+                        {t("appraisal.home.hero.description")}
                     </p>
 
                     <div className="flex flex-wrap gap-4 justify-start">
 
                         <Link href="/appraisal/request-appraisal-form">
                             <button className="bg-[#006A66] text-white px-10 py-4 rounded-xl text-lg font-bold shadow-xl">
-                                طلب تقييم
+                                {t("appraisal.home.hero.requestBtn")}
                             </button>
                         </Link>
                         <Link href="/appraisal/about-us">
                             <button className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold">
-                                تعرف علينا
+                                {t("appraisal.home.hero.aboutBtn")}
                             </button>
                         </Link>
 
