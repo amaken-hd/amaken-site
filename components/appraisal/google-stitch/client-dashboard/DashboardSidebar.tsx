@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/appraisal/auth-context'
 
 export const DashboardSidebar = () => {
     const pathname = usePathname()
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
 
     const navItems = [
         { label: 'Dashboard', icon: 'dashboard', href: '/appraisal/client-dashboard' },
@@ -44,19 +44,13 @@ export const DashboardSidebar = () => {
                 })}
             </nav>
             <div className="pt-4 border-t border-[#edeef0]">
-                <a className="flex items-center gap-3 px-4 py-3 text-[#75777f] hover:bg-white/50 rounded-lg transition-all" href="#">
+                <button
+                    onClick={() => logout()}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                >
                     <span className="material-symbols-outlined align-middle">logout</span>
-                    <span>Logout</span>
-                </a>
-                <div className="mt-4 flex items-center gap-3 px-2">
-                    <div className="w-10 h-10 rounded-full bg-[#006a66] flex items-center justify-center text-white font-bold">
-                        {fullName.charAt(0).toUpperCase()}
-                    </div>
-                    <div className="overflow-hidden">
-                        <p className="text-sm font-bold text-[#041534] truncate">{fullName}</p>
-                        <p className="text-xs text-[#75777f] truncate">{user?.email}</p>
-                    </div>
-                </div>
+                    <span className="font-medium">Logout</span>
+                </button>
             </div>
         </aside>
     )

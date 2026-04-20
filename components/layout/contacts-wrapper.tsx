@@ -1,9 +1,7 @@
 "use client";
 
+import { SideContactMenu } from "@/components/ui/side-contact-menu";
 import { usePathname } from "next/navigation";
-import { WhatsAppContact } from "@/components/ui/whatsapp-contact";
-import SupportChat from "@/components/ui/support-chat";
-import { CallIcon } from "@/components/ui/call-icon";
 
 export default function ContactsWrapper() {
     const pathname = usePathname();
@@ -33,9 +31,7 @@ export default function ContactsWrapper() {
 
     return (
         <>
-            <WhatsAppContact color={whatsappColor} />
-            <SupportChat color={color} />
-            <CallIcon color={color} />
+            <SideContactMenu color={color} whatsappColor={whatsappColor} />
         </>
     );
 }
