@@ -100,12 +100,12 @@ export function Navbar() {
                             {locale === "en" ? "العربية" : "English"}
                         </button>
 
-                        <Button
+                        {/* <Button
                             className="bg-[#1e2c3a] text-[#ebebeb] hover:bg-[#1e2c3a]/90 rounded-none px-10 h-12 font-bold hidden md:flex text-xl"
                             asChild
                         >
                             <Link href="/portal/login">Login</Link>
-                        </Button>
+                        </Button> */}
 
                         {/* Mobile Menu Toggle */}
                         <button
@@ -140,12 +140,12 @@ export function Navbar() {
                                 {t(`nav.${link.key}`) || link.key}
                             </Link>
                         ))}
-                        <Button
+                        {/* <Button
                             className="bg-[#1e2c3a] text-white w-full rounded-none h-12 font-bold text-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             <Link href="/portal/login" className="w-full text-center">Login</Link>
-                        </Button>
+                        </Button> */}
                     </div>
                 </motion.div>
             )}
