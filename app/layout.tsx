@@ -120,7 +120,7 @@ export default function RootLayout({
         <I18nProvider>
           <AuthProvider>
             {children}
-            <ContactsWrapper />
+            {/* <ContactsWrapper /> */}
             <Toaster />
           </AuthProvider>
         </I18nProvider>
