@@ -28,7 +28,6 @@ export async function POST(request: Request) {
             custom_contact_time: new Date().toISOString().split('T')[1].split('.')[0],
             appraisal: body.appraisal,
             campaign_name: body.campaign_name,
-            custom_service_type: body.custom_service_type, // Added this field
             custom_appraisal_property_type: body.custom_appraisal_property_type,
         };
 
