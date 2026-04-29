@@ -31,9 +31,9 @@ import { useState } from "react";
 
 const formSchema = z.object({
     name: z.string().min(2, { message: "الاسم يجب أن يكون حرفين على الأقل" }),
-    phone: z.string().min(10, { message: "رقم الجوال يجب أن يكون 10 أرقام على الأقل" }),
+    phone: z.string().min(9, { message: "رقم الجوال يجب أن يكون 9 أرقام على الأقل" }),
     email: z.string().email({ message: "البريد الإلكتروني غير صحيح" }).optional().or(z.literal("")),
-    serviceType: z.string({ required_error: "يرجى اختيار نوع الخدمة" }).min(1, { message: "يرجى اختيار نوع الخدمة" }),
+    custom_appraisal_property_type: z.string({ required_error: "يرجى اختيار نوع الخدمة" }).min(1, { message: "يرجى اختيار نوع الخدمة" }),
 });
 
 export default function CampaignPage() {
@@ -46,12 +46,13 @@ export default function CampaignPage() {
             name: "",
             phone: "",
             email: "",
-            serviceType: "",
+            custom_appraisal_property_type: "",
         },
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
+
             const response = await fetch('/api/appraisal/lead', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -59,9 +60,10 @@ export default function CampaignPage() {
                     first_name: values.name,
                     mobile_no: values.phone,
                     email_id: values.email || undefined,
-                    custom_service_type: values.serviceType,
                     appraisal: 1,
-                    campaign_name: "120244303994540421"
+                    campaign_name: "120244303994540421",
+                    source2: "فيسبوك",
+                    custom_appraisal_property_type: values.custom_appraisal_property_type,
                 }),
             });
 
@@ -200,7 +202,7 @@ export default function CampaignPage() {
 
                                     <FormField
                                         control={form.control}
-                                        name="serviceType"
+                                        name="custom_appraisal_property_type"
                                         render={({ field }) => (
                                             <FormItem className="space-y-2">
                                                 <FormLabel className="text-zinc-300 font-tajawal text-sm flex items-center gap-2 pr-1">
@@ -213,10 +215,10 @@ export default function CampaignPage() {
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent className="bg-zinc-900 border-white/10 text-white font-tajawal">
-                                                        <SelectItem value="Real Estate Appraisal">أرض</SelectItem>
-                                                        <SelectItem value="Real Estate Appraisal">شقة</SelectItem>
-                                                        <SelectItem value="Real Estate Appraisal">فيلا</SelectItem>
-                                                        <SelectItem value="Facilities Appraisal">اخرى</SelectItem>
+                                                        <SelectItem value="أرض">أرض</SelectItem>
+                                                        <SelectItem value="شقة">شقة</SelectItem>
+                                                        <SelectItem value="فيلا">فيلا</SelectItem>
+                                                        <SelectItem value="اخرى">اخرى</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                                 <FormMessage className="text-red-400 font-tajawal text-xs mt-1" />

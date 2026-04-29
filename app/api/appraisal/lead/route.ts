@@ -20,8 +20,8 @@ export async function POST(request: Request) {
         // Build payload for ERPNext
         const payload: any = {
             status: "Lead",
-            source2: "موقع الشركة",
             company_type: "أفراد",
+            source2: body.source2,
             first_name: body.first_name,
             mobile_no: body.mobile_no,
             contact_date: new Date().toISOString().split('T')[0],
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
             appraisal: body.appraisal,
             campaign_name: body.campaign_name,
             custom_service_type: body.custom_service_type, // Added this field
+            custom_appraisal_property_type: body.custom_appraisal_property_type,
         };
 
         if (body.email_id) {
