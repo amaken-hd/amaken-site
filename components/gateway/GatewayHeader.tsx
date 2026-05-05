@@ -20,7 +20,7 @@ export const GatewayHeader = () => {
                     className="h-[2px] bg-[#cec6ae]/30"
                 />
                 <h1 className="font-headline text-4xl md:text-5xl font-extrabold tracking-[0.2em] text-[#1a1c1c] uppercase mb-2">
-                    مجمــوعة أماكن |Amaken Group
+                    مجموعة أماكن |Amaken Group
                 </h1>
                 {/* <span className="font-headline text-sm tracking-[0.3em] text-[#6d5e00] uppercase">Vision 2030 Partner</span> */}
                 <motion.div
