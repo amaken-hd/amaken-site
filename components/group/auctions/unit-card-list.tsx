@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AuctionUnit } from "./unit-types";
 import { Card } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
+import { getStatusInfo } from "@/lib/auction-status";
 
 // Mock countdown hook
 const useCountdown = (targetDate?: string) => {
@@ -13,11 +15,15 @@ const useCountdown = (targetDate?: string) => {
 };
 
 export function UnitCardList({ unit }: { unit: AuctionUnit }) {
+    const router = useRouter();
     const { days, hours, minutes, seconds } = useCountdown(unit.endDate);
 
-    const isEnded = unit.status === "ended";
-    const isActive = unit.status === "active";
-    const isUpcoming = unit.status === "upcoming";
+    const statusInfo = getStatusInfo(unit.status);
+    const { status: normalizedStatus } = statusInfo;
+
+    const handlePropertyDetails = () => {
+        router.push(`/group/auctions/${unit.auctionId}/property/${unit.id}`);
+    };
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat("ar-SA", {
@@ -28,21 +34,20 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
     };
 
     return (
-        <Card className={`group flex flex-col md:flex-row items-center border bg-white shadow-sm transition-all hover:shadow-md overflow-hidden ${isActive ? 'ring-1 ring-[#A28B67]/20' : ''} ${isEnded ? 'opacity-80 grayscale-[0.3]' : ''}`}>
+        <Card className={`group flex flex-col md:flex-row items-center border bg-white shadow-sm transition-all hover:shadow-md overflow-hidden ${normalizedStatus === 'active' ? 'ring-1 ring-[#A28B67]/20' : ''} ${normalizedStatus === 'ended' ? 'opacity-80 grayscale-[0.3]' : ''}`}>
             {/* Thumbnail */}
             <div className="relative w-full md:w-32 h-32 md:h-full shrink-0 bg-gray-100 hidden md:block aspect-square">
+
+
                 <Image
                     src={unit.image || "/placeholder.svg"}
                     alt={unit.title}
                     fill
                     className="object-cover"
                     sizes="120px"
+                    onClick={handlePropertyDetails}
                 />
-                {isActive && (
-                    <Badge className="absolute top-2 right-2 bg-[#A28B67] text-white hover:bg-[#8A7556] px-2 py-0.5 text-[10px] font-semibold">
-                        عرض
-                    </Badge>
-                )}
+
             </div>
 
             {/* Mobile Image (visible only on small screens) */}
@@ -54,7 +59,7 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 120px"
                 />
-                {isActive && (
+                {normalizedStatus === 'active' && (
                     <Badge className="absolute top-2 right-2 bg-[#A28B67] text-white hover:bg-[#8A7556] px-2 py-0.5 text-xs font-semibold">
                         عرض
                     </Badge>
@@ -103,7 +108,7 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
 
                 {/* Status & Time */}
                 <div className="flex flex-row md:flex-col items-center justify-between md:justify-center w-full md:w-32 shrink-0 gap-2">
-                    {(isActive || isUpcoming) && unit.endDate ? (
+                    {(normalizedStatus === 'active' || normalizedStatus === 'upcoming') && unit.endDate ? (
                         <div className="flex items-center gap-2" dir="ltr">
                             <div className="flex flex-col items-center">
                                 <span className="text-gray-800 font-mono font-bold text-xs bg-gray-50 px-1 rounded">
@@ -134,8 +139,8 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
                             </div>
                         </div>
                     ) : (
-                        <Badge variant="outline" className={`${isEnded ? 'text-gray-500' : ''}`}>
-                            {isEnded ? 'منتهي' : 'قادم'}
+                        <Badge variant="outline" className={`${normalizedStatus === 'ended' ? 'text-gray-500' : ''}`}>
+                            {normalizedStatus === 'ended' ? 'منتهي' : 'قادم'}
                         </Badge>
                     )}
 
@@ -143,13 +148,26 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
 
                 {/* Action */}
                 <div className="shrink-0 w-full md:w-auto">
-                    <Button
-                        size="sm"
-                        className="w-full md:w-auto bg-[#A28B67] hover:bg-[#8A7556] text-white whitespace-nowrap"
-                        disabled={isEnded}
-                    >
-                        {isActive ? 'زايد الآن' : 'التفاصيل'}
-                    </Button>
+                    {normalizedStatus === 'active' ? (
+                        <Button
+                            size="sm"
+                            className="w-full md:w-auto bg-[#A28B67] hover:bg-[#8A7556] text-white whitespace-nowrap"
+                            asChild
+                        >
+                            <a href={unit.custom_bidding_link} target="_blank" rel="noopener noreferrer">
+                                زايد الآن
+                            </a>
+                        </Button>
+                    ) : (
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            className="w-full md:w-auto border-[#A28B67] text-[#A28B67] hover:bg-[#A28B67] hover:text-white whitespace-nowrap"
+                            onClick={handlePropertyDetails}
+                        >
+                            التفاصيل
+                        </Button>
+                    )}
                 </div>
             </div>
         </Card>

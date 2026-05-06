@@ -7,54 +7,98 @@ import { PropertyFeatures } from "@/components/group/auctions/property-features"
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageSquare, Share2, Info } from "lucide-react";
+import { useState, useEffect, use } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Mock Data
-const mockPropertyDetails = {
-    id: "p1",
-    auctionId: "1",
-    auctionTitle: "Commercial Building - Al Olaya District",
-    title: "Office Tower A",
-    description: "A prestigious 12-story office tower located in the heart of Riyadh. Designed with modern architecture and fully equipped with state-of-the-art facilities. Ideal for corporate headquarters or investment. The building includes smart management systems, 24/7 security, and a multi-level parking structure.",
-    location: "Al Olaya, Riyadh",
-    price: "15,000,000",
-    images: [
-        "/commercial-building-riyadh-saudi-arabia.jpg",
-        "/modern-luxury-apartment-building.jpg",
-        "/construction-site-machinery.jpg",
-        "/luxury-villa-residential-property-saudi-arabia.jpg",
-    ],
-    features: {
-        area: "12,000 m²",
-        type: "Commercial",
-        rooms: "40 Offices",
-        bathrooms: "20",
-        orientation: "North-West",
-        year: "2023",
-        floors: "12",
-        advantages: [
-            "Smart Control System",
-            "High-Speed Elevators",
-            "Underground Parking",
-            "Fiber Optic Internet",
-            "CCTV & Security",
-            "Central HVAC",
-            "Smoke Detectors",
-            "Meeting Rooms",
-            "Lounge Area"
-        ]
-    }
-};
-
-export default function PropertyDetailsPage({ params }: { params: { id: string, propId: string } }) {
+export default function PropertyDetailsPage({ params }: { params: Promise<{ id: string, propId: string }> }) {
+    const { id, propId } = use(params);
     const { t, locale } = useI18n();
     const isRTL = locale === "ar";
     const groupColor = "#A28B67";
+    const [property, setProperty] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const NEXT_PUBLIC_ERPNEXT_URL = process.env.NEXT_PUBLIC_ERPNEXT_URL;
+
+    useEffect(() => {
+        const fetchPropertyDetails = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch(`/api/group/auctions/${id}/property/${propId}`);
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || "Failed to fetch property details");
+                }
+
+                setProperty(result.data);
+            } catch (err: any) {
+                setError(err.message);
+                console.error("Error fetching property details:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchPropertyDetails();
+    }, [id, propId]);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-[#faf7f2]/50">
+                <div className="container mx-auto px-4 lg:px-8 py-16">
+                    <Skeleton className="h-[400px] w-full mb-8" />
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <div className="lg:col-span-2 space-y-8">
+                            <Skeleton className="h-[300px] w-full" />
+                            <Skeleton className="h-[200px] w-full" />
+                        </div>
+                        <div className="space-y-8">
+                            <Skeleton className="h-[400px] w-full" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !property) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#faf7f2]/50">
+                <div className="text-center p-8 bg-white rounded-xl shadow-sm border">
+                    <h2 className="text-xl font-bold text-red-600 mb-2">Error</h2>
+                    <p className="text-gray-600">{error || "Property not found"}</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Prepare images array
+    const images: string[] = [
+        property.custom_unit_image ? `${NEXT_PUBLIC_ERPNEXT_URL}${property.custom_unit_image}` : "/placeholder.svg",
+        property.image11 ? `${NEXT_PUBLIC_ERPNEXT_URL}${property.image11}` : null,
+        property.image22 ? `${NEXT_PUBLIC_ERPNEXT_URL}${property.image22}` : null,
+        property.image33 ? `${NEXT_PUBLIC_ERPNEXT_URL}${property.image33}` : null,
+        property.image44 ? `${NEXT_PUBLIC_ERPNEXT_URL}${property.image44}` : null,
+    ].filter((img): img is string => Boolean(img));
+
+    // Prepare features object
+    const features = {
+        area: property.instrument_size || property.area || "غير محدد",
+        type: property.property_type || "غير محدد",
+        rooms: property.rooms || "غير محدد",
+        bathrooms: property.bathrooms || "غير محدد",
+        orientation: property.orientation || "غير محدد",
+        year: property.year_built || "غير محدد",
+        floors: property.floors || "غير محدد",
+        advantages: [] // Can be populated later if available
+    };
 
     const breadcrumbItems = [
         { label: t("nav.home"), href: "/group" },
         { label: t("auctions.pageTitles.auctions"), href: "/group/auctions" },
-        { label: mockPropertyDetails.auctionTitle, href: `/group/auctions/${params.id}` },
-        { label: mockPropertyDetails.title, href: `/group/auctions/${params.id}/property/${params.propId}` },
+        { label: property.auctionDetails?.auction_name || property.project_name || "المزاد", href: `/group/auctions/${id}` },
+        { label: property.title || "تفاصيل العقار", href: `/group/auctions/${id}/property/${propId}` },
     ];
 
     return (
@@ -70,7 +114,7 @@ export default function PropertyDetailsPage({ params }: { params: { id: string, 
                     {/* Left Side: Images & Features */}
                     <div className="lg:col-span-2 space-y-12">
                         <SectionReveal>
-                            <PropertyGallery images={mockPropertyDetails.images} />
+                            <PropertyGallery images={images} />
                         </SectionReveal>
 
                         <SectionReveal delay={0.1}>
@@ -80,13 +124,13 @@ export default function PropertyDetailsPage({ params }: { params: { id: string, 
                                     {t("auctions.labels.description")}
                                 </h2>
                                 <p className="text-gray-600 leading-relaxed whitespace-pre-line text-lg">
-                                    {mockPropertyDetails.description}
+                                    {property.description || property.title || "لا يوجد وصف متاح"}
                                 </p>
                             </div>
                         </SectionReveal>
 
                         <SectionReveal delay={0.2}>
-                            <PropertyFeatures features={mockPropertyDetails.features} />
+                            <PropertyFeatures features={features} />
                         </SectionReveal>
                     </div>
 
@@ -103,7 +147,7 @@ export default function PropertyDetailsPage({ params }: { params: { id: string, 
                                     </span>
                                     <div className="flex items-baseline gap-2">
                                         <span className="text-4xl font-bold text-gray-900">
-                                            {mockPropertyDetails.price}
+                                            {property.auctionprice || property.sales || "غير محدد"}
                                         </span>
                                         <span className="text-[#A28B67] font-medium">
                                             {t("projectsPage.units.currency")}
@@ -139,13 +183,27 @@ export default function PropertyDetailsPage({ params }: { params: { id: string, 
                                 {/* Status Indicator */}
                                 <div className="mt-8 pt-8 border-t border-gray-100 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                        <div className={`w-2 h-2 rounded-full ${(property.status === "Active" || property.status === "جاري" || property.status === "active")
+                                                ? "bg-green-500 animate-pulse"
+                                                : property.status === "Ended" || property.status === "منتهي"
+                                                    ? "bg-gray-400"
+                                                    : "bg-yellow-500 animate-pulse"
+                                            }`} />
                                         <span className="text-sm font-medium text-gray-600">
-                                            {isRTL ? "المزاد قادم" : "Auction Upcoming"}
+                                            {(() => {
+                                                const status = property.status?.toLowerCase();
+                                                if (status === "active" || status === "جاري" || status === "جارة") {
+                                                    return "المزاد جاري";
+                                                } else if (status === "ended" || status === "منتهي") {
+                                                    return "المزاد منتهي";
+                                                } else {
+                                                    return "المزاد قادم";
+                                                }
+                                            })()}
                                         </span>
                                     </div>
                                     <span className="text-sm text-gray-400">
-                                        ID: {mockPropertyDetails.id}
+                                        ID: {property.name || propId}
                                     </span>
                                 </div>
                             </div>

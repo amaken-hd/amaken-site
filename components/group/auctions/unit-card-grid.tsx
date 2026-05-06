@@ -45,10 +45,10 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
 
                 {/* Badges Overlay */}
                 <div className="absolute top-4 left-4 right-4 flex items-start justify-between">
-                    <div className="flex flex-col gap-2">
+                    {/* <div className="flex flex-col gap-2">
                         {isActive && (
                             <Badge className="bg-[#A28B67] text-white hover:bg-[#8A7556] px-3 py-1 font-semibold">
-                                عرض مجاني
+                                جاري
                             </Badge>
                         )}
                         {isEnded && (
@@ -61,10 +61,10 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
                                 قادم
                             </Badge>
                         )}
-                    </div>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/20 text-white backdrop-blur-sm hover:bg-black/40 hover:text-white">
+                    </div> */}
+                    {/* <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/20 text-white backdrop-blur-sm hover:bg-black/40 hover:text-white">
                         <Heart className="h-4 w-4" />
-                    </Button>
+                    </Button> */}
                 </div>
 
                 {/* Status Overlay */}
@@ -165,8 +165,17 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
                 <Button
                     className="w-full bg-[#A28B67] hover:bg-[#8A7556] text-white"
                     disabled={isEnded}
+                    asChild
                 >
-                    {isActive ? 'زايد الآن' : isEnded ? 'التفاصيل' : 'التفاصيل'}
+                    {isActive ? (
+                        <a href={unit.custom_bidding_link} target="_blank" rel="noopener noreferrer">
+                            زايد الآن
+                        </a>
+                    ) : isEnded ? (
+                        'التفاصيل'
+                    ) : (
+                        'التفاصيل'
+                    )}
                 </Button>
             </CardFooter>
         </Card>

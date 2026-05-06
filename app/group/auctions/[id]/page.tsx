@@ -15,7 +15,7 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
     const [auction, setAuction] = useState<Auction | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+    const NEXT_PUBLIC_ERPNEXT_URL = process.env.NEXT_PUBLIC_ERPNEXT_URL;
     useEffect(() => {
         const fetchAuction = async () => {
             try {
@@ -120,7 +120,8 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                     highestBid: parseFloat(u.auctionprice) || 0, // Placeholder
                     bidCount: 0, // Placeholder
                     status: status === "current" ? "active" : status as any,
-                    image: u.image11 || "/placeholder.svg"
+                    image: NEXT_PUBLIC_ERPNEXT_URL + u.custom_unit_image || "/placeholder.svg",
+                    custom_bidding_link: u.custom_bidding_link
                 })) || []}
                 isLoading={isLoading}
             />

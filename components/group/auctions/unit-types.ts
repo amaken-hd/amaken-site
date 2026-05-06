@@ -13,6 +13,7 @@ export interface AuctionUnit {
     status: AuctionUnitStatus;
     endDate?: string;
     image: string;
+    custom_bidding_link?: string;
 }
 
 export const mockAuctionUnits: AuctionUnit[] = [
