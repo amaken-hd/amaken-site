@@ -42,7 +42,7 @@ export async function GET(
         // Fetch associated units (Real Estate Sales)
         let units = [];
         try {
-            const unitsFilters = JSON.stringify([["custom_auction", "=", id]]);
+            const unitsFilters = JSON.stringify([["custom_auction", "=", id], ["custom_is_published", "=", 1]]);
             const unitsFields = JSON.stringify(["name", "title", "property_type", "city", "plot_number", "auctionprice", "custom_bidding_link", "custom_unit_image", "status"]);
             const unitsUrl = new URL(`${ERPNEXT_URL}/api/resource/Real Estate Sales`);
             unitsUrl.searchParams.set("filters", unitsFilters);
