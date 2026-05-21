@@ -19,7 +19,7 @@ export default function Page() {
             <WhyUsSection />
             <Achievements />
             <ReportsSection />
-            <TeamSection />
+            {/* <TeamSection /> */}
             <Partners />
         </>
     )
