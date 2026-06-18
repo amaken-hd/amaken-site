@@ -104,7 +104,7 @@ export function Footer({ color }: FooterProps) {
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
                     <p>&copy; {new Date().getFullYear()} {t("common.brandName")} {t("common.brandSubtitle")}. {t("footer.rights")}</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link href="/privacy" className="hover:text-white transition-colors">{t("common.privacy")}</Link>
+                        <Link href="/group/privacy-policy" className="hover:text-white transition-colors">{t("common.privacy")}</Link>
                         <Link href="/terms" className="hover:text-white transition-colors">{t("common.terms")}</Link>
                     </div>
                 </div>

@@ -1103,7 +1103,23 @@ const dictionariesObj = {
     clients: {
       title: "Our Clients",
     },
-
+    privacyPolicy: {
+      title: "Privacy Policy",
+      lastUpdated: "Last Updated",
+      intro: "AMAKEN International Group is committed to protecting the privacy and confidentiality of its clients' personal information. The information collected through this form will be used solely for the purpose of contacting clients and providing information about our real estate projects and services.",
+      section1: {
+        title: "Data Usage",
+        body: "We do not sell, share, or disclose personal information to any third party unless required by applicable laws or with the client's consent.",
+      },
+      section2: {
+        title: "Your Consent",
+        body: "By submitting your information through this form, you agree to be contacted by AMAKEN International Group via phone calls, text messages, or WhatsApp regarding project details, offers, and related services.",
+      },
+      section3: {
+        title: "Contact Us",
+        body: "If you have any questions regarding this Privacy Policy, please contact us at",
+      },
+    },
     miscellaneousUnitsPage: {
       title: "Miscellaneous Units",
       subtitle: "Explore our diverse range of individual real estate units",
@@ -2425,6 +2441,23 @@ const dictionariesObj = {
     },
     clients: {
       title: "عملاؤنا المتميزين",
+    },
+    privacyPolicy: {
+      title: "سياسة الخصوصية",
+      lastUpdated: "آخر تحديث",
+      intro: "تلتزم مجموعة أماكن الدولية بالحفاظ على خصوصية وسرية بيانات العملاء. يتم جمع البيانات المقدمة من خلال هذا النموذج واستخدامها فقط لغرض التواصل مع العميل وتزويده بالمعلومات المتعلقة بالمشروعات العقارية والخدمات المقدمة.",
+      section1: {
+        title: "استخدام البيانات",
+        body: "لن يتم بيع أو مشاركة أو الإفصاح عن بيانات العملاء لأي طرف ثالث إلا في الحالات التي يقتضيها النظام أو بموافقة العميل.",
+      },
+      section2: {
+        title: "موافقتك",
+        body: "بتقديم بياناتك من خلال هذا النموذج، فإنك توافق على قيام مجموعة أماكن الدولية بالتواصل معك عبر الهاتف أو الرسائل النصية أو تطبيق واتساب لتقديم المعلومات والعروض المتعلقة بالمشروع.",
+      },
+      section3: {
+        title: "تواصل معنا",
+        body: "في حال وجود أي استفسارات تتعلق بالخصوصية، يرجى التواصل معنا عبر الرقم",
+      },
     },
     miscellaneousUnitsPage: {
       title: "الوحدات",
