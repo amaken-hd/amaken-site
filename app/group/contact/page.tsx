@@ -5,7 +5,7 @@ import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, MapPin, Mail } from "lucide-react"
+import { Facebook, Twitter, Instagram, Linkedin, Phone, MapPin, Mail } from "lucide-react"
 
 export default function GroupContactPage() {
     const { t, locale, direction } = useI18n()
@@ -68,7 +68,7 @@ export default function GroupContactPage() {
                                             </div>
                                             <span className="pt-2 font-medium leading-relaxed">
                                                 {locale === "ar"
-                                                    ? "المملكة العربية السعودية - الرياض - طريق التحلية"
+                                                    ? "الدائري الشرقي الفرعيRQRA6805, 6805, 2990 ,الرياض ,14213, حي الريان ,المملكة العربية السعودية"
                                                     : "Saudi Arabia - Riyadh - Tahlia Street"}
                                             </span>
                                         </div>
@@ -79,18 +79,19 @@ export default function GroupContactPage() {
                                     <p className="text-white/80 text-sm mb-4 font-medium">
                                         {locale === "ar" ? "تابعونا على:" : "Follow us on:"}
                                     </p>
-                                    <div className="flex gap-3">
-                                        {['twitter', 'linkedin', 'instagram', 'snapchat'].map((social, idx) => (
-                                            <a
-                                                key={social}
-                                                href="#"
-                                                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center transition-all duration-300 border border-white/20"
-                                            >
-                                                <span className="sr-only">{social}</span>
-                                                {/* Icons placeholders or actual icons can be added here */}
-                                                <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                                            </a>
-                                        ))}
+                                    <div className="flex gap-4">
+                                        <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                                            <Facebook size={20} />
+                                        </a>
+                                        <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                                            <Twitter size={20} />
+                                        </a>
+                                        <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                                            <Instagram size={20} />
+                                        </a>
+                                        <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                                            <Linkedin size={20} />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
