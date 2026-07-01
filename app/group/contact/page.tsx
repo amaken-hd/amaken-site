@@ -69,7 +69,7 @@ export default function GroupContactPage() {
                                             <span className="pt-2 font-medium leading-relaxed">
                                                 {locale === "ar"
                                                     ? "الدائري الشرقي الفرعيRQRA6805, 6805, 2990 ,الرياض ,14213, حي الريان ,المملكة العربية السعودية"
-                                                    : "Saudi Arabia - Riyadh - Tahlia Street"}
+                                                    : "Eastern Ring Road Branch, RQRA6805, 6805, 2990, Riyadh, 14213, Al Rayyan District, Kingdom of Saudi Arabia"}
                                             </span>
                                         </div>
                                     </div>
