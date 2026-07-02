@@ -43,6 +43,7 @@ export default async function HomePage() {
 
     return (
         <>
+
             <Hero
                 images={["/group/landing0.jpeg", "/group/landing1.jpg", "/group/landing2.jpg", "/group/landing3.png"]}
                 interval={15000}
