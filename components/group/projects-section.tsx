@@ -84,7 +84,7 @@ export function ProjectsSection({ projects: initialProjects = [] }: ProjectsSect
                         <div className="flex -ml-4 touch-pan-y">
                             {filteredProjects.map((project) => (
                                 <div key={project.id} className="pl-4 min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
-                                    <a href={`/group/projects/${project.slug}`} className="block h-full">
+                                    <a href={project.id === "ramlia-123" ? "/group/ramlia" : `/group/projects/${project.slug}`} className="block h-full">
                                         <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full border border-gray-100 group/card">
                                             {/* Image */}
                                             <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">

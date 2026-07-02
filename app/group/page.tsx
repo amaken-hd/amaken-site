@@ -18,13 +18,34 @@ async function getProjects() {
 }
 
 export default async function HomePage() {
-    const projects = await getProjects();
+    let projects = await getProjects();
+    // add static project in list 
+    const staticProject = {
+        id: "ramlia-123",
+        slug: "ramlia",
+        type: "residential_sale",
+        name: {
+            ar: "رملية",
+            en: "Ramlia"
+        },
+        location: {
+            ar: "الرياض, حي النرجس", // اكتب اسم المنطقة بالعربي
+            en: "Riyadh, Al-Narjis District" // اكتب اسم المنطقة بالإنجليزي
+        },
+        images: ["/group/landing0.jpeg"], // ضع مسار الصورة الخاص بك هنا
+        status: "Featured",
+        statusAr: "مميز",
+        totalUnits: 108,
+        year: "2026"
+    };
+
+    projects = [staticProject, ...projects];
 
     return (
         <>
             <Hero
-                images={["/group/landing1.jpg", "/group/landing2.jpg", "/group/landing3.png"]}
-                interval={5000}
+                images={["/group/landing0.jpeg", "/group/landing1.jpg", "/group/landing2.jpg", "/group/landing3.png"]}
+                interval={15000}
             />
             <ServicesSection2 />
             <ProjectsSection projects={projects} />
@@ -34,4 +55,3 @@ export default async function HomePage() {
         </>
     );
 }
-

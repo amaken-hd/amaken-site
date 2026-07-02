@@ -60,11 +60,11 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
 
             <div className="container relative z-10 px-4 md:px-8  text-start">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 130 }}
+                    animate={{ opacity: 1, y: 100 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                         <span className="text-white">{t("hero.tagline")}</span>
                         <br />
 
@@ -86,8 +86,8 @@ export function Hero({ images = [], interval = 30000 }: HeroProps) {
 
                 <motion.div
                     className="flex flex-col md:flex-row gap-4 items-center md:justify-start justify-center"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 130 }}
+                    animate={{ opacity: 1, y: 100 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
                     <Link href="/group/services">
