@@ -590,7 +590,7 @@ export default function RamliaPage() {
                 className="w-full h-full min-h-[500px] rounded-[2rem] bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('/GROUP/ramlia/02.png')",
+                    "url('/group/ramlia/02.png')",
                 }}
               />
             </div>
