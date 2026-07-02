@@ -48,7 +48,7 @@ const MODELS = {
 };
 
 export default function RamliaPage() {
-  const [selectedModel, setSelectedModel] = useState<"A" | "B" | "C" | "D">("A");
+  const [selectedModel, setSelectedModel] = useState<"A" | "B" | "C" | "D" | "E">("A");
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [phoneError, setPhoneError] = useState("");
