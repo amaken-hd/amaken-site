@@ -54,7 +54,6 @@ export default function RamliaPage() {
   const [phoneError, setPhoneError] = useState("");
   const interiorImages = [
     "/group/ramlia/entry01.png",
-    "/group/ramlia/entry02.png",
     "/group/ramlia/entry03.png",
     "/group/ramlia/entry04.png",
     "/group/ramlia/entry05.png",
@@ -809,11 +808,11 @@ export default function RamliaPage() {
               }}
             >
               <div className="space-y-2">
-                <label className="font-bold text-sm text-on-surface">الاسم بالكامل</label>
+                <label className="font-bold text-sm text-primary text-on-surface">الاسم بالكامل</label>
                 <input className="w-full px-6 py-4 text-primary rounded-xl border border-outline-variant focus:ring-primary focus:border-primary bg-white text-on-surface" placeholder="مثال: محمد محسن" type="text" name="name" required />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-sm text-on-surface">رقم الجوال</label>
+                <label className="font-bold text-sm text-primary text-on-surface">رقم الجوال</label>
                 <input
                   className={`w-full px-6 py-4 text-primary rounded-xl border ${phoneError ? "border-error" : "border-outline-variant"} focus:ring-primary focus:border-primary bg-white text-on-surface`}
                   placeholder="05xxxxxxxx"
@@ -836,7 +835,7 @@ export default function RamliaPage() {
               </div>
 
               <div className="md:col-span-2 space-y-2">
-                <label className="font-bold text-sm text-on-surface">النموذج المهتم به</label>
+                <label className="font-bold text-sm text-primary text-on-surface  ">النموذج المهتم به</label>
                 <select className="w-full px-6 py-4 text-primary rounded-xl border border-outline-variant focus:ring-primary focus:border-primary bg-white text-on-surface">
                   <option>نموذج A</option>
                   <option>نموذج B</option>
