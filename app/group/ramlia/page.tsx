@@ -372,7 +372,7 @@ export default function RamliaPage() {
               <span className="text-primary font-label-sm tracking-widest block mb-4 uppercase">عن رملية</span>
               <h2 className="font-headline-md text-headline-md mb-6 leading-tight">صياغة جديدة لمفهوم السكن الفاخر</h2>
               <p className="text-on-surface-variant font-body-lg text-body-lg mb-8 leading-relaxed">
-                مشروع رمليّة هو ثمرة تعاون بين <span className="font-medium">شركة محيط الإستثمار للتطوير والإستثمار العقاري</span> و <span className="font-medium">مجموعة هشام بن عبد العزيز الموسى للإستثمار</span>، يهدف إلى خلق بيئة سكنية تجمع بين الخصوصية التامة والجمال المعماري المستوحى من جذورنا.
+                مشروع رمليّة هو ثمرة تعاون بين <span className="font-medium">شركة الإعمار للتطوير</span> و <span className="font-medium">مجموعة هشام بن عبد العزيز الموسى للإستثمار</span>، يهدف إلى خلق بيئة سكنية تجمع بين الخصوصية التامة والجمال المعماري المستوحى من جذورنا.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
