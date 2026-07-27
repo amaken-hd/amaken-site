@@ -15,22 +15,22 @@ export async function GET() {
         "name",
         "project_name",
         "project_type",
-        "project_image",
+        "custom_project_image",
         "city",
-        "neighborhood",
-        "no_of_units",
-        "no_of_buildings",
+        "gada",
+        "units",
+        "blocks",
         "status",
-        "implementation_year",
-        "description"
+        "implement",
+        "custom_description"
     ]);
 
     const filters = JSON.stringify([
-        ["is_published", "=", 1]
+        ["custom_is_published", "=", 1]
     ]);
 
     try {
-        const url = `${ERP_API_URL}/api/resource/Sales Project?order_by=creation desc&fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
+        const url = `${ERP_API_URL}/api/resource/Project?order_by=creation desc&fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
 
         const response = await fetch(
             url,
@@ -75,7 +75,7 @@ export async function GET() {
 
             return {
                 id: erpProject.name,
-                slug: erpProject.name.toLowerCase().replace(/\s+/g, "-"),
+                slug: erpProject.project_name,
                 name: {
                     en: erpProject.project_name,
                     ar: erpProject.project_name,
@@ -85,8 +85,8 @@ export async function GET() {
                     ar: erpProject.description,
                 },
                 location: {
-                    en: `${erpProject.city || ''} ${erpProject.neighborhood ? ', ' + erpProject.neighborhood : ''}`,
-                    ar: `${erpProject.city || ''} ${erpProject.neighborhood ? ', ' + erpProject.neighborhood : ''}`,
+                    en: `${erpProject.city || ''} ${erpProject.gada ? ', ' + erpProject.gada : ''}`,
+                    ar: `${erpProject.city || ''} ${erpProject.gada ? ', ' + erpProject.gada : ''}`,
                 },
                 type: mappedType,
                 status: erpProject.status || "For Sale",
@@ -98,7 +98,7 @@ export async function GET() {
                     ar: "أماكن للتطوير",
                 },
                 units: [],
-                totalUnits: erpProject.no_of_units || 0,
+                totalUnits: parseInt(erpProject.units) || 0,
             };
         });
 

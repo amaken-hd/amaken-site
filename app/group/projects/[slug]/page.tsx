@@ -15,7 +15,8 @@ export default function ProjectPage({
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    const { slug } = use(params);
+    const { slug: rawSlug } = use(params);
+    const slug = decodeURIComponent(rawSlug);
     const [project, setProject] = useState<ProjectData | null>(null);
     const [loading, setLoading] = useState(true);
     const { locale } = useI18n();
@@ -31,11 +32,15 @@ export default function ProjectPage({
                 const erpProjects: ProjectData[] = jsonProjects.data || [];
 
                 // Find the project that matches the dynamically generated slug
-                const found = erpProjects.find((p) => p.slug === slug);
+                const found = erpProjects.find((p) => {
+                    return p.slug === slug;
+                });
+
                 if (found) {
                     // Fetch images
                     const resImages = await fetch(`/api/group/projects/${found.id}/images`);
                     const jsonImages = await resImages.json();
+                    console.log(jsonImages.data)
                     if (jsonImages.data && jsonImages.data.length > 0) {
                         found.images = jsonImages.data;
                     }
@@ -69,6 +74,7 @@ export default function ProjectPage({
     }
 
     if (!project) {
+        console.log("hi there no project fetched")
         notFound();
         return null;
     }

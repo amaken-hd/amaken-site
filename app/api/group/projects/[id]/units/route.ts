@@ -23,13 +23,12 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
         "custom_name_on_website",
         "custom_description",
         "custom_unit_image",
-        "custom_project",
+        "project",
         "authorization_number"
     ]);
 
     const filters = JSON.stringify([
-        ["custom_project", "=", projectId],
-        ["marketing", "=", "direct marketing"],
+        ["project", "=", projectId],
         ["custom_is_published", "=", 1],
         ["authorization_number", "!=", ""]
     ]);

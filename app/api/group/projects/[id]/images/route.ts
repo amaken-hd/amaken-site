@@ -13,7 +13,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
 
     const fields = JSON.stringify(["file_url"]);
     const filters = JSON.stringify([
-        ["attached_to_doctype", "=", "Sales Project"],
+        ["attached_to_doctype", "=", "Project"],
         ["attached_to_name", "=", projectId]
     ]);
 
@@ -48,7 +48,8 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
             return `${ERP_API_URL}${f.file_url}`;
         });
 
-        return NextResponse.json({ data: imageUrls });
+        const filteredImageUrls = imageUrls.filter((image: any) => !image.includes(".pdf"));
+        return NextResponse.json({ data: filteredImageUrls });
     } catch (error) {
         console.error("Error fetching project images:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
