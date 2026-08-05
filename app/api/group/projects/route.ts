@@ -26,12 +26,12 @@ export async function GET() {
     ]);
 
     const filters = JSON.stringify([
-        ["custom_is_published", "=", 1]
+        ["custom_is_published", "=", 1],
+        ["project_type", "=", 'بيع سكني']
     ]);
 
     try {
-        const url = `${ERP_API_URL}/api/resource/Project?order_by=creation desc&fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
-
+        const url = `${ERP_API_URL}/api/resource/Project?order_by=custom_is_featured desc,creation desc&fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
         const response = await fetch(
             url,
             {
@@ -58,11 +58,11 @@ export async function GET() {
         // Transform to ProjectData
         const projects: ProjectData[] = erpProjects.map((erpProject: any) => {
             let imageUrl = "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop";
-            if (erpProject.project_image) {
-                if (erpProject.project_image.startsWith("http")) {
-                    imageUrl = erpProject.project_image;
+            if (erpProject.custom_project_image) {
+                if (erpProject.custom_project_image.startsWith("http")) {
+                    imageUrl = erpProject.custom_project_image;
                 } else {
-                    imageUrl = `${ERP_API_URL}${erpProject.project_image}`;
+                    imageUrl = `${ERP_API_URL}${erpProject.custom_project_image}`;
                 }
             }
 
