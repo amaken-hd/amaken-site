@@ -1,5 +1,5 @@
 import { ServicesSection2 } from "@/components/group/services-section-2";
-import { ProjectsSection } from "@/components/group/projects-section";
+import { ProjectsSection } from "@/components/group/projects/projects-section";
 import { ClientsSection } from "@/components/group/home/clients-section";
 import { AuctionsPreview } from "@/components/group/home/auctions-preview";
 import { CTASection } from "@/components/group/home/cta-section";
@@ -39,7 +39,7 @@ export default async function HomePage() {
         year: "2026"
     };
 
-    projects = [staticProject, ...projects];
+    // projects = [staticProject, ...projects];
 
     return (
         <>

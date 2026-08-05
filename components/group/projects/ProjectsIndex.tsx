@@ -4,15 +4,17 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectsMapLoader } from "./ProjectsMapLoader";
 import { ProjectData } from "@/types/ProjectData";
-import { Loader2 } from "lucide-react";
+import { Loader2, LayoutGrid, Map as MapIcon } from "lucide-react";
 
 export function ProjectsIndex() {
-    const { dictionary } = useI18n();
+    const { dictionary, locale } = useI18n();
     const t = (dictionary as any).projectsPage;
 
     const [projects, setProjects] = useState<ProjectData[]>([]);
     const [loading, setLoading] = useState(true);
+    const [view, setView] = useState<"grid" | "map">("grid");
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -88,12 +90,39 @@ export function ProjectsIndex() {
                         {t?.filter?.commercial || "Commercial"}
                     </button>
                 </div>
+
+                <div className="flex-1 flex justify-center lg:justify-end">
+                    <div className="flex gap-1 p-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full">
+                        <button
+                            onClick={() => setView("grid")}
+                            className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${view === "grid"
+                                ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm"
+                                : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                }`}
+                        >
+                            <LayoutGrid className="w-4 h-4" />
+                            {locale === "ar" ? "كروت" : "Cards"}
+                        </button>
+                        <button
+                            onClick={() => setView("map")}
+                            className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${view === "map"
+                                ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm"
+                                : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                }`}
+                        >
+                            <MapIcon className="w-4 h-4" />
+                            {locale === "ar" ? "خريطة" : "Map"}
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {loading ? (
                 <div className="flex justify-center items-center py-20">
                     <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
                 </div>
+            ) : view === "map" ? (
+                <ProjectsMapLoader projects={projects} />
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.length > 0 ? (

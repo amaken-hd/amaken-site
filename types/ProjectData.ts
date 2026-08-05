@@ -14,4 +14,6 @@ export interface ProjectData {
     units: UnitData[];
     developer: { en: string; ar: string };
     totalUnits?: number;
+    lat?: number;
+    lng?: number;
 }

@@ -20,13 +20,14 @@ export async function GET() {
         "custom_name_on_website",
         "custom_description",
         "custom_unit_image",
-        "marketing",
+        // "marketing",
         "city",
         "authorization_number"
     ]);
 
     const filters = JSON.stringify([
-        ["marketing", "in", ["وحدات متفرقة", "direct marketing"]],
+        // ["marketing", "in", ["وحدات متفرقة", "direct marketing"]],
+        ["project", "is", "not set"],
         ["custom_is_published", "=", 1],
         ["authorization_number", "!=", ""]
     ]);

@@ -22,7 +22,9 @@ export async function GET() {
         "blocks",
         "status",
         "implement",
-        "custom_description"
+        "custom_description",
+        "custom_latitude",
+        "custom_longitude"
     ]);
 
     const filters = JSON.stringify([
@@ -99,6 +101,8 @@ export async function GET() {
                 },
                 units: [],
                 totalUnits: parseInt(erpProject.units) || 0,
+                lat: erpProject.custom_latitude ? parseFloat(erpProject.custom_latitude) : undefined,
+                lng: erpProject.custom_longitude ? parseFloat(erpProject.custom_longitude) : undefined,
             };
         });
 
