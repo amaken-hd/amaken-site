@@ -25,6 +25,7 @@ export const GatewayCard: React.FC<GatewayCardProps> = ({
     accentColor = '#efd447'
 }) => {
     return (
+        <a href={href} className="block cursor-pointer">
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,8 +52,7 @@ export const GatewayCard: React.FC<GatewayCardProps> = ({
                 <p className="text-[#4b4734] text-sm leading-relaxed mb-8 font-light">
                     {description}
                 </p>
-                <a
-                    href={href}
+                <div
                     className={`w-full py-4 font-bold tracking-widest text-xs uppercase flex items-center justify-center gap-3 transition-all duration-300 ${isFeatured
                         ? 'bg-[#1a1c1c] text-white hover:bg-[var(--accent-color)]'
                         : 'bg-[#1a1c1c] text-white hover:bg-[var(--accent-color)]'
@@ -65,8 +65,9 @@ export const GatewayCard: React.FC<GatewayCardProps> = ({
                     >
                         <span className="material-symbols-outlined text-sm">arrow_forward</span>
                     </motion.div>
-                </a>
+                </div>
             </div>
         </motion.div>
+        </a>
     )
 }
