@@ -55,7 +55,7 @@ export function ProjectsSection({ projects: initialProjects = [] }: ProjectsSect
                 {/* Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-[#636363] mb-8">
-                        {locale === "ar" ? "مشاريع" : "Projects"}
+                        {locale === "ar" ? "المشاريع" : "Projects"}
                     </h2>
 
                     {/* Filters */}
