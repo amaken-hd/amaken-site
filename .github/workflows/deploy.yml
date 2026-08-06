@@ -48,3 +48,4 @@ jobs:
             EOF
             
             npm run build
+            env PM2_HOME=/opt/nvm/.pm2 /opt/nvm/versions/node/v18.17.1/bin/pm2 restart ${{ secrets.PM2_APP_PROCCESS }}
