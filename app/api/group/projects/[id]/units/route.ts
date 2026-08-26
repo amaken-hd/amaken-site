@@ -34,7 +34,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     ]);
 
     try {
-        const url = `${ERP_API_URL}/api/resource/Real Estate Sales?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}`;
+        const url = `${ERP_API_URL}/api/resource/Real Estate Sales?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}&limit_page_length=500`;
 
         const response = await fetch(
             url,
