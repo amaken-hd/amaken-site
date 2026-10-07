@@ -34,7 +34,7 @@ export async function GET(
             "image22",
             "image33",
             "image44",
-            "custom_unit_image",
+            "custom_صورة_خارجية_للعقار",
             "custom_bidding_link",
             "custom_auction",
             "status",
@@ -47,7 +47,7 @@ export async function GET(
             "orientation"
         ]);
 
-        const url = new URL(`${ERPNEXT_URL}/api/resource/Real Estate Sales/${propId}`);
+        const url = new URL(`${ERPNEXT_URL}/api/resource/Auctions/${propId}`);
         url.searchParams.set("fields", fields);
 
         const response = await fetch(url.toString(), {
@@ -72,9 +72,9 @@ export async function GET(
         // Fetch auction details for breadcrumb
         let auctionDetails = null;
         try {
-            const auctionUrl = new URL(`${ERPNEXT_URL}/api/resource/Auction/${id}`);
+            const auctionUrl = new URL(`${ERPNEXT_URL}/api/resource/Project/${id}`);
             auctionUrl.searchParams.set("fields", JSON.stringify(["auction_name", "city"]));
-            
+
             const auctionResponse = await fetch(auctionUrl.toString(), {
                 method: "GET",
                 headers: {

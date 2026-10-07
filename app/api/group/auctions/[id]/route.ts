@@ -17,7 +17,7 @@ export async function GET(
     }
 
     try {
-        const url = new URL(`${ERPNEXT_URL}/api/resource/Auction/${id}`);
+        const url = new URL(`${ERPNEXT_URL}/api/resource/Project/${id}`);
         url.searchParams.set("fields", '["*"]');
 
         const response = await fetch(url.toString(), {
@@ -42,9 +42,9 @@ export async function GET(
         // Fetch associated units (Real Estate Sales)
         let units = [];
         try {
-            const unitsFilters = JSON.stringify([["custom_auction", "=", id], ["custom_is_published", "=", 1]]);
-            const unitsFields = JSON.stringify(["name", "title", "property_type", "city", "plot_number", "auctionprice", "custom_bidding_link", "custom_unit_image", "status"]);
-            const unitsUrl = new URL(`${ERPNEXT_URL}/api/resource/Real Estate Sales`);
+            const unitsFilters = JSON.stringify([["custom_project", "=", id], ["custom_نشر", "=", 1]]);
+            const unitsFields = JSON.stringify(["name", "title", "property_type", "city", "plot_number", "auctionprice", "custom_bidding_link", "custom_صورة_خارجية_للعقار", "status", "opening_price"]);
+            const unitsUrl = new URL(`${ERPNEXT_URL}/api/resource/Auctions`);
             unitsUrl.searchParams.set("filters", unitsFilters);
             unitsUrl.searchParams.set("fields", unitsFields);
             unitsUrl.searchParams.set("limit_page_length", "50");

@@ -13,7 +13,7 @@ export async function GET() {
         throw new Error("ERPNext configuration missing in environment variables");
     }
 
-    const filters = JSON.stringify([["custom_is_published", "=", 1]]);
+    const filters = JSON.stringify([["project_type", "=", "مزاد"], ["custom_is_published", "=", 1]]);
     const fields = JSON.stringify(["*"]);
 
     const url = new URL(`${ERPNEXT_URL}/api/resource/Project`);
