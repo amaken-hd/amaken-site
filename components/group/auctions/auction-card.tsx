@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n/context";
 import Link from "next/link";
-import { cn, formatAuctionTime } from "@/lib/utils";
+import { cn, formatAuctionTime, getAuctionDynamicStatus } from "@/lib/utils";
 import { Auction } from "@/types/auction";
 import { ERPNEXT_URL } from "@/lib/api";
 
@@ -29,12 +29,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
     };
     const uiType = typeMap[auction.auction_type] || "online";
 
-    // Use status from ERPNext directly
-    const erpStatus = auction.status?.toLowerCase() || "upcoming";
-    const uiStatus: "upcoming" | "current" | "ended" =
-        erpStatus.includes("upcoming") || erpStatus.includes("قادم") ? "upcoming" :
-            erpStatus.includes("current") || erpStatus.includes("جاري") || erpStatus.includes("open") ? "current" :
-                "ended";
+    const { status: uiStatus } = getAuctionDynamicStatus(auction);
 
     return (
         <motion.div
@@ -47,7 +42,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
             {/* Image */}
             <div className="relative h-56 overflow-hidden">
                 <img
-                    src={auction.auction_image ? (auction.auction_image.startsWith('http') ? auction.auction_image : `${ERPNEXT_URL}${auction.auction_image}`) : "/placeholder.svg"}
+                    src={auction.custom_project_image ? (auction.custom_project_image.startsWith('http') ? auction.custom_project_image : `${ERPNEXT_URL}${auction.custom_project_image}`) : "/placeholder.svg"}
                     alt={auction.auction_name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -103,7 +98,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
                     <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[#A28B67]" />
                         <span>
-                            {new Date(auction.auction_start_date).toLocaleDateString(locale === "en" ? "en-US" : "ar-SA", {
+                            {new Date(auction.expected_start_date).toLocaleDateString(locale === "en" ? "en-US" : "ar-SA", {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
@@ -112,7 +107,7 @@ export function AuctionCard({ auction, index }: AuctionCardProps) {
                     </div>
                     <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-[#A28B67]" />
-                        <span>{formatAuctionTime(auction.auction_start_time, locale)}</span>
+                        <span>{formatAuctionTime(auction.custom_expected_start_time, locale)}</span>
                     </div>
                 </div>
 

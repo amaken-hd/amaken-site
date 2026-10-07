@@ -32,7 +32,10 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
     };
 
     return (
-        <Card className={`group overflow-hidden rounded-xl border bg-white shadow-sm transition-all hover:shadow-md ${isActive ? 'ring-2 ring-[#A28B67]/20' : ''} ${isEnded ? 'opacity-80 grayscale-[0.3]' : ''}`}>
+        <Card 
+            title={unit.title}
+            className={`group overflow-hidden rounded-xl border bg-white shadow-sm transition-all hover:shadow-md ${isActive ? 'ring-2 ring-[#A28B67]/20' : ''} ${isEnded ? 'opacity-80 grayscale-[0.3]' : ''}`}
+        >
             {/* Image Section */}
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                 <Image
@@ -69,7 +72,7 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
 
                 {/* Status Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow-md">
-                    <p className="font-medium truncate">{unit.title}</p>
+                    <p className="font-medium truncate">رقم القطعة : {unit.lotNumber}</p>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
             </div>
@@ -77,11 +80,11 @@ export function UnitCardGrid({ unit }: { unit: AuctionUnit }) {
             {/* Content Section */}
             <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-4">
-                    <h3 className="font-semibold text-gray-900 line-clamp-2 text-sm ml-2 leading-relaxed h-10">
-                        <span className="text-[#A28B67] ml-1">{unit.lotNumber} -</span>
-                        {unit.title}
+                    <h3 className="font-semibold text-gray-900 text-sm ml-2 leading-relaxed">
+                        <span className="text-[#A28B67] ml-1">رقم القطعة : {unit.lotNumber}</span>
                     </h3>
                 </div>
+
 
                 <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm mb-6 border-b border-gray-100 pb-4">
                     <div className="flex flex-col gap-1">

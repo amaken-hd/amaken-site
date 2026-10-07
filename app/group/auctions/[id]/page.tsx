@@ -8,6 +8,7 @@ import { AuctionInfoBar } from "@/components/group/auctions/auction-info-bar";
 import { useState, useEffect, use } from "react";
 import { Auction } from "@/types/auction";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAuctionDynamicStatus } from "@/lib/utils";
 
 export default function AuctionDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -68,15 +69,18 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
         { label: auction.auction_name, href: `/group/auctions/${id}` },
     ];
 
-    // Map ERPNext statuses (Arabic/English) to internal keys
-    const getStatusKey = (status: string): "upcoming" | "current" | "ended" => {
-        const s = status?.toLowerCase();
-        if (s === "active" || s === "جاري" || s === "جارة") return "current";
-        if (s === "ended" || s === "منتهي") return "ended";
-        return "upcoming";
-    };
+    const { status, targetDate } = getAuctionDynamicStatus(auction);
 
-    const status = getStatusKey(auction.status || "");
+    // Calculate duration in days between start and end date if available
+    let auctionDays = 1;
+    if (auction.expected_start_date && auction.expected_end_date) {
+        const start = new Date(auction.expected_start_date).getTime();
+        const end = new Date(auction.expected_end_date).getTime();
+        const diffDays = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60 * 24)) + 1;
+        if (!isNaN(diffDays) && diffDays > 0) {
+            auctionDays = diffDays;
+        }
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -87,26 +91,27 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
             <AuctionHero
                 title={auction.auction_name}
                 description={auction.auction_name} // Using name as description if not available
-                date={auction.auction_start_date}
-                time={auction.auction_start_time}
+                date={auction.expected_start_date}
+                time={auction.custom_expected_start_time}
                 location={auction.location || auction.city || ""}
                 status={status}
-                videoUrl={auction.youtube_url}
-                mobasher_url={auction.mobasher_url}
+                videoUrl={auction.custom_youtube_url}
+                custom_mobasher_url={auction.custom_mobasher_url}
                 approvalNumber={auction.general_authority_for_real_estate_approval_number}
-                auctionImage={auction.auction_image}
+                auctionImage={auction.custom_project_image}
             />
 
             <AuctionInfoBar
                 title={auction.auction_name}
-                date={auction.auction_start_date}
-                time={auction.auction_start_time}
-                days={1} // Placeholder as we don't have remaining days calculation here
+                date={auction.expected_start_date}
+                time={auction.custom_expected_start_time}
+                days={auctionDays}
                 productsCount={auction.units?.length || auction.no_of_realestates || 0}
                 status={status}
-                targetDate={status === "upcoming" ? `${auction.auction_start_date}T${auction.auction_start_time}` : `${auction.auction_end_date || auction.auction_start_date}T${auction.auction_end_time || auction.auction_start_time}`}
-                brochureUrl={auction.brochure}
+                targetDate={targetDate}
+                custom_brochureUrl={auction.custom_brochure}
             />
+
 
             <AuctionUnitsSection
                 units={auction.units?.map((u: any) => ({
@@ -116,11 +121,11 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                     title: u.title,
                     type: u.property_type,
                     location: u.city,
-                    startingBid: parseFloat(u.auctionprice) || 0,
+                    startingBid: parseFloat(u.opening_price) || 0,
                     highestBid: parseFloat(u.auctionprice) || 0, // Placeholder
                     bidCount: 0, // Placeholder
                     status: status === "current" ? "active" : status as any,
-                    image: NEXT_PUBLIC_ERPNEXT_URL + u.custom_unit_image || "/placeholder.svg",
+                    image: NEXT_PUBLIC_ERPNEXT_URL + u.custom_صورة_خارجية_للعقار || "/placeholder.svg",
                     custom_bidding_link: u.custom_bidding_link
                 })) || []}
                 isLoading={isLoading}

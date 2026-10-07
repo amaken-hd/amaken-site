@@ -34,7 +34,10 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
     };
 
     return (
-        <Card className={`group flex flex-col md:flex-row items-center border bg-white shadow-sm transition-all hover:shadow-md overflow-hidden ${normalizedStatus === 'active' ? 'ring-1 ring-[#A28B67]/20' : ''} ${normalizedStatus === 'ended' ? 'opacity-80 grayscale-[0.3]' : ''}`}>
+        <Card 
+            title={unit.title}
+            className={`group flex flex-col md:flex-row items-center border bg-white shadow-sm transition-all hover:shadow-md overflow-hidden ${normalizedStatus === 'active' ? 'ring-1 ring-[#A28B67]/20' : ''} ${normalizedStatus === 'ended' ? 'opacity-80 grayscale-[0.3]' : ''}`}
+        >
             {/* Thumbnail */}
             <div className="relative w-full md:w-32 h-32 md:h-full shrink-0 bg-gray-100 hidden md:block aspect-square">
 
@@ -72,10 +75,16 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
 
                 {/* Title & Location */}
                 <div className="flex-1 min-w-0 w-full md:w-auto">
-                    <h3 className="font-semibold text-gray-900 line-clamp-2 text-sm md:text-base mb-1">
-                        <span className="text-[#A28B67] ml-1">{unit.lotNumber} -</span>
-                        {unit.title}
+                    <h3 className="font-semibold text-gray-900 text-sm md:text-base mb-1">
+                        <span 
+                            title={unit.title} 
+                            className="text-[#A28B67] ml-1 cursor-help"
+                        >
+                            رقم القطعة : {unit.lotNumber}
+                        </span>
                     </h3>
+
+
                     <div className="flex items-center text-xs text-gray-500 gap-3 mt-2">
                         <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> {unit.location}</span>
                         <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-medium">{unit.type}</span>
@@ -91,19 +100,19 @@ export function UnitCardList({ unit }: { unit: AuctionUnit }) {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-1 items-start md:items-center">
+                    {/* <div className="flex flex-col gap-1 items-start md:items-center">
                         <span className="text-gray-500 text-[10px] md:text-xs">أعلى عرض</span>
                         <div className="flex items-center font-bold text-[#A28B67] bg-[#A28B67]/10 px-2 py-0.5 rounded text-sm">
                             {formatCurrency(unit.highestBid)}
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="flex flex-col gap-1 items-start md:items-center">
+                    {/* <div className="flex flex-col gap-1 items-start md:items-center">
                         <span className="text-gray-500 text-[10px] md:text-xs flex items-center gap-1">
                             المشاركين
                         </span>
                         <span className="font-medium text-gray-700 text-sm flex items-center justify-center bg-gray-50 w-6 h-6 rounded-full">{unit.bidCount}</span>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Status & Time */}

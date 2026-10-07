@@ -15,12 +15,12 @@ interface AuctionHeroProps {
     location: string;
     status: "upcoming" | "current" | "ended";
     videoUrl?: string; // Placeholder for now
-    mobasher_url?: string;
+    custom_mobasher_url?: string;
     approvalNumber?: string;
     auctionImage?: string;
 }
 
-export function AuctionHero({ title, description, date, time, location, status, videoUrl, mobasher_url, approvalNumber, auctionImage }: AuctionHeroProps) {
+export function AuctionHero({ title, description, date, time, location, status, videoUrl, custom_mobasher_url, approvalNumber, auctionImage }: AuctionHeroProps) {
     // Helper to get YouTube ID
     const getYouTubeId = (url: string) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -82,7 +82,7 @@ export function AuctionHero({ title, description, date, time, location, status, 
                                     size="lg"
                                     className="text-white px-8 text-lg h-14"
                                     style={{ backgroundColor: groupColor }}
-                                    onClick={() => mobasher_url && window.open(mobasher_url, "_blank")}
+                                    onClick={() => custom_mobasher_url && window.open(custom_mobasher_url, "_blank")}
                                 >
                                     {t("auctions.labels.register")}
                                 </Button>

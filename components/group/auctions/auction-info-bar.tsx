@@ -13,11 +13,11 @@ interface AuctionInfoBarProps {
     days: number;
     productsCount: number;
     status: "upcoming" | "current" | "ended";
-    targetDate?: string; // The date to count down to (starts at or ends at)
-    brochureUrl?: string;
+    targetDate?: string | Date | null;
+    custom_brochureUrl?: string;
 }
 
-export function AuctionInfoBar({ title, date, time, days, productsCount, status, targetDate, brochureUrl }: AuctionInfoBarProps) {
+export function AuctionInfoBar({ title, date, time, days, productsCount, status, targetDate, custom_brochureUrl }: AuctionInfoBarProps) {
     const { t, locale } = useI18n();
     const isRTL = locale !== "en";
     const timeLeft = useCountdown(targetDate, status);
@@ -25,16 +25,16 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
     const formatNumber = (num: number) => num.toString().padStart(2, '0').split('');
 
     const handleBrochureClick = () => {
-        if (!brochureUrl) return;
-        const fullUrl = `${ERPNEXT_URL}${brochureUrl}`;
+        if (!custom_brochureUrl) return;
+        const fullUrl = `${ERPNEXT_URL}${custom_brochureUrl}`;
         window.open(fullUrl, "_blank");
     };
+
+    const isEnded = status === "ended" || !timeLeft;
 
     return (
         <div className="w-full bg-white mb-8" dir={isRTL ? "rtl" : "ltr"}>
             <div className="container mx-auto px-4 lg:px-8">
-
-
 
                 {/* Stats Bar */}
                 <div className="bg-[#fafafa] border border-gray-200 rounded-md mt-5 p-6 flex flex-col md:flex-row items-center justify-between shadow-sm">
@@ -43,7 +43,7 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
                     <div className="flex flex-col text-base text-gray-500 gap-3 mb-4 md:mb-0">
                         <div className="flex items-center gap-4">
                             <span className="w-24">أيام المزاد :</span>
-                            <span className="font-bold text-gray-900">1</span>
+                            <span className="font-bold text-gray-900">{days || 1}</span>
                         </div>
                         <div className="flex items-center gap-4 text-lg">
                             <span className="font-bold text-gray-900">{date}</span>
@@ -59,7 +59,7 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
                     </div>
 
                     {/* Countdown Timer */}
-                    {status !== "ended" && timeLeft && (
+                    {!isEnded && timeLeft ? (
                         <div className="flex flex-col items-center mb-4 md:mb-0">
                             <span className="text-sm font-bold text-gray-800 mb-3">
                                 {status === "upcoming" ? "يبدأ بعد" : "ينتهي خلال"}
@@ -106,13 +106,19 @@ export function AuctionInfoBar({ title, date, time, days, productsCount, status,
                                 </div>
                             </div>
                         </div>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center p-3 px-6 bg-gray-100 rounded-lg border border-gray-200 mb-4 md:mb-0">
+                            <span className="text-base font-bold text-gray-600">المزاد منتهي</span>
+                            {/* <span className="text-xs text-gray-400 mt-1">انتهت فترة المزايدة</span> */}
+                        </div>
                     )}
+
                     {/* Buttons */}
                     <div className="flex gap-4 pb-3">
                         <Button
                             className="bg-[#A28B67] hover:bg-[#8A7556] text-white rounded-full px-6 text-base h-11 font-medium shadow-sm transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             onClick={handleBrochureClick}
-                            disabled={!brochureUrl}
+                            disabled={!custom_brochureUrl}
                         >
                             بروشور المزاد
                         </Button>

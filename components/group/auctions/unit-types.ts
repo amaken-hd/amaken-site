@@ -14,6 +14,7 @@ export interface AuctionUnit {
     endDate?: string;
     image: string;
     custom_bidding_link?: string;
+    opening_price: number;
 }
 
 export const mockAuctionUnits: AuctionUnit[] = [
