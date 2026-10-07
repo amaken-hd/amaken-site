@@ -41,43 +41,48 @@ export const getTargetDate = (dateStr: string) => {
     }
 };
 
-export function useCountdown(targetDateStr?: string, status?: string) {
+export function useCountdown(targetDateInput?: string | Date | null, status?: string) {
     const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
     useEffect(() => {
         const isEnded = status?.toLowerCase().includes("ended") || status?.toLowerCase().includes("منتهي");
 
-        if (isEnded || !targetDateStr) {
+        if (isEnded || !targetDateInput) {
             setTimeLeft(null);
             return;
         }
 
         const calculateTimeLeft = () => {
-            const tDate = getTargetDate(targetDateStr);
-            if (!tDate || isNaN(tDate.getTime())) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            const tDate = targetDateInput instanceof Date ? targetDateInput : getTargetDate(targetDateInput);
+            if (!tDate || isNaN(tDate.getTime())) return null;
 
             const difference = +tDate - +new Date();
-            let timeLeftCalculated = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
-            if (difference > 0) {
-                timeLeftCalculated = {
-                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                    minutes: Math.floor((difference / 1000 / 60) % 60),
-                    seconds: Math.floor((difference / 1000) % 60),
-                };
+            if (difference <= 0) {
+                return null;
             }
-            return timeLeftCalculated;
+
+            return {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
+            };
         };
 
         setTimeLeft(calculateTimeLeft());
 
         const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
+            const tl = calculateTimeLeft();
+            setTimeLeft(tl);
+            if (!tl) {
+                clearInterval(timer);
+            }
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [targetDateStr, status]);
+    }, [targetDateInput, status]);
 
     return timeLeft;
 }
+
