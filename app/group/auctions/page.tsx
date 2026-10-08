@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { PageBreadcrumb } from "@/components/layout/BreadcrumbSection";
 import { AuctionsFilter } from "@/components/group/auctions/auctions-filter";
 import { AuctionCard } from "@/components/group/auctions/auction-card";
@@ -9,10 +9,10 @@ import { useI18n } from "@/lib/i18n/context";
 import { Loader2 } from "lucide-react";
 import { getAuctionDynamicStatus } from "@/lib/utils";
 
-export default function AuctionsPage({
+function AuctionsContent({
     searchParams,
 }: {
-    searchParams: { filter?: string };
+    searchParams?: { filter?: string };
 }) {
     const { locale } = useI18n();
     const filter = (searchParams?.filter || "all") as "all" | "upcoming" | "current" | "ended";
@@ -50,7 +50,6 @@ export default function AuctionsPage({
         return status === filter;
     });
 
-
     return (
         <div className="min-h-screen">
             <PageBreadcrumb
@@ -85,5 +84,19 @@ export default function AuctionsPage({
                 )}
             </main>
         </div>
+    );
+}
+
+export default function AuctionsPage(props: {
+    searchParams: { filter?: string };
+}) {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center items-center min-h-screen">
+                <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
+            </div>
+        }>
+            <AuctionsContent {...props} />
+        </Suspense>
     );
 }
