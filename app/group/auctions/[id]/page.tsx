@@ -122,6 +122,7 @@ export default function AuctionDetailsPage({ params }: { params: Promise<{ id: s
                     type: u.property_type,
                     location: u.city,
                     startingBid: parseFloat(u.opening_price) || 0,
+                    opening_price: parseFloat(u.opening_price) || 0,
                     highestBid: parseFloat(u.auctionprice) || 0, // Placeholder
                     bidCount: 0, // Placeholder
                     status: status === "current" ? "active" : status as any,
